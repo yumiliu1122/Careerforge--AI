@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CareerForge AI</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">CF</span>
+          <div>
+            <strong>CareerForge AI</strong>
+            <span data-i18n="brandSubtitle">面试准备工作台</span>
+          </div>
+        </div>
+        <nav class="tabs" aria-label="主导航">
+          <button class="tab is-active" data-view="dashboard" data-i18n="navDashboard">总览</button>
+          <button class="tab" data-view="resume" data-i18n="navResume">简历分析</button>
+          <button class="tab" data-view="interview" data-i18n="navInterview">模拟面试</button>
+          <button class="tab" data-view="knowledge" data-i18n="navKnowledge">知识库</button>
+          <button class="tab" data-view="schedule" data-i18n="navSchedule">日程</button>
+          <button class="tab" data-view="settings" data-i18n="navSettings">设置</button>
+        </nav>
+      </aside>
+
+      <main class="workspace">
+        <section class="topbar">
+          <div>
+            <p class="eyebrow" data-i18n="eyebrow">本地优先 · AI 面试准备系统</p>
+            <h1 id="view-title">总览</h1>
+          </div>
+          <button id="refresh-btn" class="icon-button" title="刷新数据" aria-label="刷新数据">↻</button>
+        </section>
+
+        <section id="alert" class="alert" hidden></section>
+
+        <section class="view is-visible" id="dashboard-view">
+          <div class="metrics" id="metrics"></div>
+          <div class="split">
+            <section class="panel">
+              <h2 data-i18n="recentResumes">最近简历</h2>
+              <div id="recent-resumes" class="stack"></div>
+            </section>
+            <section class="panel">
+              <h2 data-i18n="reviewTasks">复盘任务</h2>
+              <div id="review-tasks" class="stack"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="resume-view">
+          <div class="split wide-result">
+            <form id="resume-form" class="panel form-panel">
+              <h2 data-i18n="resumeInput">简历输入</h2>
+              <div class="segmented three" role="tablist" aria-label="简历输入方式">
+                <label><input type="radio" name="inputMode" value="paste" checked /> <span data-i18n="pasteText">粘贴文本</span></label>
+                <label><input type="radio" name="inputMode" value="upload" /> <span data-i18n="uploadFile">上传文件</span></label>
+                <label><input type="radio" name="inputMode" value="clipboard" /> <span data-i18n="pasteUpload">粘贴上传</span></label>
+              </div>
+              <label><span data-i18n="candidateName">候选人/批次名</span><input name="name" value="演示候选人" /></label>
+              <label><span data-i18n="targetRole">目标岗位</span>
+                <select name="targetRole">
+                  <option value="fullstack">全栈工程师</option>
+                  <option value="backend">后端工程师</option>
+                  <option value="frontend">前端工程师</option>
+                  <option value="data">数据分析师</option>
+                  <option value="product">产品经理</option>
+                </select>
+              </label>
+              <label><span data-i18n="analysisLanguage">分析报告语言</span>
+                <select name="languageMode">
+                  <option value="auto">自动识别</option>
+                  <option value="zh">中文报告</option>
+                  <option value="en">英文报告</option>
+                </select>
+              </label>
+              <label>AI 模型
+                <select name="aiModel">
+                  <option value="flash">快速</option>
+                  <option value="pro">专家</option>
+                </select>
+              </label>
+              <div data-resume-panel="paste">
+                <label><span data-i18n="resumeContent">简历内容</span><textarea name="content" rows="13">邮箱：demo@example.com
+电话：13800000000
+个人简介：全栈工程师，熟悉 React、Node.js、SQL、Redis、Docker 与监控体系。
+工作经历：主导搭建 AI 简历分析平台，设计接口契约、简历解析流程、知识库检索和面试复盘模块，将人工整理时间降低 30%，页面响应速度提升 42%。
+项目经历：负责知识库问答与模拟面试工作流，沉淀岗位 JD、项目复盘和面试题资料，支持候选人按目标岗位生成复习计划。</textarea></label>
+              </div>
+              <div data-resume-panel="upload" hidden>
+                <label><span data-i18n="chooseFile">选择文件</span>
+                  <input id="resume-files" name="files" type="file" multiple accept=".pdf,.doc,.docx,.txt,.zip,.rar" />
+                </label>
+                <p class="small" data-i18n="uploadHint">支持 PDF、DOC、DOCX、TXT、ZIP、RAR；单个文件默认不超过 20MB。压缩包会递归识别简历文件并批量分析。</p>
+                <div id="selected-files" class="file-list empty">尚未选择文件。</div>
+              </div>
+              <div data-resume-panel="clipboard" hidden>
+                <div id="clipboard-zone" class="paste-zone" tabindex="0">
+                  <strong data-i18n="clipboardTitle">在这里粘贴文件或文本</strong>
+                  <span data-i18n="clipboardHint">可以从文件管理器复制简历文件后按 Ctrl+V，也可以直接粘贴简历全文。</span>
+                </div>
+                <div id="clipboard-files" class="file-list empty">剪贴板里还没有可分析内容。</div>
+              </div>
+              <button class="primary" type="submit" data-i18n="generateDeepAnalysis">生成深度分析</button>
+            </form>
+            <section class="panel">
+              <div class="panel-heading">
+                <h2 data-i18n="analysisResult">分析结果</h2>
+                <button id="download-report-btn" class="ghost" type="button" disabled data-i18n="downloadReport">下载报告</button>
+              </div>
+              <div id="resume-result" class="stack"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="interview-view">
+          <div class="split">
+            <form id="interview-form" class="panel form-panel">
+              <h2 data-i18n="createInterview">创建面试</h2>
+              <label><span data-i18n="role">岗位</span>
+                <select name="role">
+                  <option value="fullstack">全栈工程师</option>
+                  <option value="backend">后端工程师</option>
+                  <option value="frontend">前端工程师</option>
+                  <option value="data">数据分析师</option>
+                  <option value="product">产品经理</option>
+                </select>
+              </label>
+              <label>AI 模型
+                <select name="aiModel">
+                  <option value="flash">快速</option>
+                  <option value="pro">专家</option>
+                </select>
+              </label>
+              <label>面试形式
+                <select name="interviewMode" id="interview-mode">
+                  <option value="text">文字版面试</option>
+                  <option value="voice">语音视频面试</option>
+                </select>
+              </label>
+              <label>提问语言
+                <select name="questionLanguage" id="question-language">
+                  <option value="zh">中文提问</option>
+                  <option value="en">English questions</option>
+                </select>
+              </label>
+              <label>题目类型
+                <select name="questionType">
+                  <option value="mixed">综合混合</option>
+                  <option value="coding">只面代码</option>
+                  <option value="scenario">情景题</option>
+                  <option value="project">项目深挖</option>
+                  <option value="system">系统设计</option>
+                  <option value="behavioral">行为面试</option>
+                </select>
+              </label>
+              <label><span data-i18n="difficulty">难度</span>
+                <select name="difficulty">
+                  <option value="medium">中等</option>
+                  <option value="easy">简单</option>
+                  <option value="hard">困难</option>
+                </select>
+              </label>
+              <label><span data-i18n="duration">时长</span><input name="duration" type="number" min="10" max="90" value="30" /></label>
+              <label><span data-i18n="jobDescription">岗位描述</span><textarea name="jd" rows="6">需要一名能设计 API、交付前端页面、定义业务指标并保障服务可靠性的全栈工程师。</textarea></label>
+              <button class="primary" type="submit" data-i18n="startInterview">开始面试</button>
+            </form>
+            <section class="panel">
+              <div class="panel-heading">
+                <h2 data-i18n="answerArea">答题区</h2>
+                <button id="finish-session-btn" class="ghost" type="button" disabled data-i18n="finishInterview">结束并汇总</button>
+              </div>
+              <div id="interview-room" class="stack empty">创建一场面试后会在这里出现题目。</div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="knowledge-view">
+          <div class="knowledge-layout">
+            <section class="panel knowledge-guide">
+              <h2 data-i18n="knowledgeWhat">知识库是什么？</h2>
+              <p data-i18n="knowledgeDesc">知识库分成“我的资料”和“公开资料库”。我的资料由你自己导入，适合放岗位 JD、公司资料、项目复盘、简历素材；公开资料库内置通用面试材料，可以作为额外参考并一键导入。</p>
+              <div class="mini-grid">
+                <div><strong>1</strong><span data-i18n="knowledgeStep1">导入自己的材料</span></div>
+                <div><strong>2</strong><span data-i18n="knowledgeStep2">浏览公开资料库</span></div>
+                <div><strong>3</strong><span data-i18n="knowledgeStep3">点击推荐问题提问</span></div>
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="library-tabs">
+                <button class="library-tab is-active" type="button" data-library-tab="mine">我的资料</button>
+                <button class="library-tab" type="button" data-library-tab="public">公开资料库</button>
+              </div>
+
+              <div class="library-panel is-visible" data-library-panel="mine">
+                <form id="knowledge-form" class="form-panel">
+                  <h2 data-i18n="addKnowledge">添加我的资料</h2>
+                  <label><span data-i18n="knowledgeType">资料类型</span>
+                    <select name="category">
+                      <option value="interview">面试题与答案</option>
+                      <option value="jd">岗位 JD</option>
+                      <option value="company">公司与业务资料</option>
+                      <option value="project">项目复盘</option>
+                      <option value="resume">简历素材</option>
+                      <option value="note">通用笔记</option>
+                    </select>
+                  </label>
+                  <label><span data-i18n="title">标题</span><input name="title" value="AI 面试系统可靠性笔记" required /></label>
+                  <label><span data-i18n="tags">标签</span><input name="tags" value="后端, 稳定性, RAG, 面试" /></label>
+                  <label><span data-i18n="content">内容</span><textarea name="content" rows="10" required>可靠的 AI 面试系统需要把接口、评分、存储、检索和模型调用拆成清晰边界。模型超时时需要设置超时时间、重试上限、降级策略、队列缓冲、可观测性和告警。产品指标可以关注激活率、答题完成率、复盘任务完成率和面试通过率。</textarea></label>
+                  <button class="primary" type="submit" data-i18n="saveKnowledge">保存资料</button>
+                </form>
+                <div class="sub-panel">
+                  <h3 data-i18n="knowledgeDocs">已入库资料</h3>
+                  <div id="knowledge-docs" class="stack"></div>
+                </div>
+              </div>
+
+              <div class="library-panel" data-library-panel="public">
+                <div class="toolbar">
+                  <select id="public-role-filter" aria-label="岗位筛选">
+                    <option value="all">全部岗位</option>
+                    <option value="backend">后端工程师</option>
+                    <option value="frontend">前端工程师</option>
+                    <option value="fullstack">全栈工程师</option>
+                    <option value="data">数据分析师</option>
+                    <option value="product">产品经理</option>
+                    <option value="algorithm">算法工程师</option>
+                    <option value="testing">测试开发工程师</option>
+                    <option value="ops">运维开发工程师</option>
+                  </select>
+                  <select id="public-category-filter">
+                    <option value="all">全部资料</option>
+                    <option value="interview">面试题与答案</option>
+                    <option value="jd">岗位 JD</option>
+                    <option value="company">公司与业务资料</option>
+                    <option value="project">项目复盘</option>
+                    <option value="resume">简历素材</option>
+                    <option value="note">通用笔记</option>
+                  </select>
+                  <input id="public-keyword" placeholder="搜索公开材料关键词" />
+                  <button id="public-search-btn" class="ghost" type="button">筛选</button>
+                </div>
+                <p id="public-library-stat" class="small"></p>
+                <div id="public-docs" class="stack public-list"></div>
+              </div>
+            </section>
+
+            <section class="panel">
+              <h2 data-i18n="askKnowledge">知识库问答</h2>
+              <form id="ask-form" class="ask-form">
+                <div class="toolbar">
+                  <select name="scope" id="ask-scope">
+                    <option value="all">全部来源</option>
+                    <option value="private">我的资料</option>
+                    <option value="public">公开资料库</option>
+                  </select>
+                  <select name="category" id="ask-category">
+                    <option value="all">全部资料</option>
+                    <option value="interview">面试题与答案</option>
+                    <option value="jd">岗位 JD</option>
+                    <option value="company">公司与业务资料</option>
+                    <option value="project">项目复盘</option>
+                    <option value="resume">简历素材</option>
+                    <option value="note">通用笔记</option>
+                  </select>
+                  <select name="role" id="ask-role" aria-label="岗位问题">
+                    <option value="all">全部岗位</option>
+                    <option value="backend">后端工程师</option>
+                    <option value="frontend">前端工程师</option>
+                    <option value="fullstack">全栈工程师</option>
+                    <option value="data">数据分析师</option>
+                    <option value="product">产品经理</option>
+                    <option value="algorithm">算法工程师</option>
+                    <option value="testing">测试开发工程师</option>
+                    <option value="ops">运维开发工程师</option>
+                  </select>
+                  <select name="aiModel" id="answer-mode" aria-label="DeepSeek 模型">
+                    <option value="flash">快速</option>
+                    <option value="pro">专家</option>
+                  </select>
+                </div>
+                <div class="inline-form">
+                  <input name="question" value="模型接口超时时系统应该怎么降级？" required />
+                  <button class="primary" type="submit" data-i18n="ask">提问</button>
+                </div>
+              </form>
+              <div id="knowledge-ai-quota" class="quota-grid"></div>
+              <div class="sub-panel">
+                <h3>推荐问题</h3>
+                <div id="suggested-questions" class="suggestion-grid"></div>
+              </div>
+              <div class="sub-panel">
+                <div class="panel-heading">
+                  <h3>问答记录</h3>
+                  <div class="history-controls">
+                    <button id="history-prev" class="ghost" type="button">上一条</button>
+                    <button id="history-next" class="ghost" type="button">下一条</button>
+                  </div>
+                </div>
+                <div id="knowledge-history" class="history-strip"></div>
+              </div>
+              <div id="knowledge-answer" class="stack"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="schedule-view">
+          <div class="split">
+            <form id="schedule-form" class="panel form-panel">
+              <h2 data-i18n="parseInvite">解析面试邀请</h2>
+              <label><span data-i18n="inviteText">邀请文本</span><textarea name="inviteText" rows="8" required>公司：ExampleCloud
+岗位：后端工程师
+面试官：Alex Chen
+时间：2026-07-20 14:30
+会议链接：https://meet.google.com/demo-room</textarea></label>
+              <label>邀请链接<input name="inviteLink" placeholder="粘贴邮件、日历或会议邀请链接" /></label>
+              <label>上传邀请文件<input id="schedule-file" type="file" accept=".txt,.ics,.eml,.html,.pdf,.doc,.docx" /></label>
+              <div id="schedule-paste-zone" class="paste-zone" tabindex="0">
+                <strong>复制粘贴邀请内容或文件</strong>
+                <span>可以粘贴邮件正文、会议链接，也可以从文件管理器复制邀请文件后按 Ctrl+V。</span>
+              </div>
+              <div id="schedule-file-list" class="file-list empty">尚未选择或粘贴邀请文件。</div>
+              <button class="primary" type="submit" data-i18n="parseSave">解析并保存</button>
+            </form>
+            <section class="panel">
+              <h2 data-i18n="scheduleList">日程列表</h2>
+              <div id="schedule-list" class="stack"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="settings-view">
+          <form id="settings-form" class="panel form-panel narrow">
+            <h2 data-i18n="settingsTitle">系统设置</h2>
+            <label><span data-i18n="uiLanguage">界面语言</span>
+              <select name="uiLanguage">
+                <option value="zh">中文</option>
+                <option value="en">English</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국어</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+              </select>
+            </label>
+            <label><span data-i18n="themeMode">主题模式</span>
+              <select name="themeMode">
+                <option value="system">跟随系统</option>
+                <option value="light">浅色模式</option>
+                <option value="dark">深色模式</option>
+              </select>
+            </label>
+            <label>账户类型
+              <select name="accountRole">
+                <option value="user">普通用户（每种 AI 模式每月 1000 次免费）</option>
+                <option value="admin">管理员（无限次）</option>
+              </select>
+            </label>
+            <p class="small">选择主题会立即预览；只有点击“保存设置”后才会写入配置。未保存时刷新页面会恢复原设置。</p>
+            <label>AI Provider
+              <select name="provider">
+                <option value="local-rules">本地规则分析</option>
+                <option value="openai-compatible">OpenAI 兼容接口</option>
+                <option value="enterprise-gateway">企业网关</option>
+              </select>
+            </label>
+            <label>Chat Model<input name="chatModel" value="careerforge-rules-v1" /></label>
+            <label>Embedding Model<input name="embeddingModel" value="lexical-overlap-v1" /></label>
+            <label><span data-i18n="retentionDays">数据保留天数</span><input name="retentionDays" type="number" value="180" /></label>
+            <label class="checkbox"><input name="voiceEnabled" type="checkbox" /> <span data-i18n="voiceBeta">语音面试实验功能</span></label>
+            <button class="primary" type="submit" data-i18n="saveSettings">保存设置</button>
+          </form>
+        </section>
+      </main>
+    </div>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

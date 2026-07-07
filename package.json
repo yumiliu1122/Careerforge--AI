@@ -1,0 +1,28 @@
+{
+  "name": "careerforge-ai",
+  "version": "1.0.0",
+  "description": "Local-first interview preparation workspace with resume analysis, mock interviews, knowledge Q&A, and schedule parsing.",
+  "type": "module",
+  "scripts": {
+    "dev": "node src/main.js",
+    "start": "node src/main.js",
+    "check": "node --check src/main.js && node --check src/platform/config.js && node --check src/platform/http.js && node --check src/platform/storage.js && node --check src/platform/util.js && node --check src/platform/aiClient.js && node --check src/seed/publicKnowledgeLibrary.js && node --check src/modules/resume/resumeService.js && node --check src/modules/resume/fileParser.js && node --check src/modules/resume/localDeepAnalyzer.js && node --check src/modules/resume/aiResumeAnalyzer.js && node --check src/modules/resume/language.js && node --check src/modules/interview/interviewAi.js && node --check src/modules/interview/interviewService.js && node --check src/modules/knowledge/knowledgeAi.js && node --check src/modules/knowledge/knowledgeService.js && node --check src/modules/schedule/scheduleAi.js && node --check src/modules/schedule/scheduleService.js && node --check src/modules/settings/settingsService.js && node --check public/app.js"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "keywords": [
+    "interview",
+    "resume",
+    "knowledge-base",
+    "mock-interview"
+  ],
+  "dependencies": {
+    "jszip": "^3.10.1",
+    "mammoth": "^1.9.0",
+    "node-unrar-js": "^2.0.2",
+    "pdf-parse": "^1.1.1",
+    "word-extractor": "^1.0.4"
+  },
+  "license": "MIT"
+}
