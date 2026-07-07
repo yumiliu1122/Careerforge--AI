@@ -6,7 +6,7 @@ import { finishInterview, getInterview, getReviewTasks, listInterviews, startInt
 import { addKnowledgeDoc, askKnowledge, getKnowledgeAiUsage, getKnowledgeSuggestions, importPublicKnowledgeDoc, listKnowledgeDocs, listKnowledgeHistory, listPublicKnowledgeDocs } from "./modules/knowledge/knowledgeService.js";
 import { listSchedules, parseSchedule, updateSchedule } from "./modules/schedule/scheduleService.js";
 import { getSettings, updateSettings } from "./modules/settings/settingsService.js";
-import { authMe, getCurrentUserFromRequest, login, logout, register, requestVerificationCode, requireUser } from "./modules/auth/authService.js";
+import { authMe, getCurrentUserFromRequest, getWechatLoginUrl, login, logout, register, requestVerificationCode, requireUser } from "./modules/auth/authService.js";
 
 const routes = [
   route("GET", /^\/api\/health$/, async () => {
@@ -30,6 +30,7 @@ const routes = [
   route("POST", /^\/api\/auth\/register$/, ({ body, request }) => register(body, request), 201),
   route("POST", /^\/api\/auth\/login$/, ({ body, request }) => login(body, request)),
   route("POST", /^\/api\/auth\/logout$/, ({ request }) => logout(request)),
+  route("GET", /^\/api\/auth\/wechat-url$/, () => getWechatLoginUrl()),
 
   route("POST", /^\/api\/resumes\/analyze$/, withUser(({ body, user }) => analyzeResume(body, user.id)), 201),
   route("POST", /^\/api\/resumes\/upload$/, withUser(({ body, user }) => analyzeUploadedResumes(body, user.id)), 201),
@@ -87,7 +88,7 @@ async function deleteFromStore(collection, id, userId) {
   let deleted = null;
   await updateStore((draft) => {
     const list = Array.isArray(draft[collection]) ? draft[collection] : [];
-    const index = list.findIndex((item) => item.id === id && item.userId === userId);
+    const index = list.findIndex((item) => item.id === id && (item.userId === userId || item.userId === undefined || item.userId === null));
     if (index === -1) {
       const error = new Error("未找到要删除的数据。");
       error.status = 404;

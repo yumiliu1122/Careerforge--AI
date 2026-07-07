@@ -18,7 +18,8 @@ const state = {
   scheduleClipboardItems: [],
   scheduleClipboardText: "",
   currentUser: null,
-  progressTimer: null
+  progressTimer: null,
+  loginCaptcha: ""
 };
 
 const translations = {
@@ -177,10 +178,13 @@ async function api(path, options = {}) {
 
 function showAlert(message) {
   const alert = $("#alert");
+  alert.dataset.view = state.activeView;
   alert.textContent = message;
   alert.hidden = false;
   window.setTimeout(() => {
-    alert.hidden = true;
+    if (alert.dataset.view === state.activeView) {
+      alert.hidden = true;
+    }
   }, 5200);
 }
 
@@ -284,9 +288,14 @@ function formToObject(form) {
 
 function switchView(view) {
   state.activeView = view;
+  if (view !== "interview") document.body.classList.remove("interview-focus");
   $("#view-title").textContent = viewTitles()[view] || t("navDashboard");
   $$(".tab").forEach((tab) => tab.classList.toggle("is-active", tab.dataset.view === view));
   $$(".view").forEach((section) => section.classList.toggle("is-visible", section.id === `${view}-view`));
+  const alert = $("#alert");
+  if (alert?.dataset.view && alert.dataset.view !== view) {
+    alert.hidden = true;
+  }
 }
 
 function setMobileMenu(open) {
@@ -571,6 +580,8 @@ async function startInterview(form) {
   data.duration = Number(data.duration || 30);
   const session = await api("/api/interviews", { method: "POST", body: data });
   state.activeSession = session;
+  document.body.classList.add("interview-focus");
+  $("#interview-view")?.classList.add("is-room-mode");
   $("#finish-session-btn").disabled = false;
   renderInterviewRoom(session);
 }
@@ -579,6 +590,8 @@ function renderInterviewRoom(session, latestEvaluation = null) {
   const answeredIds = new Set(session.answers.map((answer) => answer.questionId));
   const next = session.questions.find((question) => !answeredIds.has(question.id));
   if (session.status === "completed") {
+    document.body.classList.remove("interview-focus");
+    $("#interview-view")?.classList.remove("is-room-mode");
     $("#finish-session-btn").disabled = true;
     $("#interview-room").innerHTML = `
       ${renderInterviewSummary(session)}
@@ -600,7 +613,8 @@ function renderInterviewRoom(session, latestEvaluation = null) {
   if (answerForm) {
     answerForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-      const answer = formToObject(answerForm).answer;
+      const answerData = formToObject(answerForm);
+      const answer = [answerData.answer, answerData.codeDraft ? `代码草稿：\n${answerData.codeDraft}` : ""].filter(Boolean).join("\n\n");
       const result = await withProgress("正在评估回答", ["提交本题回答", "调用 AI 评估", "生成参考改写", "刷新下一题"], async () => {
         return api(`/api/interviews/${session.id}/answers`, {
           method: "POST",
@@ -616,6 +630,11 @@ function renderInterviewRoom(session, latestEvaluation = null) {
 }
 
 function bindInterviewAssistActions(session, nextQuestion) {
+  $("[data-exit-interview-room]")?.addEventListener("click", () => {
+    document.body.classList.remove("interview-focus");
+    $("#interview-view")?.classList.remove("is-room-mode");
+  });
+
   $("[data-speak-question]")?.addEventListener("click", () => {
     const useEnglish = session.questionLanguage === "en";
     const text = nextQuestion?.prompt || (useEnglish ? "There is no question waiting for an answer." : "当前没有待回答题目。");
@@ -691,7 +710,7 @@ function bindInterviewAssistActions(session, nextQuestion) {
   });
 }
 
-function renderVirtualInterviewer(session, nextQuestion) {
+function renderVirtualInterviewerLegacy(session, nextQuestion) {
   if (session.interviewMode !== "voice") return "";
   const useEnglish = session.questionLanguage === "en";
   const latest = session.answers?.at(-1);
@@ -730,7 +749,42 @@ function renderVirtualInterviewer(session, nextQuestion) {
   </article>`;
 }
 
-function renderQuestion(session, question) {
+function renderVirtualInterviewer(session, nextQuestion) {
+  if (session.interviewMode !== "voice") return "";
+  const useEnglish = session.questionLanguage === "en";
+  const latest = session.answers?.at(-1);
+  const expression = !latest ? "greeting" : latest.evaluation.score >= 80 ? "affirming" : latest.evaluation.score < 65 ? "thinking" : "listening";
+  const subtitle = nextQuestion?.prompt || (useEnglish ? "This round is complete. You can finish and review the summary." : "本轮题目已完成，可以结束并查看汇总。");
+  const modelName = session.aiModel === "pro" ? (useEnglish ? "Expert" : "专家") : (useEnglish ? "Fast" : "快速");
+  return `<article class="call-stage ai-interview-stage is-${expression}">
+    <div class="call-topline">
+      <span><span class="call-dot"></span>${useEnglish ? "Voice interview room" : "语音面试舱"}</span>
+      <span>${modelName}</span>
+      <button class="ghost compact" type="button" data-exit-interview-room>${useEnglish ? "Back to setup" : "返回配置"}</button>
+    </div>
+    <div class="ai-room-layout">
+      <section class="ai-persona-card">
+        <div class="digital-human" aria-label="${useEnglish ? "AI female interviewer" : "AI 女性面试官"}">
+          <img src="/assets/ai-interviewer.jpg" alt="${useEnglish ? "AI female interviewer" : "AI 虚拟女性面试官"}" />
+          <span class="voice-ring"></span>
+        </div>
+        <h3>${useEnglish ? "AI Interviewer" : "AI 虚拟面试官"}</h3>
+        <p>${useEnglish ? "She reads questions aloud, listens to your answer, and keeps subtitles visible." : "她会朗读面试题，并在你作答时保持收声；下方会持续显示字幕与当前问题。"}</p>
+        <div class="call-controls">
+          <button class="ghost" type="button" data-speak-question>${useEnglish ? "Read Question" : "朗读题目"}</button>
+          <button class="ghost" type="button" data-stop-speech>${useEnglish ? "Stop" : "停止朗读"}</button>
+          <button class="ghost" type="button" data-voice-input>${useEnglish ? "Voice Input" : "语音输入"}</button>
+        </div>
+      </section>
+      <section class="ai-question-board">
+        <div class="call-subtitle"><strong>${useEnglish ? "Subtitle" : "字幕"}</strong><span>${escapeHtml(subtitle)}</span></div>
+        <div class="call-question"><strong>${useEnglish ? "Current Question" : "当前问题"}</strong><p>${escapeHtml(subtitle)}</p></div>
+      </section>
+    </div>
+  </article>`;
+}
+
+function renderQuestionLegacy(session, question) {
   const useEnglish = session.questionLanguage === "en";
   return `<article class="item question-card">
     <p class="small">${session.role} · ${session.aiModel === "pro" ? "专家" : "快速"} · ${useEnglish ? "English questions" : "中文提问"} · ${question.difficulty} · ${question.competency}</p>
@@ -741,6 +795,31 @@ function renderQuestion(session, question) {
     </details>
     <form id="answer-form" class="answer-box">
       <textarea name="answer" rows="8" required placeholder="${useEnglish ? "Type your answer. Include context, action, result, and data where possible." : "输入你的回答，尽量包含背景、行动、结果和数据。"}"></textarea>
+      <button class="primary" type="submit">${useEnglish ? "Submit Answer" : "提交答案"}</button>
+    </form>
+  </article>`;
+}
+
+function renderQuestion(session, question) {
+  const useEnglish = session.questionLanguage === "en";
+  const modelName = session.aiModel === "pro" ? (useEnglish ? "Expert" : "专家") : (useEnglish ? "Fast" : "快速");
+  const languageName = useEnglish ? "English questions" : "中文提问";
+  const answerPlaceholder = useEnglish
+    ? "Type your answer. Include context, action, result, and data where possible."
+    : "输入你的回答，尽量包含背景、行动、结果和数据。";
+  const codePlaceholder = useEnglish
+    ? "Write code, pseudo-code, SQL, edge cases, or complexity notes here."
+    : "这里可以写代码、伪代码、SQL、边界条件或复杂度分析。";
+  return `<article class="item question-card">
+    <p class="small">${escapeHtml(session.role)} · ${modelName} · ${languageName} · ${escapeHtml(question.difficulty)} · ${escapeHtml(question.competency)}</p>
+    <h3>${question.order}. ${escapeHtml(question.prompt)}</h3>
+    <details class="reference-answer">
+      <summary>${useEnglish ? "View reference answer after you try" : "先作答，必要时查看参考答案"}</summary>
+      <div class="answer-text">${renderPlainText(question.referenceAnswer || (useEnglish ? "No reference answer yet." : "暂无参考答案。"))}</div>
+    </details>
+    <form id="answer-form" class="answer-box">
+      <textarea name="answer" rows="8" required placeholder="${answerPlaceholder}"></textarea>
+      ${session.questionType === "coding" ? `<textarea name="codeDraft" rows="10" class="code-answer" placeholder="${codePlaceholder}"></textarea>` : ""}
       <button class="primary" type="submit">${useEnglish ? "Submit Answer" : "提交答案"}</button>
     </form>
   </article>`;
@@ -944,15 +1023,15 @@ function renderKnowledgeUsage() {
     : "未配置外部 AI · 使用本地完整兜底";
   container.innerHTML = `
     <article class="quota-card quota-summary">
-      <strong>${usage.isAdmin ? "管理员无限次" : `本月额度 · ${usage.period}`}</strong>
+      <strong>本月额度 · ${escapeHtml(usage.period || "")}</strong>
       <span>${escapeHtml(providerText)}</span>
       <span>${escapeHtml(usage.provider?.billingNote || "")}</span>
     </article>
     ${modeItems.map((item) => `
       <button class="quota-card ${item.key === activeMode ? "is-active" : ""}" type="button" data-quota-mode="${escapeHtml(item.key)}">
         <strong>${escapeHtml(item.label)}</strong>
-        <span>${item.unlimited ? "无限次" : `${item.used}/${item.freeQuota} 次，剩余 ${item.remaining} 次`}</span>
-        <span>${item.unlimited ? "超额费用：0 元" : `超额 ${item.overage} 次 · ${item.overagePriceCny} 元/次 · 预计 ${item.estimatedChargeCny} 元`}</span>
+        <span>${item.used}/${item.freeQuota} 次，剩余 ${item.remaining} 次</span>
+        <span>超额 ${item.overage} 次 · ${item.overagePriceCny} 元/次 · 预计 ${item.estimatedChargeCny} 元</span>
       </button>
     `).join("")}
   `;
@@ -1114,7 +1193,7 @@ function renderSchedule(schedule) {
   </article>`;
 }
 
-function bindDeleteButtons() {
+function bindDeleteButtonsLegacy() {
   $$("[data-delete-url]").forEach((button) => {
     if (button.dataset.boundDelete) return;
     button.dataset.boundDelete = "1";
@@ -1126,6 +1205,40 @@ function bindDeleteButtons() {
           await refreshAll();
         });
         showAlert("已删除。");
+      } catch (error) {
+        showAlert(error.message);
+      }
+    });
+  });
+}
+
+function bindDeleteButtons() {
+  $$("[data-delete-url]").forEach((button) => {
+    if (button.dataset.boundDelete) return;
+    button.dataset.boundDelete = "1";
+    button.addEventListener("click", async () => {
+      const message = state.settings?.uiLanguage === "en"
+        ? "Delete this item? This cannot be undone."
+        : "确认删除这条数据吗？删除后不可恢复。";
+      if (!window.confirm(message)) return;
+      const deleteUrl = button.dataset.deleteUrl;
+      try {
+        await withProgress("正在删除", ["提交删除请求", "更新数据", "刷新界面"], async () => {
+          await api(deleteUrl, { method: "DELETE" });
+          if (deleteUrl?.startsWith("/api/resumes/")) {
+            const deletedId = decodeURIComponent(deleteUrl.split("/").pop() || "");
+            if (!deletedId || state.lastResumeId === deletedId) {
+              state.lastResumeId = null;
+              const result = $("#resume-result");
+              if (result) result.innerHTML = `<div class="empty">${state.settings?.uiLanguage === "en" ? "The selected resume analysis has been deleted." : "这份简历分析已删除。"}</div>`;
+              const downloadButton = $("#download-report-btn");
+              if (downloadButton) downloadButton.disabled = true;
+            }
+          }
+          await refreshAll();
+        });
+        button.closest(".item")?.remove();
+        showAlert(state.settings?.uiLanguage === "en" ? "Deleted." : "已删除。");
       } catch (error) {
         showAlert(error.message);
       }
@@ -1323,7 +1436,261 @@ function bindLibraryTabs() {
   });
 }
 
-function bindAuthEvents() {
+function setupAuthMarkupLegacy() {
+  const gate = $("#auth-gate");
+  if (!gate || gate.dataset.ready === "1") return;
+  gate.dataset.ready = "1";
+  gate.innerHTML = `
+    <div class="auth-shell">
+      <aside class="auth-hero">
+        <div class="auth-brand-large">
+          <span class="brand-mark">CF</span>
+          <div><strong>CareerForge AI</strong><span>AI interview preparation workspace</span></div>
+        </div>
+        <div class="auth-hero-copy">
+          <p class="eyebrow">Local-first career cockpit</p>
+          <h1>把简历、题库、日程和模拟面试放进同一个工作台。</h1>
+          <p>注册后才能进入系统。每个账号的数据独立保存，其他人看不到你的简历、面试记录、知识库材料和日程。</p>
+        </div>
+        <div class="auth-illustration" aria-hidden="true">
+          <span class="auth-card-float one"></span>
+          <span class="auth-card-float two"></span>
+          <span class="auth-orbit"></span>
+          <span class="auth-avatar-mini">AI</span>
+        </div>
+      </aside>
+      <main class="auth-card">
+        <div class="auth-card-head">
+          <div><p class="eyebrow">Welcome</p><h2 id="auth-title">登录账号</h2></div>
+          <span class="auth-secure">私有数据隔离</span>
+        </div>
+        <div class="auth-tabs">
+          <button class="auth-tab is-active" type="button" data-auth-tab="login">登录</button>
+          <button class="auth-tab" type="button" data-auth-tab="register">注册</button>
+        </div>
+        <form id="login-form" class="auth-form" data-auth-panel="login">
+          <label class="field-label">邮箱 / 用户名 / 手机号
+            <span class="input-shell"><span class="input-icon">@</span><input name="identity" autocomplete="username" placeholder="请输入用户名、手机号或邮箱" required /></span>
+          </label>
+          <label class="field-label">密码
+            <span class="input-shell"><span class="input-icon">锁</span><input name="password" type="password" autocomplete="current-password" placeholder="请输入密码" required /><button class="icon-field" type="button" data-toggle-password>眼</button></span>
+          </label>
+          <label class="field-label">图形验证码
+            <span class="captcha-row">
+              <span class="input-shell"><span class="input-icon">验</span><input name="captcha" autocomplete="off" placeholder="输入右侧验证码" required /></span>
+              <button class="captcha-image" type="button" id="captcha-image" title="点击刷新验证码">----</button>
+            </span>
+          </label>
+          <div class="auth-row">
+            <label class="check-line"><input name="remember" type="checkbox" />记住我</label>
+            <button class="link-button" type="button" id="forgot-password-btn">忘记密码？</button>
+          </div>
+          <button class="primary auth-submit" type="submit">登录</button>
+          <div class="auth-divider"><span>或使用第三方登录</span></div>
+          <div class="social-row">
+            <button class="social-button" type="button" data-social-login="google">G</button>
+            <button class="social-button" type="button" data-social-login="github">Git</button>
+            <button class="social-button wechat" type="button" data-social-login="wechat">微信</button>
+          </div>
+          <p class="auth-switch">还没有账号？<button class="link-button" type="button" data-auth-jump="register">立即注册</button></p>
+        </form>
+        <form id="register-form" class="auth-form" data-auth-panel="register" hidden>
+          <label class="field-label">用户名
+            <span class="input-shell"><span class="input-icon">名</span><input name="username" autocomplete="username" placeholder="2-20 位，不能重复" required /></span>
+          </label>
+          <label class="field-label">手机号
+            <span class="code-row"><span class="input-shell"><span class="input-icon">手</span><input name="phone" inputmode="numeric" autocomplete="tel" placeholder="11 位手机号" required /></span><button class="ghost" type="button" data-send-code="phone">发送验证码</button></span>
+          </label>
+          <label class="field-label">短信验证码
+            <span class="input-shell"><span class="input-icon">码</span><input name="phoneCode" inputmode="numeric" autocomplete="one-time-code" placeholder="6 位验证码" required /></span>
+          </label>
+          <label class="field-label">邮箱（选填）
+            <span class="code-row"><span class="input-shell"><span class="input-icon">@</span><input name="email" type="email" autocomplete="email" placeholder="填写后需要邮箱验证码" /></span><button class="ghost" type="button" data-send-code="email">发送验证码</button></span>
+          </label>
+          <label class="field-label">邮箱验证码
+            <span class="input-shell"><span class="input-icon">邮</span><input name="emailCode" inputmode="numeric" autocomplete="one-time-code" placeholder="仅填写邮箱后必填" /></span>
+          </label>
+          <label class="field-label">密码
+            <span class="input-shell"><span class="input-icon">锁</span><input name="password" type="password" autocomplete="new-password" placeholder="至少 8 位" required /><button class="icon-field" type="button" data-toggle-password>眼</button></span>
+            <span id="password-strength" class="password-strength">密码强度：待输入</span>
+          </label>
+          <label class="field-label">确认密码
+            <span class="input-shell"><span class="input-icon">确</span><input name="confirmPassword" type="password" autocomplete="new-password" placeholder="再次输入密码" required /><button class="icon-field" type="button" data-toggle-password>眼</button></span>
+          </label>
+          <label class="check-line terms-line"><input name="terms" type="checkbox" required />我已阅读并同意《用户协议》和《隐私政策》</label>
+          <button class="primary auth-submit" type="submit">创建账号</button>
+          <p class="auth-switch">已有账号？<button class="link-button" type="button" data-auth-jump="login">立即登录</button></p>
+        </form>
+        <p id="auth-message" class="form-message" role="status"></p>
+      </main>
+    </div>
+    <dialog id="forgot-dialog" class="auth-dialog">
+      <form method="dialog" class="auth-dialog-card">
+        <button class="dialog-close" value="cancel" aria-label="关闭">×</button>
+        <h3>重置密码</h3>
+        <p>输入注册邮箱后，接入邮件服务时会发送重置链接。当前先提供流程提示。</p>
+        <label class="field-label">邮箱
+          <span class="input-shell"><span class="input-icon">@</span><input id="reset-email" type="email" placeholder="name@example.com" /></span>
+        </label>
+        <button class="primary" id="send-reset-link" type="button">发送重置链接</button>
+        <button class="link-button" value="cancel">返回登录</button>
+      </form>
+    </dialog>
+  `;
+  refreshCaptcha();
+}
+
+function setupAuthMarkup() {
+  const gate = $("#auth-gate");
+  if (!gate || gate.dataset.ready === "1") return;
+  gate.dataset.ready = "1";
+  gate.innerHTML = `
+    <div class="auth-shell">
+      <aside class="auth-hero">
+        <div class="auth-brand-large">
+          <span class="brand-mark">CF</span>
+          <div><strong>CareerForge AI</strong><span>AI interview preparation workspace</span></div>
+        </div>
+        <div class="auth-hero-copy">
+          <p class="eyebrow">Local-first career cockpit</p>
+          <h1>将简历打磨、题库练习、日程管理与模拟面试，悉数纳入你的专属职业工作台。</h1>
+          <p>完成注册即可进入独立账号体系，简历、面试记录、知识库素材与日程数据均做私有隔离，仅您本人可访问查看。</p>
+        </div>
+        <div class="auth-illustration" aria-hidden="true">
+          <span class="auth-card-float one"></span>
+          <span class="auth-card-float two"></span>
+          <span class="auth-orbit"></span>
+          <span class="auth-avatar-mini">AI</span>
+        </div>
+      </aside>
+      <main class="auth-card">
+        <div class="auth-card-head">
+          <div><p class="eyebrow">Welcome</p><h2 id="auth-title">登录账号</h2></div>
+          <span class="auth-secure">私有数据隔离</span>
+        </div>
+        <div class="auth-tabs" aria-label="登录注册切换">
+          <button class="auth-tab is-active" type="button" data-auth-tab="login">登录</button>
+          <button class="auth-tab" type="button" data-auth-tab="register">注册</button>
+        </div>
+        <form id="login-form" class="auth-form" data-auth-panel="login">
+          <label class="field-label">邮箱 / 用户名 / 手机号
+            <span class="input-shell"><span class="input-icon">@</span><input name="identity" autocomplete="username" placeholder="请输入用户名、手机号或邮箱" required /></span>
+          </label>
+          <label class="field-label">密码
+            <span class="input-shell"><span class="input-icon">锁</span><input name="password" type="password" autocomplete="current-password" placeholder="请输入密码" required /><button class="icon-field" type="button" data-toggle-password>眼</button></span>
+          </label>
+          <label class="field-label">图形验证码
+            <span class="captcha-row">
+              <span class="input-shell"><span class="input-icon">验</span><input name="captcha" autocomplete="off" placeholder="输入右侧验证码" required /></span>
+              <button class="captcha-image" type="button" id="captcha-image" title="点击刷新验证码">----</button>
+            </span>
+          </label>
+          <div class="auth-row">
+            <label class="check-line"><input name="remember" type="checkbox" />记住我</label>
+            <button class="link-button" type="button" id="forgot-password-btn">忘记密码？</button>
+          </div>
+          <button class="primary auth-submit" type="submit">登录</button>
+          <div class="auth-divider"><span>或使用第三方登录</span></div>
+          <div class="social-row">
+            <button class="social-button" type="button" data-social-login="google">G</button>
+            <button class="social-button" type="button" data-social-login="github">Git</button>
+            <button class="social-button wechat" type="button" data-social-login="wechat">微信</button>
+          </div>
+          <p class="auth-switch">还没有账号？<button class="link-button" type="button" data-auth-jump="register">立即注册</button></p>
+        </form>
+        <form id="register-form" class="auth-form" data-auth-panel="register" hidden>
+          <label class="field-label">用户名
+            <span class="input-shell"><span class="input-icon">名</span><input name="username" autocomplete="username" placeholder="2-20 位，不能重复" required /></span>
+          </label>
+          <label class="field-label">手机号
+            <span class="code-row"><span class="input-shell"><span class="input-icon">手</span><input name="phone" inputmode="numeric" autocomplete="tel" placeholder="11 位手机号" required /></span><button class="ghost" type="button" data-send-code="phone">发送验证码</button></span>
+          </label>
+          <label class="field-label">短信验证码
+            <span class="input-shell"><span class="input-icon">码</span><input name="phoneCode" inputmode="numeric" autocomplete="one-time-code" placeholder="6 位验证码" required /></span>
+          </label>
+          <label class="field-label">邮箱（选填）
+            <span class="code-row"><span class="input-shell"><span class="input-icon">@</span><input name="email" type="email" autocomplete="email" placeholder="填写后需要邮箱验证码" /></span><button class="ghost" type="button" data-send-code="email">发送验证码</button></span>
+          </label>
+          <label class="field-label">邮箱验证码
+            <span class="input-shell"><span class="input-icon">邮</span><input name="emailCode" inputmode="numeric" autocomplete="one-time-code" placeholder="仅填写邮箱后必填" /></span>
+          </label>
+          <label class="field-label">密码
+            <span class="input-shell"><span class="input-icon">锁</span><input name="password" type="password" autocomplete="new-password" placeholder="至少 8 位" required /><button class="icon-field" type="button" data-toggle-password>眼</button></span>
+            <span id="password-strength" class="password-strength">密码强度：待输入</span>
+          </label>
+          <label class="field-label">确认密码
+            <span class="input-shell"><span class="input-icon">确</span><input name="confirmPassword" type="password" autocomplete="new-password" placeholder="再次输入密码" required /><button class="icon-field" type="button" data-toggle-password>眼</button></span>
+          </label>
+          <label class="check-line terms-line"><input name="terms" type="checkbox" required />我已阅读并同意《用户协议》和《隐私政策》</label>
+          <button class="primary auth-submit" type="submit">创建账号</button>
+          <p class="auth-switch">已有账号？<button class="link-button" type="button" data-auth-jump="login">立即登录</button></p>
+        </form>
+        <p id="auth-message" class="form-message" role="status"></p>
+      </main>
+    </div>
+    <dialog id="forgot-dialog" class="auth-dialog">
+      <form method="dialog" class="auth-dialog-card">
+        <button class="dialog-close" value="cancel" aria-label="关闭">×</button>
+        <h3>重置密码</h3>
+        <p>输入注册邮箱后，接入邮件服务时会发送重置链接。当前先提供流程提示。</p>
+        <label class="field-label">邮箱
+          <span class="input-shell"><span class="input-icon">@</span><input id="reset-email" type="email" placeholder="name@example.com" /></span>
+        </label>
+        <button class="primary" id="send-reset-link" type="button">发送重置链接</button>
+        <button class="link-button" value="cancel">返回登录</button>
+      </form>
+    </dialog>
+  `;
+  refreshCaptcha();
+  switchAuthTab("login");
+}
+
+function switchAuthTab(target) {
+  $$("[data-auth-tab]").forEach((item) => item.classList.toggle("is-active", item.dataset.authTab === target));
+  $$("[data-auth-panel]").forEach((panel) => {
+    panel.hidden = panel.dataset.authPanel !== target;
+  });
+  const title = $("#auth-title");
+  if (title) title.textContent = target === "register" ? "创建账号" : "登录账号";
+  const message = $("#auth-message");
+  if (message) message.textContent = "";
+}
+
+function refreshCaptcha() {
+  state.loginCaptcha = Math.random().toString(36).slice(2, 6).toUpperCase();
+  const image = $("#captcha-image");
+  if (image) image.textContent = state.loginCaptcha;
+}
+
+function passwordStrength(password) {
+  let score = 0;
+  if (password.length >= 8) score += 1;
+  if (/[A-Z]/.test(password) && /[a-z]/.test(password)) score += 1;
+  if (/\d/.test(password)) score += 1;
+  if (/[^A-Za-z0-9]/.test(password)) score += 1;
+  if (score <= 1) return { label: "弱", className: "weak" };
+  if (score <= 3) return { label: "中", className: "medium" };
+  return { label: "强", className: "strong" };
+}
+
+function startCodeCountdown(button) {
+  let left = 60;
+  const original = button.textContent;
+  button.disabled = true;
+  button.textContent = `${left}s`;
+  const timer = window.setInterval(() => {
+    left -= 1;
+    button.textContent = `${left}s`;
+    if (left <= 0) {
+      window.clearInterval(timer);
+      button.disabled = false;
+      button.textContent = original;
+    }
+  }, 1000);
+}
+
+function bindAuthEventsLegacy() {
+  setupAuthMarkup();
   $$("[data-auth-tab]").forEach((button) => {
     button.addEventListener("click", () => {
       const target = button.dataset.authTab;
@@ -1331,7 +1698,56 @@ function bindAuthEvents() {
       $$("[data-auth-panel]").forEach((panel) => {
         panel.hidden = panel.dataset.authPanel !== target;
       });
+      $("#auth-title").textContent = target === "register" ? "创建账号" : "登录账号";
       $("#auth-message").textContent = "";
+    });
+  });
+
+  $$("[data-auth-jump]").forEach((button) => {
+    button.addEventListener("click", () => switchAuthTab(button.dataset.authJump));
+  });
+
+  $$("[data-toggle-password]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const input = button.closest(".input-shell")?.querySelector("input");
+      if (!input) return;
+      input.type = input.type === "password" ? "text" : "password";
+    });
+  });
+
+  $("#captcha-image")?.addEventListener("click", refreshCaptcha);
+
+  $("#register-form")?.password?.addEventListener("input", (event) => {
+    const result = passwordStrength(event.target.value);
+    const node = $("#password-strength");
+    if (!node) return;
+    node.textContent = `密码强度：${result.label}`;
+    node.className = `password-strength ${result.className}`;
+  });
+
+  $("#forgot-password-btn")?.addEventListener("click", () => $("#forgot-dialog")?.showModal());
+  $("#send-reset-link")?.addEventListener("click", () => {
+    const email = $("#reset-email")?.value?.trim();
+    $("#auth-message").textContent = email ? "重置链接发送流程已提交。接入邮件服务后会真实发送。" : "请先填写邮箱。";
+    $("#forgot-dialog")?.close();
+  });
+
+  $$("[data-social-login]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      if (button.dataset.socialLogin !== "wechat") {
+        $("#auth-message").textContent = "第三方登录入口已预留，接入对应 OAuth 参数后即可启用。";
+        return;
+      }
+      try {
+        const result = await api("/api/auth/wechat-url");
+        if (!result.configured) {
+          $("#auth-message").textContent = result.message;
+          return;
+        }
+        window.location.href = result.url;
+      } catch (error) {
+        $("#auth-message").textContent = error.message;
+      }
     });
   });
 
@@ -1375,6 +1791,108 @@ function bindAuthEvents() {
     event.preventDefault();
     try {
       const result = await api("/api/auth/register", { method: "POST", body: formToObject(event.currentTarget) });
+      await enterAuthenticatedApp(result.user);
+    } catch (error) {
+      $("#auth-message").textContent = error.message;
+    }
+  });
+}
+
+function bindAuthEvents() {
+  setupAuthMarkup();
+
+  $$("[data-auth-tab]").forEach((button) => {
+    button.addEventListener("click", () => switchAuthTab(button.dataset.authTab));
+  });
+  $$("[data-auth-jump]").forEach((button) => {
+    button.addEventListener("click", () => switchAuthTab(button.dataset.authJump));
+  });
+  $$("[data-toggle-password]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const input = button.closest(".input-shell")?.querySelector("input");
+      if (!input) return;
+      input.type = input.type === "password" ? "text" : "password";
+    });
+  });
+  $("#captcha-image")?.addEventListener("click", refreshCaptcha);
+  $("#forgot-password-btn")?.addEventListener("click", () => $("#forgot-dialog")?.showModal());
+  $("#send-reset-link")?.addEventListener("click", () => {
+    const email = $("#reset-email")?.value?.trim();
+    $("#auth-message").textContent = email ? "重置链接发送流程已提交。接入邮件服务后会真实发送。" : "请先填写邮箱。";
+    $("#forgot-dialog")?.close();
+  });
+
+  $("#register-form")?.password?.addEventListener("input", (event) => {
+    const result = passwordStrength(event.target.value);
+    const node = $("#password-strength");
+    if (!node) return;
+    node.textContent = `密码强度：${result.label}`;
+    node.className = `password-strength ${result.className}`;
+  });
+
+  $$("[data-social-login]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      if (button.dataset.socialLogin !== "wechat") {
+        $("#auth-message").textContent = "第三方登录入口已预留，接入对应 OAuth 参数后即可启用。";
+        return;
+      }
+      try {
+        const result = await api("/api/auth/wechat-url");
+        if (!result.configured) {
+          $("#auth-message").textContent = result.message;
+          return;
+        }
+        window.location.href = result.url;
+      } catch (error) {
+        $("#auth-message").textContent = error.message;
+      }
+    });
+  });
+
+  $$("[data-send-code]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const form = $("#register-form");
+      const channel = button.dataset.sendCode;
+      const target = channel === "phone" ? form.phone.value : form.email.value;
+      if (!target.trim()) {
+        $("#auth-message").textContent = channel === "phone" ? "请先填写手机号。" : "请先填写邮箱。";
+        return;
+      }
+      try {
+        const result = await api("/api/auth/code", {
+          method: "POST",
+          body: { channel, target, purpose: "register" }
+        });
+        startCodeCountdown(button);
+        $("#auth-message").textContent = `验证码已生成：${result.devCode}。接入短信/邮件服务后会真实发送。`;
+      } catch (error) {
+        $("#auth-message").textContent = error.message;
+      }
+    });
+  });
+
+  $("#login-form")?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    try {
+      const data = formToObject(event.currentTarget);
+      if (String(data.captcha || "").trim().toUpperCase() !== state.loginCaptcha) {
+        refreshCaptcha();
+        throw new Error("图形验证码不正确，请重新输入。");
+      }
+      const result = await api("/api/auth/login", { method: "POST", body: data });
+      await enterAuthenticatedApp(result.user);
+    } catch (error) {
+      $("#auth-message").textContent = error.message;
+    }
+  });
+
+  $("#register-form")?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    try {
+      const data = formToObject(event.currentTarget);
+      if (data.password !== data.confirmPassword) throw new Error("两次输入的密码不一致。");
+      if (!data.terms) throw new Error("请先勾选用户协议与隐私政策。");
+      const result = await api("/api/auth/register", { method: "POST", body: data });
       await enterAuthenticatedApp(result.user);
     } catch (error) {
       $("#auth-message").textContent = error.message;

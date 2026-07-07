@@ -116,7 +116,7 @@ export async function login(payload, request) {
   requireFields(payload, ["identity", "password"]);
   const identity = normalizeText(payload.identity).toLowerCase();
   const store = await loadStore();
-  const user = (store.users || []).find((item) => item.username.toLowerCase() === identity || item.phone === identity);
+  const user = (store.users || []).find((item) => item.username.toLowerCase() === identity || item.phone === identity || item.email === identity);
   if (!user || !verifyPassword(payload.password, user.passwordSalt, user.passwordHash)) {
     throw publicError("用户名/手机号或密码不正确。", "LOGIN_FAILED", 401);
   }
@@ -137,6 +137,28 @@ export async function logout(request) {
     __headers: {
       "Set-Cookie": buildSessionCookie("", { maxAge: 0 })
     }
+  };
+}
+
+export function getWechatLoginUrl() {
+  if (!config.wechat.appId || !config.wechat.redirectUri) {
+    return {
+      configured: false,
+      url: "",
+      message: "微信登录需要先在微信开放平台注册应用，并配置 WECHAT_APP_ID 与 WECHAT_REDIRECT_URI。"
+    };
+  }
+  const params = new URLSearchParams({
+    appid: config.wechat.appId,
+    redirect_uri: config.wechat.redirectUri,
+    response_type: "code",
+    scope: config.wechat.scope,
+    state: config.wechat.state
+  });
+  return {
+    configured: true,
+    url: `https://open.weixin.qq.com/connect/qrconnect?${params.toString()}#wechat_redirect`,
+    message: "正在前往微信授权登录。"
   };
 }
 

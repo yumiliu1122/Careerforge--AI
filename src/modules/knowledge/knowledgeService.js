@@ -151,6 +151,8 @@ export async function askKnowledge(payload, userId, userRole = "user") {
       roleKey: doc.roleKey || null,
       roleLabel: doc.roleLabel || null,
       sourceType: doc.sourceType || "private",
+      sourceName: doc.sourceName || "",
+      sourceUrl: doc.sourceUrl || "",
       tags: doc.tags || [],
       chunkId: chunk.id,
       text: chunk.text,
@@ -170,6 +172,8 @@ export async function askKnowledge(payload, userId, userRole = "user") {
     roleKey: item.roleKey,
     roleLabel: item.roleLabel,
     sourceType: item.sourceType,
+    sourceName: item.sourceName,
+    sourceUrl: item.sourceUrl,
     tags: item.tags,
     chunkId: item.chunkId,
     score: item.score,
@@ -259,7 +263,7 @@ async function getSearchDocs({ scope, category, role, userId }) {
     .filter((doc) => matchesRole(doc, role));
 }
 
-function buildStoredDoc({ title, content, category, tags, sourceType, sourceName, originalPublicId, roleKey, roleLabel }) {
+function buildStoredDoc({ title, content, category, tags, sourceType, sourceName, sourceUrl, originalPublicId, roleKey, roleLabel }) {
   const cleanContent = normalizeText(content);
   const normalizedRole = normalizeRole(roleKey);
   return {
@@ -272,6 +276,7 @@ function buildStoredDoc({ title, content, category, tags, sourceType, sourceName
     tags: Array.isArray(tags) ? tags : normalizeTags(tags),
     sourceType,
     sourceName,
+    sourceUrl: sourceUrl || null,
     originalPublicId,
     contentPreview: summarize(cleanContent, 380),
     chunks: chunkDocument(cleanContent).map((chunk, index) => ({
@@ -309,6 +314,7 @@ function publicDocSummary(doc) {
     tags: doc.tags || [],
     sourceType: doc.sourceType || "private",
     sourceName: doc.sourceName || "我的资料",
+    sourceUrl: doc.sourceUrl || null,
     originalPublicId: doc.originalPublicId || null,
     chunkCount: doc.chunks.length,
     contentPreview: doc.contentPreview,
@@ -327,6 +333,7 @@ function publicRawSummary(doc) {
     tags: doc.tags,
     sourceType: "public",
     sourceName: doc.sourceName,
+    sourceUrl: doc.sourceUrl || null,
     chunkCount: chunkDocument(doc.content).length,
     contentPreview: summarize(doc.content, 300)
   };
@@ -482,12 +489,10 @@ async function recordKnowledgeAiUse(answerMode, userId, userRole = "user") {
   let usage;
   await updateStore((draft) => {
     resetKnowledgeAiPeriod(draft, userId);
-    if (userRole !== "admin") {
-      const knowledgeAi = getUserKnowledgeUsage(draft, userId);
-      const bucket = knowledgeAi[answerMode] || { used: 0 };
-      bucket.used = Number(bucket.used || 0) + 1;
-      knowledgeAi[answerMode] = bucket;
-    }
+    const knowledgeAi = getUserKnowledgeUsage(draft, userId);
+    const bucket = knowledgeAi[answerMode] || { used: 0 };
+    bucket.used = Number(bucket.used || 0) + 1;
+    knowledgeAi[answerMode] = bucket;
     usage = buildKnowledgeAiUsage(draft, answerMode, userId, userRole);
     return usage;
   });
@@ -496,12 +501,11 @@ async function recordKnowledgeAiUse(answerMode, userId, userRole = "user") {
 
 function buildKnowledgeAiUsage(store, activeMode = "normal", userId, userRole = "user") {
   const accountRole = userRole || "user";
-  const isAdmin = accountRole === "admin";
   const knowledgeAi = getUserKnowledgeUsage(store, userId);
   const modes = Object.fromEntries(Object.entries(answerModes).map(([key, mode]) => {
     const plan = aiUsagePlans[key];
-    const used = isAdmin ? 0 : Number(knowledgeAi[key]?.used || 0);
-    const overage = isAdmin ? 0 : Math.max(0, used - plan.freeQuota);
+    const used = Number(knowledgeAi[key]?.used || 0);
+    const overage = Math.max(0, used - plan.freeQuota);
     return [
       key,
       {
@@ -509,12 +513,12 @@ function buildKnowledgeAiUsage(store, activeMode = "normal", userId, userRole = 
         label: mode.label,
         description: mode.description,
         used,
-        freeQuota: isAdmin ? null : plan.freeQuota,
-        remaining: isAdmin ? null : Math.max(0, plan.freeQuota - used),
+        freeQuota: plan.freeQuota,
+        remaining: Math.max(0, plan.freeQuota - used),
         overage,
         overagePriceCny: plan.overagePriceCny,
         estimatedChargeCny: Number((overage * plan.overagePriceCny).toFixed(2)),
-        unlimited: isAdmin
+        unlimited: false
       }
     ];
   }));
@@ -522,7 +526,7 @@ function buildKnowledgeAiUsage(store, activeMode = "normal", userId, userRole = 
   return {
     period: knowledgeAi.period || currentPeriodKey(),
     accountRole,
-    isAdmin,
+    isAdmin: false,
     activeMode,
     modes,
     provider: {

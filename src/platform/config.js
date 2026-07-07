@@ -17,6 +17,12 @@ export const config = {
   maxUploadBytes: Number(process.env.MAX_UPLOAD_MB || 20) * 1024 * 1024,
   maxRequestBytes: Number(process.env.MAX_REQUEST_MB || 35) * 1024 * 1024,
   sessionCookieName: process.env.SESSION_COOKIE_NAME || "careerforge_session",
+  wechat: {
+    appId: process.env.WECHAT_APP_ID || "",
+    redirectUri: process.env.WECHAT_REDIRECT_URI || "",
+    scope: process.env.WECHAT_SCOPE || "snsapi_login",
+    state: process.env.WECHAT_STATE || "careerforge-login"
+  },
   ai: {
     provider: process.env.AI_PROVIDER || process.env.DEFAULT_PROVIDER || "local-rules",
     apiKey: process.env.AI_API_KEY || "",
