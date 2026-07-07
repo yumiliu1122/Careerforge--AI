@@ -64,7 +64,7 @@ const questionBank = {
   ]
 };
 
-export async function addKnowledgeDoc(payload) {
+export async function addKnowledgeDoc(payload, userId) {
   requireFields(payload, ["title", "content"]);
   const doc = buildStoredDoc({
     title: normalizeText(payload.title),
@@ -75,6 +75,8 @@ export async function addKnowledgeDoc(payload) {
     sourceName: "我的资料"
   });
 
+  doc.userId = userId;
+
   await updateStore((draft) => {
     draft.knowledgeDocs.unshift(doc);
     return doc;
@@ -83,9 +85,9 @@ export async function addKnowledgeDoc(payload) {
   return publicDocSummary(doc);
 }
 
-export async function listKnowledgeDocs() {
+export async function listKnowledgeDocs(userId) {
   const store = await loadStore();
-  return store.knowledgeDocs.map(publicDocSummary);
+  return store.knowledgeDocs.filter((doc) => doc.userId === userId).map(publicDocSummary);
 }
 
 export async function listPublicKnowledgeDocs(query = {}) {
@@ -105,7 +107,7 @@ export async function listPublicKnowledgeDocs(query = {}) {
   };
 }
 
-export async function importPublicKnowledgeDoc(payload) {
+export async function importPublicKnowledgeDoc(payload, userId) {
   requireFields(payload, ["id"]);
   const publicDoc = getPublicKnowledgeDoc(payload.id);
   if (!publicDoc) {
@@ -117,19 +119,20 @@ export async function importPublicKnowledgeDoc(payload) {
 
   const imported = createImportedPublicDoc(publicDoc);
   const doc = buildStoredDoc(imported);
+  doc.userId = userId;
 
   await updateStore((draft) => {
-    const exists = draft.knowledgeDocs.some((item) => item.originalPublicId === publicDoc.id);
+    const exists = draft.knowledgeDocs.some((item) => item.originalPublicId === publicDoc.id && item.userId === userId);
     if (!exists) {
       draft.knowledgeDocs.unshift(doc);
     }
-    return exists ? draft.knowledgeDocs.find((item) => item.originalPublicId === publicDoc.id) : doc;
+    return exists ? draft.knowledgeDocs.find((item) => item.originalPublicId === publicDoc.id && item.userId === userId) : doc;
   });
 
   return publicDocSummary(doc);
 }
 
-export async function askKnowledge(payload) {
+export async function askKnowledge(payload, userId, userRole = "user") {
   requireFields(payload, ["question"]);
   const question = normalizeText(payload.question);
   const scope = payload.scope || "all";
@@ -137,7 +140,7 @@ export async function askKnowledge(payload) {
   const roleFilter = normalizeRole(payload.role);
   const answerMode = normalizeAnswerMode(payload.aiModel || payload.answerMode);
   const questionTokens = tokenize(question);
-  const docs = await getSearchDocs({ scope, category: categoryFilter, role: roleFilter });
+  const docs = await getSearchDocs({ scope, category: categoryFilter, role: roleFilter, userId });
 
   const candidates = docs.flatMap((doc) =>
     doc.chunks.map((chunk) => ({
@@ -181,7 +184,7 @@ export async function askKnowledge(payload) {
     citations,
     confidence: confidence(top)
   });
-  const usage = await recordKnowledgeAiUse(answerMode);
+  const usage = await recordKnowledgeAiUse(answerMode, userId, userRole);
   const result = {
     id: createId("knowledge_answer"),
     question,
@@ -201,6 +204,7 @@ export async function askKnowledge(payload) {
   };
   const historyItem = await saveKnowledgeHistory({
     ...result,
+    userId,
     scope,
     category: categoryFilter || "all",
     categoryLabel: categoryFilter ? categories[categoryFilter] : "全部资料",
@@ -213,26 +217,26 @@ export async function askKnowledge(payload) {
   };
 }
 
-export async function getKnowledgeAiUsage() {
+export async function getKnowledgeAiUsage(userId, userRole = "user") {
   let usage;
   await updateStore((draft) => {
-    resetKnowledgeAiPeriod(draft);
-    usage = buildKnowledgeAiUsage(draft);
+    resetKnowledgeAiPeriod(draft, userId);
+    usage = buildKnowledgeAiUsage(draft, "flash", userId, userRole);
     return usage;
   });
   return usage;
 }
 
-export async function listKnowledgeHistory() {
+export async function listKnowledgeHistory(userId) {
   const store = await loadStore();
-  return (store.knowledgeHistory || []).slice(0, 30);
+  return (store.knowledgeHistory || []).filter((item) => item.userId === userId).slice(0, 30);
 }
 
-export async function getKnowledgeSuggestions(query = {}) {
+export async function getKnowledgeSuggestions(query = {}, userId) {
   const category = query.category && questionBank[query.category] ? query.category : "all";
   const scope = query.scope || "all";
   const role = normalizeRole(query.role);
-  const docs = await getSearchDocs({ scope, category: category === "all" ? null : category, role });
+  const docs = await getSearchDocs({ scope, category: category === "all" ? null : category, role, userId });
   const tagQuestions = unique(docs.flatMap((doc) => doc.tags || []))
     .filter((tag) => !role || tag !== roleLabel(role))
     .slice(0, 4)
@@ -246,9 +250,9 @@ export async function getKnowledgeSuggestions(query = {}) {
   };
 }
 
-async function getSearchDocs({ scope, category, role }) {
+async function getSearchDocs({ scope, category, role, userId }) {
   const store = await loadStore();
-  const privateDocs = scope === "public" ? [] : store.knowledgeDocs;
+  const privateDocs = scope === "public" ? [] : store.knowledgeDocs.filter((doc) => doc.userId === userId);
   const publicDocs = scope === "private" ? [] : getPublicKnowledgeDocs().map(buildVirtualPublicDoc);
   return [...privateDocs, ...publicDocs]
     .filter((doc) => !category || doc.category === category)
@@ -474,25 +478,26 @@ function roleAwareQuestions(category, role) {
   return templates[category] || templates.all;
 }
 
-async function recordKnowledgeAiUse(answerMode) {
+async function recordKnowledgeAiUse(answerMode, userId, userRole = "user") {
   let usage;
   await updateStore((draft) => {
-    resetKnowledgeAiPeriod(draft);
-    if (draft.settings?.accountRole !== "admin") {
-      const bucket = draft.usage.knowledgeAi[answerMode] || { used: 0 };
+    resetKnowledgeAiPeriod(draft, userId);
+    if (userRole !== "admin") {
+      const knowledgeAi = getUserKnowledgeUsage(draft, userId);
+      const bucket = knowledgeAi[answerMode] || { used: 0 };
       bucket.used = Number(bucket.used || 0) + 1;
-      draft.usage.knowledgeAi[answerMode] = bucket;
+      knowledgeAi[answerMode] = bucket;
     }
-    usage = buildKnowledgeAiUsage(draft, answerMode);
+    usage = buildKnowledgeAiUsage(draft, answerMode, userId, userRole);
     return usage;
   });
   return usage;
 }
 
-function buildKnowledgeAiUsage(store, activeMode = "normal") {
-  const accountRole = store.settings?.accountRole || "user";
+function buildKnowledgeAiUsage(store, activeMode = "normal", userId, userRole = "user") {
+  const accountRole = userRole || "user";
   const isAdmin = accountRole === "admin";
-  const knowledgeAi = store.usage?.knowledgeAi || {};
+  const knowledgeAi = getUserKnowledgeUsage(store, userId);
   const modes = Object.fromEntries(Object.entries(answerModes).map(([key, mode]) => {
     const plan = aiUsagePlans[key];
     const used = isAdmin ? 0 : Number(knowledgeAi[key]?.used || 0);
@@ -526,20 +531,36 @@ function buildKnowledgeAiUsage(store, activeMode = "normal") {
   };
 }
 
-function resetKnowledgeAiPeriod(draft) {
+function resetKnowledgeAiPeriod(draft, userId) {
   const period = currentPeriodKey();
   draft.usage ||= {};
-  draft.usage.knowledgeAi ||= {};
-  if (draft.usage.knowledgeAi.period !== period) {
-    draft.usage.knowledgeAi = {
+  draft.usage.knowledgeAiByUser ||= {};
+  draft.usage.knowledgeAiByUser[userId] ||= {
+    period,
+    flash: { used: 0 },
+    pro: { used: 0 }
+  };
+  if (draft.usage.knowledgeAiByUser[userId].period !== period) {
+    draft.usage.knowledgeAiByUser[userId] = {
       period,
       flash: { used: 0 },
       pro: { used: 0 }
     };
   }
   for (const key of Object.keys(answerModes)) {
-    draft.usage.knowledgeAi[key] ||= { used: 0 };
+    draft.usage.knowledgeAiByUser[userId][key] ||= { used: 0 };
   }
+}
+
+function getUserKnowledgeUsage(store, userId) {
+  store.usage ||= {};
+  store.usage.knowledgeAiByUser ||= {};
+  store.usage.knowledgeAiByUser[userId] ||= {
+    period: currentPeriodKey(),
+    flash: { used: 0 },
+    pro: { used: 0 }
+  };
+  return store.usage.knowledgeAiByUser[userId];
 }
 
 function currentPeriodKey() {
@@ -552,6 +573,7 @@ async function saveKnowledgeHistory(item) {
     draft.knowledgeHistory ||= [];
     saved = {
       id: item.id,
+      userId: item.userId,
       question: item.question,
       answer: item.answer,
       aiModel: item.aiModel,

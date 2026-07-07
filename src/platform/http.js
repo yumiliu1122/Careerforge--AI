@@ -34,11 +34,16 @@ export function createServer(routes) {
         const body = await readJson(request);
         const result = await route.handler({
           request,
+          response,
           query: Object.fromEntries(url.searchParams.entries()),
           body,
           params: match.groups || {}
         });
-        sendJson(response, route.status || 200, { data: result });
+        const headers = result?.__headers || {};
+        if (result && typeof result === "object" && "__headers" in result) {
+          delete result.__headers;
+        }
+        sendJson(response, route.status || 200, { data: result }, headers);
         return;
       }
 
@@ -86,10 +91,11 @@ async function readJson(request) {
   }
 }
 
-function sendJson(response, status, payload) {
+function sendJson(response, status, payload, extraHeaders = {}) {
   response.writeHead(status, {
     "Content-Type": "application/json; charset=utf-8",
-    "Cache-Control": "no-store"
+    "Cache-Control": "no-store",
+    ...extraHeaders
   });
   response.end(JSON.stringify(payload));
 }

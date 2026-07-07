@@ -3,7 +3,7 @@ import { loadStore, updateStore } from "../../platform/storage.js";
 import { extractResumesFromUploads } from "../resume/fileParser.js";
 import { parseScheduleWithAi } from "./scheduleAi.js";
 
-export async function parseSchedule(payload) {
+export async function parseSchedule(payload, userId) {
   if (!payload.inviteText && !payload.inviteLink && !payload.files?.length) {
     const error = new Error("请粘贴邀请内容、填写邀请链接，或上传邀请文件。");
     error.status = 400;
@@ -40,6 +40,7 @@ export async function parseSchedule(payload) {
 
   const schedule = {
     id: createId("schedule"),
+    userId,
     ...parsed,
     status: "planned",
     reminders: buildReminders(parsed.startAt),
@@ -64,15 +65,15 @@ async function parseScheduleFiles(files) {
   return [...docs, ...failures].join("\n\n");
 }
 
-export async function listSchedules() {
+export async function listSchedules(userId) {
   const store = await loadStore();
-  return store.schedules;
+  return store.schedules.filter((item) => item.userId === userId);
 }
 
-export async function updateSchedule(id, payload) {
+export async function updateSchedule(id, payload, userId) {
   let schedule;
   await updateStore((draft) => {
-    schedule = draft.schedules.find((item) => item.id === id);
+    schedule = draft.schedules.find((item) => item.id === id && item.userId === userId);
     if (!schedule) {
       const error = new Error("Schedule not found");
       error.status = 404;

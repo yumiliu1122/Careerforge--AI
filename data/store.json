@@ -2,7 +2,7 @@
   "meta": {
     "schemaVersion": 1,
     "createdAt": "2026-07-06T16:17:24.868Z",
-    "updatedAt": "2026-07-07T14:07:46.629Z"
+    "updatedAt": "2026-07-07T15:06:55.206Z"
   },
   "resumes": [
     {
@@ -11909,6 +11909,99 @@
       "createdAt": "2026-07-06T21:30:28.590Z"
     }
   ],
+  "users": [
+    {
+      "id": "user_mras8dm3_4a2111f7",
+      "username": "11",
+      "phone": "15927175216",
+      "email": null,
+      "passwordSalt": "872905d235725ef5e8398d7ac97abb02",
+      "passwordHash": "c78bd41e03155f80e8d2a0a6d77717a1dbecb5283d227e29620b04d11dfb41b8c3f5c64dcc61d0a30fec093b253d4d20fe4c3c22d41cce4e1a07545479f584e9",
+      "role": "user",
+      "createdAt": "2026-07-07T15:06:55.083Z",
+      "updatedAt": "2026-07-07T15:06:55.083Z"
+    },
+    {
+      "id": "user_mras44ly_ab7a9d5c",
+      "username": "test60019",
+      "phone": "13984326222",
+      "email": null,
+      "passwordSalt": "e8e138eb8fe157ee07aad49c6de91e53",
+      "passwordHash": "0a8d7ad4e71e166467b5d90502b6efb0bc3ccfbd9323f05b0cac6bdff9f1a485724d972d9174c5937777b0ffa95bc28e3660f33acc2b31cd0bbb903cb9a0bb6c",
+      "role": "user",
+      "createdAt": "2026-07-07T15:03:36.790Z",
+      "updatedAt": "2026-07-07T15:03:36.790Z"
+    },
+    {
+      "id": "user_mras3py0_71904ec2",
+      "username": "test60118",
+      "phone": "13981064387",
+      "email": null,
+      "passwordSalt": "9de0c721857abec8f5ecd082663e6f28",
+      "passwordHash": "891104d3f84ecea539fbc2e490868e6e1650e39ddf0f64fd10d6070264e001e0ab08583b5549e0c0a2a12ec8c3b4cd49f72b532a0564fe2e8b03a04c40819296",
+      "role": "admin",
+      "createdAt": "2026-07-07T15:03:17.785Z",
+      "updatedAt": "2026-07-07T15:03:17.785Z"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "session_token_mras8dm8_056f5084",
+      "userId": "user_mras8dm3_4a2111f7",
+      "tokenHash": "973051e054fc37ef57dfba3b954aacb4db9748b98fe98fbbf02ddcf4671306ac",
+      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Mobile/15E148 Safari/604.1",
+      "expiresAt": "2026-08-06T15:06:55.088Z",
+      "createdAt": "2026-07-07T15:06:55.088Z"
+    },
+    {
+      "id": "session_token_mras44m3_4c22b3c6",
+      "userId": "user_mras44ly_ab7a9d5c",
+      "tokenHash": "5a1b7d5d4acbda23acfd98a6d0dc773e8168730619b61af389f386668e31b7ee",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; zh-CN) WindowsPowerShell/5.1.26100.8655",
+      "expiresAt": "2026-08-06T15:03:36.795Z",
+      "createdAt": "2026-07-07T15:03:36.795Z"
+    },
+    {
+      "id": "session_token_mras3py5_f039d8bc",
+      "userId": "user_mras3py0_71904ec2",
+      "tokenHash": "f86d98ac06618a3a1d9e11504959538d908bb42c5e6487558af756690fd0a980",
+      "userAgent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; zh-CN) WindowsPowerShell/5.1.26100.8655",
+      "expiresAt": "2026-08-06T15:03:17.789Z",
+      "createdAt": "2026-07-07T15:03:17.789Z"
+    }
+  ],
+  "verificationCodes": [
+    {
+      "id": "code_mras7lg4_74678986",
+      "channel": "phone",
+      "purpose": "register",
+      "target": "15927175216",
+      "codeHash": "9b1c194a1caca636b85deb05256a1a43d2ab438767067270da784771f230c52c",
+      "expiresAt": "2026-07-07T15:16:18.580Z",
+      "usedAt": "2026-07-07T15:06:55.055Z",
+      "createdAt": "2026-07-07T15:06:18.580Z"
+    },
+    {
+      "id": "code_mras44kb_8970a27e",
+      "channel": "phone",
+      "purpose": "register",
+      "target": "13984326222",
+      "codeHash": "ad10117980f6109a29ac19411b7c161b096375a8fdc7161fe6c6d2407d4b7c85",
+      "expiresAt": "2026-07-07T15:13:36.731Z",
+      "usedAt": "2026-07-07T15:03:36.762Z",
+      "createdAt": "2026-07-07T15:03:36.731Z"
+    },
+    {
+      "id": "code_mras3pwe_c3a2783a",
+      "channel": "phone",
+      "purpose": "register",
+      "target": "13981064387",
+      "codeHash": "d3fb45dc2af69fcafd17f070c82425a9a810ecf7b9cfcbd52d5e67769d73f199",
+      "expiresAt": "2026-07-07T15:13:17.726Z",
+      "usedAt": "2026-07-07T15:03:17.757Z",
+      "createdAt": "2026-07-07T15:03:17.726Z"
+    }
+  ],
   "settings": {
     "provider": "local-rules",
     "chatModel": "careerforge-rules-v1",
@@ -11937,6 +12030,17 @@
       },
       "task": {
         "used": 2
+      }
+    },
+    "knowledgeAiByUser": {
+      "user_mras8dm3_4a2111f7": {
+        "period": "2026-07",
+        "flash": {
+          "used": 0
+        },
+        "pro": {
+          "used": 0
+        }
       }
     }
   }

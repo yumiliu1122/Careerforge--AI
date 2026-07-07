@@ -8,6 +8,7 @@ loadDotEnv(path.join(rootDir, ".env"));
 
 export const config = {
   appName: process.env.APP_NAME || "CareerForge AI",
+  nodeEnv: process.env.NODE_ENV || "development",
   port: Number(process.env.PORT || 4173),
   rootDir,
   publicDir: path.join(rootDir, "public"),
@@ -15,6 +16,7 @@ export const config = {
   defaultProvider: process.env.DEFAULT_PROVIDER || "local-rules",
   maxUploadBytes: Number(process.env.MAX_UPLOAD_MB || 20) * 1024 * 1024,
   maxRequestBytes: Number(process.env.MAX_REQUEST_MB || 35) * 1024 * 1024,
+  sessionCookieName: process.env.SESSION_COOKIE_NAME || "careerforge_session",
   ai: {
     provider: process.env.AI_PROVIDER || process.env.DEFAULT_PROVIDER || "local-rules",
     apiKey: process.env.AI_API_KEY || "",

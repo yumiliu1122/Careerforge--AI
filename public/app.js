@@ -17,7 +17,7 @@ const state = {
   clipboardText: "",
   scheduleClipboardItems: [],
   scheduleClipboardText: "",
-  currentUser: JSON.parse(localStorage.getItem("careerforge_user") || "null"),
+  currentUser: null,
   progressTimer: null
 };
 
@@ -164,6 +164,7 @@ function viewTitles() {
 async function api(path, options = {}) {
   const response = await fetch(path, {
     method: options.method || "GET",
+    credentials: "same-origin",
     headers: { "Content-Type": "application/json" },
     body: options.body ? JSON.stringify(options.body) : undefined
   });
@@ -288,6 +289,14 @@ function switchView(view) {
   $$(".view").forEach((section) => section.classList.toggle("is-visible", section.id === `${view}-view`));
 }
 
+function setMobileMenu(open) {
+  const button = $("#mobile-menu-btn");
+  const backdrop = $("#sidebar-backdrop");
+  document.body.classList.toggle("menu-open", open);
+  if (button) button.setAttribute("aria-expanded", String(open));
+  if (backdrop) backdrop.hidden = !open;
+}
+
 function applyI18n() {
   const lang = state.settings?.uiLanguage === "en" ? "en" : "zh";
   document.documentElement.lang = lang === "en" ? "en" : "zh-CN";
@@ -347,54 +356,24 @@ function renderAccount() {
   const note = $("#account-note");
   const action = $("#account-action");
   if (!name || !note || !action) return;
-  if (state.currentUser?.name) {
-    name.textContent = state.currentUser.name;
-    note.textContent = state.currentUser.email || "本地账号已登录";
+  if (state.currentUser?.username) {
+    name.textContent = state.currentUser.username;
+    note.textContent = state.currentUser.email || state.currentUser.phone || "账号已登录";
     action.textContent = "退出";
   } else {
-    name.textContent = "访客模式";
-    note.textContent = "登录后可区分个人数据";
+    name.textContent = "未登录";
+    note.textContent = "请先注册或登录";
     action.textContent = "登录 / 注册";
   }
 }
 
-function openAccountDialog() {
-  if (state.currentUser?.name) {
-    state.currentUser = null;
-    localStorage.removeItem("careerforge_user");
-    renderAccount();
-    showAlert("已退出登录。");
-    return;
-  }
-  const modal = document.createElement("section");
-  modal.className = "modal-mask";
-  modal.innerHTML = `
-    <form class="modal-card" id="account-form">
-      <div class="panel-heading">
-        <h2>登录 / 注册</h2>
-        <button class="icon-button" type="button" data-close-account aria-label="关闭">×</button>
-      </div>
-      <p class="small">当前版本使用本地账号，保存到你的浏览器，用于区分个人数据和后续扩展收费/额度。</p>
-      <label>昵称<input name="name" required placeholder="例如：小瑜" /></label>
-      <label>邮箱<input name="email" type="email" placeholder="可选" /></label>
-      <button class="primary" type="submit">进入工作台</button>
-    </form>
-  `;
-  document.body.appendChild(modal);
-  const close = () => modal.remove();
-  modal.querySelector("[data-close-account]").addEventListener("click", close);
-  modal.addEventListener("click", (event) => {
-    if (event.target === modal) close();
-  });
-  modal.querySelector("#account-form").addEventListener("submit", (event) => {
-    event.preventDefault();
-    const data = formToObject(event.currentTarget);
-    state.currentUser = { name: data.name.trim(), email: data.email.trim(), createdAt: new Date().toISOString() };
-    localStorage.setItem("careerforge_user", JSON.stringify(state.currentUser));
-    renderAccount();
-    close();
-    showAlert("已登录。本地账号用于当前浏览器的数据区分。");
-  });
+async function openAccountDialog() {
+  if (!state.currentUser) return;
+  await api("/api/auth/logout", { method: "POST" });
+  state.currentUser = null;
+  document.body.classList.remove("is-authenticated");
+  renderAccount();
+  showAlert("已退出登录。");
 }
 
 function bindModelCards() {
@@ -1344,14 +1323,99 @@ function bindLibraryTabs() {
   });
 }
 
+function bindAuthEvents() {
+  $$("[data-auth-tab]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.authTab;
+      $$("[data-auth-tab]").forEach((item) => item.classList.toggle("is-active", item === button));
+      $$("[data-auth-panel]").forEach((panel) => {
+        panel.hidden = panel.dataset.authPanel !== target;
+      });
+      $("#auth-message").textContent = "";
+    });
+  });
+
+  $$("[data-send-code]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const form = $("#register-form");
+      const channel = button.dataset.sendCode;
+      const target = channel === "phone" ? form.phone.value : form.email.value;
+      if (!target.trim()) {
+        $("#auth-message").textContent = channel === "phone" ? "请先填写手机号。" : "请先填写邮箱。";
+        return;
+      }
+      try {
+        button.disabled = true;
+        const result = await api("/api/auth/code", {
+          method: "POST",
+          body: { channel, target, purpose: "register" }
+        });
+        $("#auth-message").textContent = `验证码已生成：${result.devCode}。生产环境接入短信/邮件服务后会直接发送。`;
+      } catch (error) {
+        $("#auth-message").textContent = error.message;
+      } finally {
+        window.setTimeout(() => {
+          button.disabled = false;
+        }, 1200);
+      }
+    });
+  });
+
+  $("#login-form")?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    try {
+      const result = await api("/api/auth/login", { method: "POST", body: formToObject(event.currentTarget) });
+      await enterAuthenticatedApp(result.user);
+    } catch (error) {
+      $("#auth-message").textContent = error.message;
+    }
+  });
+
+  $("#register-form")?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    try {
+      const result = await api("/api/auth/register", { method: "POST", body: formToObject(event.currentTarget) });
+      await enterAuthenticatedApp(result.user);
+    } catch (error) {
+      $("#auth-message").textContent = error.message;
+    }
+  });
+}
+
+async function initAuth() {
+  const result = await api("/api/auth/me");
+  if (result.authenticated) {
+    await enterAuthenticatedApp(result.user);
+  } else {
+    document.body.classList.remove("is-authenticated");
+  }
+}
+
+async function enterAuthenticatedApp(user) {
+  state.currentUser = user;
+  document.body.classList.add("is-authenticated");
+  renderAccount();
+  await refreshAll();
+}
+
 function bindEvents() {
+  bindAuthEvents();
   bindResumeMode();
   bindScheduleInput();
   bindLibraryTabs();
   bindModelCards();
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => applyTheme());
-  $$(".tab").forEach((tab) => tab.addEventListener("click", () => switchView(tab.dataset.view)));
+  $("#mobile-menu-btn")?.addEventListener("click", () => setMobileMenu(!document.body.classList.contains("menu-open")));
+  $("#sidebar-backdrop")?.addEventListener("click", () => setMobileMenu(false));
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setMobileMenu(false);
+  });
+  $$(".tab").forEach((tab) => tab.addEventListener("click", () => {
+    switchView(tab.dataset.view);
+    setMobileMenu(false);
+  }));
   $("#refresh-btn").addEventListener("click", () => refreshAll().catch((error) => showAlert(error.message)));
+  $("#mobile-refresh-btn")?.addEventListener("click", () => refreshAll().catch((error) => showAlert(error.message)));
   $("#account-action")?.addEventListener("click", openAccountDialog);
 
   $("#settings-form").themeMode.addEventListener("change", (event) => {
@@ -1478,4 +1542,7 @@ function bindEvents() {
 }
 
 bindEvents();
-refreshAll().catch((error) => showAlert(error.message));
+initAuth().catch((error) => {
+  document.body.classList.remove("is-authenticated");
+  $("#auth-message").textContent = error.message;
+});

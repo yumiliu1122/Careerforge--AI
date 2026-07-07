@@ -5,7 +5,7 @@ import { tryAnalyzeResumeWithAi } from "./aiResumeAnalyzer.js";
 import { extractResumesFromUploads } from "./fileParser.js";
 import { resolveReportLanguage, sentence } from "./language.js";
 
-export async function analyzeResume(payload) {
+export async function analyzeResume(payload, userId) {
   requireFields(payload, ["name", "content"]);
   return analyzeAndStore({
     name: normalizeText(payload.name),
@@ -13,6 +13,7 @@ export async function analyzeResume(payload) {
     targetRole: payload.targetRole || "fullstack",
     aiModel: payload.aiModel || "flash",
     languageMode: payload.languageMode || "auto",
+    userId,
     source: {
       type: "paste",
       name: sentence(resolveReportLanguage(payload.languageMode || "auto", payload.content), "粘贴文本", "Pasted text")
@@ -20,7 +21,7 @@ export async function analyzeResume(payload) {
   });
 }
 
-export async function analyzeUploadedResumes(payload) {
+export async function analyzeUploadedResumes(payload, userId) {
   requireFields(payload, ["files"]);
   const targetRole = payload.targetRole || "fullstack";
   const aiModel = payload.aiModel || "flash";
@@ -35,6 +36,7 @@ export async function analyzeUploadedResumes(payload) {
       targetRole,
       aiModel,
       languageMode,
+      userId,
       source: {
         type: "file",
         name: document.name,
@@ -66,14 +68,14 @@ export async function analyzeUploadedResumes(payload) {
   };
 }
 
-export async function listResumes() {
+export async function listResumes(userId) {
   const store = await loadStore();
-  return store.resumes.map(withoutPrivateFields);
+  return store.resumes.filter((item) => item.userId === userId).map(withoutPrivateFields);
 }
 
-export async function getResume(id) {
+export async function getResume(id, userId) {
   const store = await loadStore();
-  const resume = store.resumes.find((item) => item.id === id);
+  const resume = store.resumes.find((item) => item.id === id && item.userId === userId);
   if (!resume) {
     const error = new Error("Resume not found");
     error.status = 404;
@@ -83,8 +85,8 @@ export async function getResume(id) {
   return resume;
 }
 
-export async function getResumeReport(id) {
-  const resume = await getResume(id);
+export async function getResumeReport(id, userId) {
+  const resume = await getResume(id, userId);
   return {
     id: resume.id,
     title: resume.language === "zh" ? `${resume.name} - ${resume.targetRole} 简历分析报告` : `${resume.name} - ${resume.targetRole} resume review report`,
@@ -92,7 +94,7 @@ export async function getResumeReport(id) {
   };
 }
 
-async function analyzeAndStore({ name, content, targetRole, aiModel, languageMode, source }) {
+async function analyzeAndStore({ name, content, targetRole, aiModel, languageMode, source, userId }) {
   const text = normalizeText(content);
   if (text.length < 40) {
     const error = new Error("简历文本过短，无法形成有效分析。");
@@ -104,7 +106,7 @@ async function analyzeAndStore({ name, content, targetRole, aiModel, languageMod
   const language = resolveReportLanguage(languageMode, text);
   const contentHash = hashText(`${targetRole}:${language}:${text}`);
   const store = await loadStore();
-  const existing = store.resumes.find((resume) => resume.contentHash === contentHash);
+  const existing = store.resumes.find((resume) => resume.contentHash === contentHash && resume.userId === userId);
 
   if (existing) {
     return { ...existing, duplicate: true };
@@ -131,6 +133,7 @@ async function analyzeAndStore({ name, content, targetRole, aiModel, languageMod
     ...localDraft,
     ...(aiResult.analysis || {}),
     id: createId("resume"),
+    userId,
     name,
     contentHash,
     inputMode: source?.type || "paste",

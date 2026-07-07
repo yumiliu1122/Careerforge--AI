@@ -15,6 +15,9 @@ const emptyStore = {
   knowledgeHistory: [],
   schedules: [],
   reviewTasks: [],
+  users: [],
+  sessions: [],
+  verificationCodes: [],
   settings: {
     provider: "local-rules",
     chatModel: "careerforge-rules-v1",

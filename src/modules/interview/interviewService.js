@@ -5,12 +5,12 @@ import { loadStore, updateStore } from "../../platform/storage.js";
 import { normalizeAiModelProfile } from "../../platform/aiClient.js";
 import { evaluateInterviewAnswerWithAi, generateInterviewQuestionsWithAi, summarizeInterviewWithAi } from "./interviewAi.js";
 
-export async function startInterview(payload) {
+export async function startInterview(payload, userId) {
   requireFields(payload, ["role"]);
 
   const profile = getRoleProfile(payload.role);
   const store = await loadStore();
-  const resume = payload.resumeId ? store.resumes.find((item) => item.id === payload.resumeId) : null;
+  const resume = payload.resumeId ? store.resumes.find((item) => item.id === payload.resumeId && item.userId === userId) : null;
   const aiModel = normalizeAiModelProfile(payload.aiModel);
   const questionLanguage = ["zh", "en"].includes(payload.questionLanguage) ? payload.questionLanguage : "zh";
   const localQuestions = selectQuestions({
@@ -21,7 +21,7 @@ export async function startInterview(payload) {
     resume,
     jd: payload.jd || "",
     questionLanguage,
-    previousSessions: store.interviews
+    previousSessions: store.interviews.filter((item) => item.userId === userId)
   });
   const aiQuestions = await generateInterviewQuestionsWithAi({
     role: profile.label,
@@ -37,6 +37,7 @@ export async function startInterview(payload) {
 
   const session = {
     id: createId("session"),
+    userId,
     role: profile.label,
     roleKey: profile.key,
     aiModel,
@@ -66,9 +67,9 @@ export async function startInterview(payload) {
   return session;
 }
 
-export async function listInterviews() {
+export async function listInterviews(userId) {
   const store = await loadStore();
-  return store.interviews.map((session) => ({
+  return store.interviews.filter((session) => session.userId === userId).map((session) => ({
     id: session.id,
     role: session.role,
     difficulty: session.difficulty,
@@ -80,9 +81,9 @@ export async function listInterviews() {
   }));
 }
 
-export async function getInterview(id) {
+export async function getInterview(id, userId) {
   const store = await loadStore();
-  const session = store.interviews.find((item) => item.id === id);
+  const session = store.interviews.find((item) => item.id === id && item.userId === userId);
   if (!session) {
     const error = new Error("Interview session not found");
     error.status = 404;
@@ -92,11 +93,11 @@ export async function getInterview(id) {
   return session;
 }
 
-export async function submitAnswer(sessionId, payload) {
+export async function submitAnswer(sessionId, payload, userId) {
   requireFields(payload, ["questionId", "answer"]);
 
   const store = await loadStore();
-  const sourceSession = store.interviews.find((item) => item.id === sessionId);
+  const sourceSession = store.interviews.find((item) => item.id === sessionId && item.userId === userId);
   if (!sourceSession) {
     const error = new Error("Interview session not found");
     error.status = 404;
@@ -121,7 +122,7 @@ export async function submitAnswer(sessionId, payload) {
 
   let updated;
   await updateStore((draft) => {
-    const session = draft.interviews.find((item) => item.id === sessionId);
+    const session = draft.interviews.find((item) => item.id === sessionId && item.userId === userId);
     if (!session) {
       const error = new Error("Interview session not found");
       error.status = 404;
@@ -155,6 +156,7 @@ export async function submitAnswer(sessionId, payload) {
     if (aiEvaluation.evaluation.score < 65) {
       draft.reviewTasks.unshift({
         id: createId("review"),
+        userId,
         sessionId: session.id,
         questionId: question.id,
         title: `Improve answer: ${summarize(question.prompt, 64)}`,
@@ -172,9 +174,9 @@ export async function submitAnswer(sessionId, payload) {
   return updated;
 }
 
-export async function finishInterview(sessionId) {
+export async function finishInterview(sessionId, userId) {
   const store = await loadStore();
-  const sourceSession = store.interviews.find((item) => item.id === sessionId);
+  const sourceSession = store.interviews.find((item) => item.id === sessionId && item.userId === userId);
   if (!sourceSession) {
     const error = new Error("Interview session not found");
     error.status = 404;
@@ -186,7 +188,7 @@ export async function finishInterview(sessionId) {
 
   let completed;
   await updateStore((draft) => {
-    const session = draft.interviews.find((item) => item.id === sessionId);
+    const session = draft.interviews.find((item) => item.id === sessionId && item.userId === userId);
     if (!session) {
       const error = new Error("Interview session not found");
       error.status = 404;
@@ -209,15 +211,15 @@ export async function finishInterview(sessionId) {
   return completed;
 }
 
-export async function getReviewTasks() {
+export async function getReviewTasks(userId) {
   const store = await loadStore();
-  return store.reviewTasks;
+  return store.reviewTasks.filter((item) => item.userId === userId);
 }
 
-export async function updateReviewTask(id, payload) {
+export async function updateReviewTask(id, payload, userId) {
   let task;
   await updateStore((draft) => {
-    task = draft.reviewTasks.find((item) => item.id === id);
+    task = draft.reviewTasks.find((item) => item.id === id && item.userId === userId);
     if (!task) {
       const error = new Error("Review task not found");
       error.status = 404;

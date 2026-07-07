@@ -7,8 +7,61 @@
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
+    <header class="mobile-header">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="app-sidebar">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="mobile-title">
+        <strong>CareerForge AI</strong>
+        <span data-i18n="brandSubtitle">面试准备工作台</span>
+      </div>
+      <button id="mobile-refresh-btn" class="icon-button" type="button" title="刷新数据" aria-label="刷新数据">↻</button>
+    </header>
+    <div id="sidebar-backdrop" class="sidebar-backdrop" hidden></div>
+    <section id="auth-gate" class="auth-gate">
+      <div class="auth-panel">
+        <div class="auth-brand">
+          <span class="brand-mark">CF</span>
+          <div>
+            <strong>CareerForge AI</strong>
+            <span>请先注册或登录后使用</span>
+          </div>
+        </div>
+        <div class="auth-tabs">
+          <button class="auth-tab is-active" type="button" data-auth-tab="login">登录</button>
+          <button class="auth-tab" type="button" data-auth-tab="register">注册</button>
+        </div>
+        <form id="login-form" class="auth-form" data-auth-panel="login">
+          <label>用户名或手机号<input name="identity" autocomplete="username" required /></label>
+          <label>密码<input name="password" type="password" autocomplete="current-password" required /></label>
+          <button class="primary" type="submit">登录</button>
+        </form>
+        <form id="register-form" class="auth-form" data-auth-panel="register" hidden>
+          <label>用户名<input name="username" autocomplete="username" placeholder="2-20 位，不能重复" required /></label>
+          <label>密码<input name="password" type="password" autocomplete="new-password" placeholder="至少 8 位" required /></label>
+          <label>手机号
+            <div class="code-row">
+              <input name="phone" inputmode="numeric" autocomplete="tel" required />
+              <button class="ghost" type="button" data-send-code="phone">获取验证码</button>
+            </div>
+          </label>
+          <label>手机验证码<input name="phoneCode" inputmode="numeric" required /></label>
+          <label>邮箱（选填）
+            <div class="code-row">
+              <input name="email" type="email" autocomplete="email" />
+              <button class="ghost" type="button" data-send-code="email">获取验证码</button>
+            </div>
+          </label>
+          <label>邮箱验证码（填写邮箱后必填）<input name="emailCode" inputmode="numeric" /></label>
+          <button class="primary" type="submit">注册并进入</button>
+        </form>
+        <p id="auth-message" class="small"></p>
+      </div>
+    </section>
     <div class="shell">
-      <aside class="sidebar">
+      <aside class="sidebar" id="app-sidebar">
         <div class="brand">
           <span class="brand-mark">CF</span>
           <div>
