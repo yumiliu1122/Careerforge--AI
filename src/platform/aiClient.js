@@ -46,7 +46,7 @@ export function aiProviderInfo(activeModelProfile = normalizeAiModelProfile()) {
   };
 }
 
-export async function callChatCompletion({ modelProfile, model, temperature = 0.3, messages, responseFormat }) {
+export async function callChatCompletion({ modelProfile, model, temperature = 0.3, messages, responseFormat, timeoutMs }) {
   if (!isAiConfigured()) {
     const error = new Error("AI is not configured");
     error.code = "AI_NOT_CONFIGURED";
@@ -54,8 +54,11 @@ export async function callChatCompletion({ modelProfile, model, temperature = 0.
   }
   validateApiKey();
 
+  const profile = normalizeAiModelProfile(modelProfile || model);
+  const activeModel = model || resolveAiModel(profile);
+  const requestTimeoutMs = Number(timeoutMs || (profile === "pro" ? config.ai.timeoutReasonerMs : config.ai.timeoutMs) || 60000);
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), config.ai.timeoutMs);
+  const timeout = setTimeout(() => controller.abort(), requestTimeoutMs);
   try {
     const response = await fetch(resolveChatUrl(config.ai.baseUrl), {
       method: "POST",
@@ -65,8 +68,12 @@ export async function callChatCompletion({ modelProfile, model, temperature = 0.
       },
       signal: controller.signal,
       body: JSON.stringify({
-        model: model || resolveAiModel(modelProfile),
+        model: activeModel,
         temperature,
+        stream: false,
+        ...(profile === "pro"
+          ? { thinking: { type: "enabled" }, reasoning_effort: "high" }
+          : { thinking: { type: "disabled" } }),
         ...(responseFormat ? { response_format: responseFormat } : {}),
         messages
       })
@@ -79,6 +86,11 @@ export async function callChatCompletion({ modelProfile, model, temperature = 0.
 
     const payload = await response.json();
     return payload.choices?.[0]?.message?.content || payload.output_text || payload.content || "";
+  } catch (error) {
+    if (error.name === "AbortError") {
+      throw new Error(`AI 请求超时，已等待 ${Math.round(requestTimeoutMs / 1000)} 秒。建议稍后重试，或先用快速模式完成初稿后再用专家模式精修。`);
+    }
+    throw error;
   } finally {
     clearTimeout(timeout);
   }
@@ -111,5 +123,5 @@ function resolveChatUrl(baseUrl) {
   if (clean.endsWith("/v1")) {
     return `${clean}/chat/completions`;
   }
-  return clean;
+  return `${clean}/chat/completions`;
 }

@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: careerforge-ai
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: starter
+    healthCheckPath: /api/health
+    disk:
+      name: careerforge-data
+      mountPath: /app/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4173
+      - key: DATA_FILE
+        value: /app/data/store.json
+      - key: APP_NAME
+        value: CareerForge AI
+      - key: DEFAULT_PROVIDER
+        value: local-rules
+      - key: AI_PROVIDER
+        value: deepseek
+      - key: AI_API_BASE_URL
+        value: https://api.deepseek.com
+      - key: AI_API_KEY
+        sync: false
+      - key: AI_MODEL_FAST
+        value: deepseek-v4-flash
+      - key: AI_MODEL_REASONER
+        value: deepseek-v4-pro
+      - key: AI_DEFAULT_MODEL
+        value: deepseek-v4-flash
+      - key: AI_TIMEOUT_MS
+        value: 180000
+      - key: AI_TIMEOUT_REASONER_MS
+        value: 240000
+      - key: MAX_UPLOAD_MB
+        value: 20
+      - key: MAX_REQUEST_MB
+        value: 35

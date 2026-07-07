@@ -19,10 +19,11 @@ export const config = {
     provider: process.env.AI_PROVIDER || process.env.DEFAULT_PROVIDER || "local-rules",
     apiKey: process.env.AI_API_KEY || "",
     baseUrl: process.env.AI_API_BASE_URL || "",
-    model: process.env.AI_DEFAULT_MODEL || process.env.AI_MODEL || "gpt-4o-mini",
-    modelFlash: process.env.AI_MODEL_FLASH || process.env.AI_DEFAULT_MODEL || process.env.AI_MODEL || "deepseek-v4-flash",
-    modelPro: process.env.AI_MODEL_PRO || process.env.AI_DEFAULT_MODEL || process.env.AI_MODEL || "deepseek-v4-pro",
-    timeoutMs: Number(process.env.AI_TIMEOUT_MS || 45000)
+    model: process.env.AI_DEFAULT_MODEL || process.env.AI_MODEL_FLASH || process.env.AI_MODEL_FAST || process.env.AI_MODEL || "deepseek-v4-flash",
+    modelFlash: process.env.AI_MODEL_FLASH || process.env.AI_MODEL_FAST || process.env.AI_DEFAULT_MODEL || process.env.AI_MODEL || "deepseek-v4-flash",
+    modelPro: process.env.AI_MODEL_PRO || process.env.AI_MODEL_REASONER || process.env.AI_DEFAULT_MODEL || process.env.AI_MODEL || "deepseek-v4-pro",
+    timeoutMs: Number(process.env.AI_TIMEOUT_MS || 180000),
+    timeoutReasonerMs: Number(process.env.AI_TIMEOUT_REASONER_MS || process.env.AI_TIMEOUT_MS || 240000)
   }
 };
 
@@ -42,12 +43,25 @@ function loadDotEnv(filePath) {
       continue;
     }
     const key = trimmed.slice(0, separatorIndex).trim();
-    const value = trimmed
-      .slice(separatorIndex + 1)
+    const value = stripInlineComment(trimmed.slice(separatorIndex + 1))
       .trim()
       .replace(/^["']|["']$/g, "");
     if (key && process.env[key] === undefined) {
       process.env[key] = value;
     }
   }
+}
+
+function stripInlineComment(value) {
+  let quote = null;
+  for (let index = 0; index < value.length; index += 1) {
+    const char = value[index];
+    if ((char === '"' || char === "'") && value[index - 1] !== "\\") {
+      quote = quote === char ? null : quote || char;
+    }
+    if (char === "#" && !quote && /\s/.test(value[index - 1] || "")) {
+      return value.slice(0, index);
+    }
+  }
+  return value;
 }

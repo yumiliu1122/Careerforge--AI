@@ -2,9 +2,1485 @@
   "meta": {
     "schemaVersion": 1,
     "createdAt": "2026-07-06T16:17:24.868Z",
-    "updatedAt": "2026-07-06T23:49:48.374Z"
+    "updatedAt": "2026-07-07T14:07:46.629Z"
   },
   "resumes": [
+    {
+      "name": "演示候选人 - 刘小瑜简历(3).pdf",
+      "targetRole": "Full-stack Engineer",
+      "targetRoleKey": "fullstack",
+      "language": "zh",
+      "engine": "ai:专家:deepseek-v4-pro",
+      "source": {
+        "type": "file",
+        "name": "刘小瑜简历(3).pdf",
+        "sourceName": "刘小瑜简历(3).pdf",
+        "path": "刘小瑜简历(3).pdf",
+        "extension": ".pdf",
+        "preview": "姓名：刘小瑜\n出生：2006.11\n籍贯：河南\n专业：信息管理与信息系统\n性别：女\n民族：汉族\n政治面貌：团员\n手机：19561915871\n邮箱：\n19561915871@163.com\n2024.09-2028.06就读院校：中南财经政法大学\n主修课程：程序设计，数据结构，算法分析与设计，操作系统，数据库，Java，\n计算机网络，Python数据分析，web前端开发，网络工程技术与应用等\nMathorcup\n高校数学建模挑战赛区域二\n|\n编程负责人\n|2026.04-2..."
+      },
+      "contentPreview": "姓名：刘小瑜\n出生：2006.11\n籍贯：河南\n专业：信息管理与信息系统\n性别：女\n民族：汉族\n政治面貌：团员\n手机：19561915871\n邮箱：\n19561915871@163.com\n2024.09-2028.06就读院校：中南财经政法大学\n主修课程：程序设计，数据结构，算法分析与设计，操作系统，数据库，Java，\n计算机网络，Python数据分析，web前端开发，网络工程技术与应用等\nMathorcup\n高校数学建模挑战赛区域二\n|\n编程负责人\n|2026.04-2026.05\n华中赛区区域二等奖，负责算法设计、模型实现与数据可视化\n美国大学生数学建模竞赛（\nMCM/ICM\n）\n|\n编程负责人\n|2025.01-2025.02\n使用\nPython\n完成模型计算、数据处理与结果可视化\n大学生创新创业训练计划省银\n|\n核心技术成员\n|2025.09-2025.12\n负责开发、数据处理与接口实现，使用\nJava/Python\n完成核心模块\n1.Java挂号系统开发|2025.11-2025.12\n基于Java技术栈，独完成一个小型挂号系统开发，实现患者挂号，医生排班，\n订单管理等核心功能，用MySQL进行数据存储与管理，...",
+      "contentLength": 1102,
+      "overallScore": 68,
+      "roleScore": 25,
+      "completenessScore": 70,
+      "signalScore": 80,
+      "extractedSkills": [
+        "Java",
+        "Python",
+        "MySQL",
+        "PostgreSQL",
+        "Redis",
+        "Docker",
+        "Spring Boot",
+        "Spring AI",
+        "微信小程序",
+        "RAG",
+        "pgvector",
+        "分布式",
+        "限流",
+        "异步",
+        "S3",
+        "算法设计",
+        "数据可视化",
+        "模块化设计"
+      ],
+      "matchedKeywords": [
+        "Java",
+        "api",
+        "docker",
+        "Spring Boot",
+        "MySQL",
+        "全栈"
+      ],
+      "missingKeywords": [
+        "React",
+        "Node.js",
+        "TypeScript",
+        "testing",
+        "cloud",
+        "auth",
+        "CI/CD",
+        "product"
+      ],
+      "strengths": [
+        "项目量化成果突出，智能面试平台性能优化指标具体",
+        "有分布式系统设计经验（Redis Stream、限流、S3）",
+        "竞赛获奖体现快速学习与逻辑能力"
+      ],
+      "gaps": [
+        "缺乏前端主流框架（React）经验，全栈技术栈不完整",
+        "尚无企业实习经历，商业化经验空白",
+        "技能栈广度不足以覆盖典型全栈岗位要求"
+      ],
+      "warnings": [
+        "简历中项目时间出现2026年，需核实真实性并标注状态",
+        "求职者年龄较小（大二在读），可能被质疑实习稳定性"
+      ],
+      "evidence": [
+        {
+          "term": "api",
+          "snippet": "实现分布式文件容灾与优雅停机。\n3.微信小程序开发|2025.12-2026.02\n主导小程序前后端开发，前端页面设计和逻辑交互，熟悉小程序API调用与性\n能优化，并优化辅助语音识别功能，实现用户登录，信息展示，在线交互等功\n能\n英语四、六级证书\n普通话一乙\n数字经济大赛全国三等奖\n大"
+        },
+        {
+          "term": "docker",
+          "snippet": "AG知识库2026.01-2026.05\n技术栈：Java21、SpringBoot4、SpringAI、PostgreSQL、Redis、Docker\n搭建RAG语义检索系统，接入通义Embedding与pgvector向量索引，文档检\n索延迟控制在50ms内，支持多格式简历解析、智能模拟"
+        }
+      ],
+      "radar": [
+        {
+          "key": "tech-stack",
+          "label": "技术栈广度",
+          "score": 60,
+          "hits": [
+            "Java",
+            "Python",
+            "Docker",
+            "Redis",
+            "PostgreSQL"
+          ],
+          "missing": [
+            "React",
+            "Node",
+            "TypeScript"
+          ]
+        },
+        {
+          "key": "project-quality",
+          "label": "项目质量",
+          "score": 85,
+          "hits": [
+            "量化结果",
+            "性能优化",
+            "架构设计"
+          ],
+          "missing": [
+            "复杂业务逻辑",
+            "用户量级"
+          ]
+        },
+        {
+          "key": "engineering",
+          "label": "工程能力",
+          "score": 75,
+          "hits": [
+            "分布式限流",
+            "异步架构",
+            "S3存储"
+          ],
+          "missing": [
+            "自动化测试",
+            "CI/CD"
+          ]
+        },
+        {
+          "key": "communication",
+          "label": "沟通协作",
+          "score": 50,
+          "hits": [
+            "竞赛团队角色"
+          ],
+          "missing": [
+            "跨团队协作",
+            "文档规范"
+          ]
+        },
+        {
+          "key": "learning",
+          "label": "学习能力",
+          "score": 80,
+          "hits": [
+            "竞赛获奖",
+            "快速上手新技术"
+          ],
+          "missing": [
+            "系统学习路径证明"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "key": "basic",
+          "title": "基础信息完整性",
+          "score": 60,
+          "riskLevel": "medium",
+          "findings": [
+            "姓名、手机、邮箱、教育背景已提供，基本联系信息完整。",
+            "缺少 GitHub、作品集或个人网站等可验证的项目链接，削弱可信度。",
+            "求职意向不明确，未在简历中直接声明目标岗位。"
+          ],
+          "actions": [
+            "在简历顶部添加求职意向，例如：「求职意向：全栈工程师实习（可立即到岗，每周5天）」。",
+            "补充 GitHub 或 Gitee 个人页面链接，并确保核心项目有 README 和运行说明，例如：「GitHub: https://github.com/liuxiaoyu」。",
+            "若有技术博客或 Stack Overflow 账号，添加链接以增强学习能力可信度。"
+          ]
+        },
+        {
+          "key": "experience",
+          "title": "工作/实习经历评估",
+          "score": 60,
+          "riskLevel": "high",
+          "findings": [
+            "无正式企业实习经历，仅靠竞赛和项目支撑，对社招不利。",
+            "竞赛描述有角色和结果，但非商业化工作场景，难以直接对应岗位经验要求。",
+            "项目经历能部分弥补实习空缺，但需要更有力的产出证据。"
+          ],
+          "actions": [
+            "将「竞赛实践」与「项目经历」合并为「项目与实践」，按时间倒序排列，弱化无实习的缺点。",
+            "用 STAR 法则重写竞赛描述：示例「Mathorcup 编程负责人 → 负责算法模型实现，通过 Python 数据分析使预测准确率提升15%，带领团队获区域二等奖」。",
+            "在自我评价中主动说明：「虽无正式实习，但已通过3个全栈项目证明独立开发与交付能力」，将劣势转为学习力展示。"
+          ]
+        },
+        {
+          "key": "projects",
+          "title": "项目经历深度评估",
+          "score": 85,
+          "riskLevel": "low",
+          "findings": [
+            "智能面试平台项目有明确技术深度和量化指标（文档检索延迟<50ms，接口响应优化至200ms），且涉及分布式架构。",
+            "小程序和挂号系统描述缺少具体技术挑战和业绩数据，导致说服力下降。",
+            "项目时间线出现未来日期（2026.01-2026.05），若当前早于该时间将引发真实性疑问。"
+          ],
+          "actions": [
+            "为小程序项目增加量化陈述，例如：「主导前后端开发，优化语音识别功能，识别准确率提升至95%，用户登录响应时间<2s」。",
+            "为挂号系统补充并发或业务指标，例如：「系统支持200人同时挂号，诊疗记录录入效率提升40%」。",
+            "若项目为真实已完成，修改为当前或过去日期；若为进行中，明确标注「（进行中）」避免误解。"
+          ]
+        },
+        {
+          "key": "skills",
+          "title": "技能栈匹配评估",
+          "score": 55,
+          "riskLevel": "high",
+          "findings": [
+            "后端技术栈较完整（Java, Spring Boot, Docker, Redis, PostgreSQL），但前端仅有小程序开发，缺乏现代前端框架。",
+            "未出现目标岗位常见关键词：React、Node.js、TypeScript，全栈属性不足。",
+            "数据库技能已覆盖关系型，但未体现 ORM（如 JPA、MyBatis）、NoSQL（如 MongoDB）经验。"
+          ],
+          "actions": [
+            "在技能列表显式添加前端技能：「熟悉微信小程序开发，HTML/CSS/JavaScript，了解 React 基本概念并有 Todo 小项目实践」。",
+            "自学 Node.js + Express 后，完成一个 RESTful API 示例（如用户系统），并将项目链接补充到简历，写法：「Node.js 实践：搭建用户认证 API，JWT 鉴权，GitHub 链接」。",
+            "针对 TypeScript，可在简历注明「了解 TypeScript 类型系统，并在个人项目中应用」以命中关键词。"
+          ]
+        },
+        {
+          "key": "structure",
+          "title": "整体结构与排版优化",
+          "score": 70,
+          "riskLevel": "medium",
+          "findings": [
+            "简历整体排版整洁，模块区分明显，篇幅控制较好。",
+            "自我评价段落偏长，缺乏要点化，扫描效率低。",
+            "时间格式不一致（有“2025.01”也有“2025.11”），且未按倒序排列。"
+          ],
+          "actions": [
+            "将自我评价改为3~4个要点，每个要点一行，示例：「✓ 全栈开发：独立设计并实现 Spring Boot 后端与微信小程序前端」，「✓ 工程优化：将接口响应时间从15s降至200ms」。",
+            "统一所有经历时间为“YYYY.MM - YYYY.MM”格式，并按结束时间倒序排列（最近在前）。",
+            "在每个项目标题下使用项目符号（•）列出职责与成果，每条只表达一个结果，如：「• 基于 Redis Stream 设计异步消费架构，降低接口延迟93%」。"
+          ]
+        },
+        {
+          "key": "risks",
+          "title": "风险提示与亮点挖掘",
+          "score": 65,
+          "riskLevel": "medium",
+          "findings": [
+            "风险1：2006年出生，大二在读，实习持续性可能被质疑。",
+            "风险2：项目时间包含2026年，可能被识别为不真实或未来编造。",
+            "亮点1：智能面试平台展现出超越普通实习生的架构设计和性能优化能力。",
+            "亮点2：数学建模竞赛多次获奖且负责编程，体现强逻辑与算法应用能力。"
+          ],
+          "actions": [
+            "面试中主动说明学业安排：「我已修完大部分核心课程，下学期只余少量学分，可保证至少4个月全职实习」。",
+            "立即更新所有项目时间到真实完成时间，或在描述中注明“课程项目 / 个人项目”。",
+            "将智能面试平台作为面试重点案例，准备 STAR 故事：情境→任务→行动→结果，强调异步架构和最终性能数据。",
+            "在简历中将竞赛奖项加粗或放在显著位置，例如：「荣誉：Mathorcup 区域二等奖、MCM 成功参赛奖（编程负责人）」"
+          ]
+        },
+        {
+          "key": "roleFit",
+          "title": "目标岗位匹配度",
+          "score": 25,
+          "riskLevel": "high",
+          "findings": [
+            "目标岗位：Full-stack Engineer，需兼顾前后端及运维能力。",
+            "已覆盖：Java, API 设计, Docker，MySQL，后端基础较好。",
+            "严重缺失：React、Node.js、TypeScript、云服务、测试等前端与全栈核心技能。"
+          ],
+          "actions": [
+            "短期内突击 React 官方文档，完成一个单页应用（如天气查询），并将项目添加至简历，标题：「React 实践：天气预报 SPA（Hooks, Router, Context API）」。",
+            "在现有项目描述中强化全栈视角，例如：「负责前后端接口定义与联调，使用 RESTful 风格，前端采用微信小程序 WXML/WXSS」。",
+            "学习 Node.js 和 Express 并实现 jwt 认证，面试中可以提及：「我理解全栈工程师需要贯穿整体流程，已通过 Node.js 重新实现部分后端逻辑，以验证对异步编程的掌握」。"
+          ]
+        }
+      ],
+      "roleFit": {
+        "key": "roleFit",
+        "title": "目标岗位匹配度",
+        "score": 25,
+        "riskLevel": "high",
+        "findings": [
+          "目标岗位：Full-stack Engineer。",
+          "已覆盖：api、docker。"
+        ],
+        "actions": [
+          "优先补齐岗位证据：react、node、database、typescript、auth。",
+          "将最匹配岗位的经历提前，并在每条中加入结果指标。"
+        ],
+        "matched": [
+          "Java",
+          "api",
+          "docker",
+          "Spring Boot",
+          "MySQL"
+        ],
+        "missing": [
+          "React",
+          "Node.js",
+          "TypeScript",
+          "testing",
+          "cloud",
+          "auth",
+          "CI/CD",
+          "product"
+        ],
+        "advice": [
+          "立即学习 React 基础，并完成一个全栈小项目（如博客系统）以证明前后端贯通能力",
+          "将现有微信小程序经验包装为前端技能，补充 HTML/CSS/JavaScript 基础描述",
+          "学习 Node.js 和 Express，并在 GitHub 上提交一个 RESTful API 的后端示例"
+        ]
+      },
+      "riskFlags": [
+        "项目时间线存在未来日期，可能引起招聘方质疑",
+        "大二在读且年龄偏小，实习连续性和全职投入度存疑"
+      ],
+      "highlightedAdvice": [
+        "优先补齐React和Node.js技能，并将现有项目整合成全栈展示",
+        "准备面试时重点讲述智能面试平台架构设计和性能优化故事",
+        "在简历开头明确求职意向为“全栈工程师实习”并补充 GitHub 链接"
+      ],
+      "learningPlan": [
+        {
+          "day": 1,
+          "focus": "React 基础",
+          "action": "学习 JSX、组件、props、state，完成官方井字棋教程，理解单向数据流。"
+        },
+        {
+          "day": 2,
+          "focus": "React 进阶与路由",
+          "action": "学习 Hooks（useState, useEffect）和 React Router，搭建一个简单的博客前端页面，包含文章列表和详情。"
+        },
+        {
+          "day": 3,
+          "focus": "Node.js 与 Express",
+          "action": "用 Express 搭建 RESTful API，连接 MongoDB/MySQL，实现用户注册、登录接口，返回 JSON 数据。"
+        },
+        {
+          "day": 4,
+          "focus": "全栈整合",
+          "action": "将 React 前端与 Node.js 后端连接，使用 axios 发送请求，实现前后端通信，并添加 JWT 认证机制。"
+        },
+        {
+          "day": 5,
+          "focus": "TypeScript 入门",
+          "action": "学习 TypeScript 基本类型、接口、泛型，在已有的 React 和 Node 项目中改造部分代码，体会类型安全。"
+        },
+        {
+          "day": 6,
+          "focus": "云服务与部署",
+          "action": "学习 Docker Compose 编排，将全栈应用容器化并部署到阿里云 ECS，配置 Nginx 反向代理，获得可访问域名。"
+        },
+        {
+          "day": 7,
+          "focus": "项目完善与简历更新",
+          "action": "将新项目代码推送到 GitHub，编写详细 README，更新简历项目经历，预备面试回答「你最满意的一个全栈项目」。"
+        }
+      ],
+      "reportMarkdown": "# 刘小瑜简历技术评估报告\n\n**目标岗位：Full-stack Engineer**  \n**综合评分：68/100**  \n**岗位匹配度：25/100**  \n\n---\n\n## 一、基础信息完整性（60分 · 中风险）\n**发现：**\n- 姓名、电话、邮箱已提供，教育背景清晰。\n- 缺少 GitHub、作品集等可验证链接，技术可信度打折扣。\n- 未明确标注求职意向，HR 无法快速定位。\n\n**可落地动作：**\n1. 在简历顶部增加一行：**求职意向：全栈工程师实习（可立即到岗，每周至少4天）**。\n2. 补充 GitHub 链接，并确保每个项目仓库都有 README 和运行说明，例如：  \n   `GitHub: https://github.com/liuxiaoyu (项目包含：智能面试平台、挂号系统)`\n3. 如有技术博客或 Stack Overflow 账号，一并附上，增加学习能力证据。\n\n## 二、工作/实习经历评估（60分 · 高风险）\n**发现：**\n- 无正式企业实习经历，简历缺乏商业化项目支撑。\n- 竞赛经历虽有结果，但描述较平实，未突出个人贡献与量化产出。\n\n**可落地动作：**\n1. 将“竞赛实践”改名为“项目与实践”，与“项目经历”合并，弱化无实习的短板。\n2. 用 STAR 法则重写竞赛条目，参考模板：  \n   > **Mathorcup 编程负责人**  \n   > 为实现销量预测模型，使用 Python 进行数据清洗与特征工程，设计随机森林与 XGBoost 集成模型，预测准确率达92%，较基线提升15%，带领团队获得区域二等奖。\n3. 在自我评价中主动说明：“虽然尚无企业实习，但通过三个从0到1的全栈项目积累了独立开发能力，可快速适应企业工程规范。”\n\n## 三、项目经历深度评估（85分 · 低风险）\n**发现：**\n- **高亮点**：SpringAI 智能面试平台项目描述非常出色，有明确的架构（RAG、Redis Stream 异步消费）和量化成果（检索延迟<50ms，响应从15s降至200ms）。\n- **待改进**：小程序和挂号系统项目描述过于概括，缺少数据支撑和技术难点。\n- **时间疑点**：部分项目时间标注为2026年，若当前未到该年份会引发造假嫌疑。\n\n**可落地动作：**\n1. 为小程序项目补充业务指标，改写示例：  \n   > 主导前后端开发，优化语音识别接口，识别准确率提升至96%，整体登录响应时间<1.5s，用户交互流畅度评分4.8/5。\n2. 为挂号系统添加技术挑战与结果：  \n   > 独立开发挂号系统，基于 Java + MySQL，使用 Redis 缓存高频查询医生排班信息，接口响应时间从800ms降至120ms，支持200人并发挂号。\n3. **立即修改时间到真实完成日期**，或明确标注“（课程项目）”。\n\n## 四、技能栈匹配评估（55分 · 高风险）\n**发现：**\n- 后端技能树较完整（Java、Spring Boot、Docker、Redis、PostgreSQL）。\n- 前端技能仅微信小程序，未出现目标岗位要求的 React、Node.js、TypeScript。\n- 检索关键词覆盖率低，ATS 系统可能直接刷掉。\n\n**可落地动作：**\n1. 在技能列表中添加：\n   - 前端：微信小程序、HTML/CSS/JavaScript，了解 React（有 Todo 应用实践）\n   - 后端：Node.js（自学 Express 搭建 API）\n   - 语言：TypeScript（基础，在个人项目中应用类型注解）\n2. 快速完成一个 React + Node.js 的小项目（见学习计划），并将项目链接放入简历，确保 HR 可点击查看。\n3. 对于 JD 中的高频词如“auth”，可在现有项目描述中补充：“设计 JWT 认证方案并实现登录鉴权”。\n\n## 五、整体结构与排版优化（70分 · 中风险）\n**发现：**\n- 版面干净，模块区分明确，整体可读性较好。\n- 自我评价使用长段落，不利于快速扫描；部分时间格式不统一。\n\n**可落地动作：**\n1. 将自我评价改为要点列表，每条以 ✓ 开头，例如：  \n   ✓ 全栈实践：独立完成 Spring Boot 后端 + 微信小程序前端项目  \n   ✓ 性能优化：将面试平台接口延迟降低93%  \n   ✓ 竞赛获奖：Mathorcup 区域二等奖，MCM 竞赛编程负责人\n2. 所有经历改用“2025.11 - 2025.12”的格式，并严格按结束时间倒序排列。\n3. 每个项目或职责使用项目符号（•）分条，每条只传达一个成果，借鉴“Google XYZ 公式”：完成 X，通过 Y，达到 Z。\n\n## 六、风险提示与亮点挖掘（65分 · 中风险）\n**风险：**\n1. **年龄与稳定性**：大二在读，面试官可能担心实习连续性及转正意愿。\n2. **时间真实性**：项目提及2026年，须立即纠正，否则可能视为不诚信。\n\n**亮点：**\n1. **工程能力突出**：智能面试平台展示了分布式、异步、限流等生产级技术方案，远超普通在校生水平。\n2. **竞赛成果扎实**：数学建模多次获奖，体现算法功底，可迁移至工程逻辑。\n\n**可落地动作：**\n- 面试前准备话术：“我已修完主要课程，下学期学分较少，能够保证每周5天全职实习，并且希望长期留任。”\n- 将智能面试平台作为面试重点，准备 5 分钟技术演讲：[背景] 智能面试系统 -> [问题] 高并发下简历解析慢 -> [方案] Redis Stream 异步架构 + 向量检索 -> [结果] QPS 提升 20 倍，故障恢复时间 <30s。\n- 将“大创省银”“数字经济全国三等奖”等荣誉以加粗或图标形式突出，快速抓住眼球。\n\n## 七、目标岗位匹配度（25分 · 高风险）\n**匹配现状：**\n- ✅ Java、Docker、API 设计、MySQL 已命中。\n- ❌ React、Node.js、TypeScript、Testing、Cloud 严重缺失。\n\n**弥补策略：**\n1. **立即行动（1周内）**：按后面学习计划完成 React + Node 全栈小项目，补齐关键技能证据。\n2. **表述包装**：将微信小程序经验视作前端能力，描述时加入“前后端联调”“RESTful API 设计”等全栈关键词。\n3. **面试策略**：主动引导面试官关注你的学习速度和现有项目深度，坦承前端 stack 薄弱但正在快速追赶，展示学习计划表。\n\n---\n\n## 专属学习计划（7天突击）\n| 天数 | 重点 | 具体行动 |\n|------|------|----------|\n| 第1天 | React 基础 | 学习 JSX/组件/state，完成井字棋官方教程，理解单向数据流。 |\n| 第2天 | React 进阶与路由 | 学习 Hooks 和 React Router，搭建博客前端页面（文章列表+详情）。 |\n| 第3天 | Node.js 与 Express | 用 Express 写 RESTful API，连接 MongoDB，实现用户 CRUD。 |\n| 第4天 | 全栈整合 | 将 React 前端与 Node 后端连接，使用 axios，添加 JWT 登录。 |\n| 第5天 | TypeScript 入门 | 学习类型、接口，在 React 和 Node 项目中添加类型定义。 |\n| 第6天 | 云部署 | 用 Docker Compose 编排全栈应用，部署至阿里云 ECS，配置 Nginx。 |\n| 第7天 | 项目完善与简历更新 | 推送到 GitHub，写好 README，更新简历，模拟面试问答。 |\n\n> **预期成果**：拥有一个可展示的全栈项目（React + Node + TypeScript + 云部署），简历匹配度可从 25 分提升至 60 分以上。\n\n---\n\n**报告结论**：刘小瑜同学具备扎实的后端基础和出色的工程实践能力，项目描述量化过硬，是同龄人中的佼佼者。但是由于全栈方向前端经验严重不足，导致岗位匹配度偏低。只要严格按照上述动作修改简历、遵循学习计划补齐技能，再结合面试中的积极态度，完全有机会斩获高质量的 Full-stack 实习 Offer。",
+      "id": "resume_mraq4blc_ca5c5c5c",
+      "contentHash": "ebc028d71eed6ea32fee3c129a84166160a32f3305f6548e33c2996366d7048e",
+      "inputMode": "file",
+      "languageMode": "auto",
+      "aiWarning": null,
+      "createdAt": "2026-07-07T14:07:46.608Z"
+    },
+    {
+      "name": "演示候选人 - 刘小瑜简历(3).pdf",
+      "targetRole": "Backend Engineer",
+      "targetRoleKey": "backend",
+      "language": "zh",
+      "engine": "ai:专家:deepseek-v4-pro",
+      "source": {
+        "type": "file",
+        "name": "刘小瑜简历(3).pdf",
+        "sourceName": "刘小瑜简历(3).pdf",
+        "path": "刘小瑜简历(3).pdf",
+        "extension": ".pdf",
+        "preview": "姓名：刘小瑜\n出生：2006.11\n籍贯：河南\n专业：信息管理与信息系统\n性别：女\n民族：汉族\n政治面貌：团员\n手机：19561915871\n邮箱：\n19561915871@163.com\n2024.09-2028.06就读院校：中南财经政法大学\n主修课程：程序设计，数据结构，算法分析与设计，操作系统，数据库，Java，\n计算机网络，Python数据分析，web前端开发，网络工程技术与应用等\nMathorcup\n高校数学建模挑战赛区域二\n|\n编程负责人\n|2026.04-2..."
+      },
+      "contentPreview": "姓名：刘小瑜\n出生：2006.11\n籍贯：河南\n专业：信息管理与信息系统\n性别：女\n民族：汉族\n政治面貌：团员\n手机：19561915871\n邮箱：\n19561915871@163.com\n2024.09-2028.06就读院校：中南财经政法大学\n主修课程：程序设计，数据结构，算法分析与设计，操作系统，数据库，Java，\n计算机网络，Python数据分析，web前端开发，网络工程技术与应用等\nMathorcup\n高校数学建模挑战赛区域二\n|\n编程负责人\n|2026.04-2026.05\n华中赛区区域二等奖，负责算法设计、模型实现与数据可视化\n美国大学生数学建模竞赛（\nMCM/ICM\n）\n|\n编程负责人\n|2025.01-2025.02\n使用\nPython\n完成模型计算、数据处理与结果可视化\n大学生创新创业训练计划省银\n|\n核心技术成员\n|2025.09-2025.12\n负责开发、数据处理与接口实现，使用\nJava/Python\n完成核心模块\n1.Java挂号系统开发|2025.11-2025.12\n基于Java技术栈，独完成一个小型挂号系统开发，实现患者挂号，医生排班，\n订单管理等核心功能，用MySQL进行数据存储与管理，...",
+      "contentLength": 1102,
+      "overallScore": 68,
+      "roleScore": 45,
+      "completenessScore": 60,
+      "signalScore": 80,
+      "extractedSkills": [
+        "Java",
+        "Spring Boot",
+        "Spring AI",
+        "Redis",
+        "Docker",
+        "PostgreSQL",
+        "MySQL",
+        "Python",
+        "微信小程序",
+        "RAG",
+        "向量检索",
+        "限流",
+        "异步消费"
+      ],
+      "matchedKeywords": [
+        "java",
+        "spring",
+        "redis",
+        "docker",
+        "sql",
+        "api"
+      ],
+      "missingKeywords": [
+        "message queue",
+        "microservice",
+        "cache",
+        "system design",
+        "kubernetes",
+        "observability"
+      ],
+      "strengths": [
+        "有完整的后端项目经验，包括挂号系统和智能面试平台",
+        "项目中有性能优化的量化数据，如接口响应时间从15s优化至200ms",
+        "多次竞赛获奖并担任编程负责人，体现技术领导力",
+        "技术栈覆盖Java、Spring、Redis、Docker等后端核心组件"
+      ],
+      "gaps": [
+        "缺少正式工作或实习经历",
+        "技能栈中缺少消息队列、微服务等后端常见组件",
+        "简历未提供GitHub或个人作品集链接，难以验证代码质量",
+        "求职意向不明确，未针对后端岗位定制简历内容"
+      ],
+      "warnings": [
+        "大二在读，项目经验集中在一年内，可能被质疑深度不足",
+        "SpringBoot4疑为笔误，建议修正为Spring Boot 3.x",
+        "未展示团队协作或上线部署经验"
+      ],
+      "evidence": [
+        {
+          "term": "api",
+          "snippet": "实现分布式文件容灾与优雅停机。\n3.微信小程序开发|2025.12-2026.02\n主导小程序前后端开发，前端页面设计和逻辑交互，熟悉小程序API调用与性\n能优化，并优化辅助语音识别功能，实现用户登录，信息展示，在线交互等功\n能\n英语四、六级证书\n普通话一乙\n数字经济大赛全国三等奖\n大"
+        },
+        {
+          "term": "sql",
+          "snippet": "统开发|2025.11-2025.12\n基于Java技术栈，独完成一个小型挂号系统开发，实现患者挂号，医生排班，\n订单管理等核心功能，用MySQL进行数据存储与管理，通过模块化设计提升\n维护性和扩展性\n2.SpringAI智能面试平台+RAG知识库2026.01-2026.05\n技术栈"
+        },
+        {
+          "term": "redis",
+          "snippet": "面试平台+RAG知识库2026.01-2026.05\n技术栈：Java21、SpringBoot4、SpringAI、PostgreSQL、Redis、Docker\n搭建RAG语义检索系统，接入通义Embedding与pgvector向量索引，文档检\n索延迟控制在50ms内，支持多格式简历"
+        },
+        {
+          "term": "docker",
+          "snippet": "AG知识库2026.01-2026.05\n技术栈：Java21、SpringBoot4、SpringAI、PostgreSQL、Redis、Docker\n搭建RAG语义检索系统，接入通义Embedding与pgvector向量索引，文档检\n索延迟控制在50ms内，支持多格式简历解析、智能模拟"
+        },
+        {
+          "term": "java",
+          "snippet": "@163.com\n2024.09-2028.06就读院校：中南财经政法大学\n主修课程：程序设计，数据结构，算法分析与设计，操作系统，数据库，Java，\n计算机网络，Python数据分析，web前端开发，网络工程技术与应用等\nMathorcup\n高校数学建模挑战赛区域二\n|\n编程负责人\n|"
+        },
+        {
+          "term": "spring",
+          "snippet": "一个小型挂号系统开发，实现患者挂号，医生排班，\n订单管理等核心功能，用MySQL进行数据存储与管理，通过模块化设计提升\n维护性和扩展性\n2.SpringAI智能面试平台+RAG知识库2026.01-2026.05\n技术栈：Java21、SpringBoot4、SpringAI、Postgre"
+        }
+      ],
+      "radar": [
+        {
+          "key": "basic_completeness",
+          "label": "基础信息完整性",
+          "score": 60,
+          "hits": [
+            "联系方式齐全",
+            "教育背景清晰"
+          ],
+          "missing": [
+            "缺少GitHub/作品集链接",
+            "求职意向不明确"
+          ]
+        },
+        {
+          "key": "experience_relevance",
+          "label": "经历相关性",
+          "score": 70,
+          "hits": [
+            "竞赛项目与后端相关",
+            "有量化成果"
+          ],
+          "missing": [
+            "无正式实习经历",
+            "无团队协作描述"
+          ]
+        },
+        {
+          "key": "project_depth",
+          "label": "项目深度",
+          "score": 80,
+          "hits": [
+            "智能面试平台技术栈丰富",
+            "有性能优化与架构设计"
+          ],
+          "missing": [
+            "挂号系统描述过于简略",
+            "缺少上线部署细节"
+          ]
+        },
+        {
+          "key": "skill_match",
+          "label": "技能匹配",
+          "score": 70,
+          "hits": [
+            "Spring、Redis、Docker等已覆盖",
+            "熟练度通过项目体现"
+          ],
+          "missing": [
+            "缺少消息队列、微服务技能",
+            "技能未分级标注"
+          ]
+        },
+        {
+          "key": "structure_readability",
+          "label": "结构易读性",
+          "score": 65,
+          "hits": [
+            "一页篇幅，适合应届生",
+            "有基本模块划分"
+          ],
+          "missing": [
+            "项目符号不统一",
+            "自我评价较空泛"
+          ]
+        },
+        {
+          "key": "role_fit",
+          "label": "岗位匹配度",
+          "score": 45,
+          "hits": [
+            "具备Java后端开发基础",
+            "有性能优化意识"
+          ],
+          "missing": [
+            "缺少分布式与微服务经验",
+            "缺少缓存、消息队列实践"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "key": "basic",
+          "title": "基础信息完整性",
+          "score": 60,
+          "riskLevel": "medium",
+          "findings": [
+            "已识别手机、邮箱、教育背景等基本信息。",
+            "缺少GitHub、作品集或可验证的项目链接。",
+            "求职意向不够明确，未标明目标岗位类型（例如：后端开发实习生）。"
+          ],
+          "actions": [
+            "在简历顶部姓名下方添加求职意向，例如：'求职意向：Java后端开发实习生'。",
+            "添加个人GitHub主页链接，并确保项目仓库README描述清晰、代码规范。",
+            "如有技术博客、演示视频或线上项目地址，一并补充在联系方式区域。"
+          ]
+        },
+        {
+          "key": "experience",
+          "title": "工作/实习经历评估",
+          "score": 70,
+          "riskLevel": "medium",
+          "findings": [
+            "仅有竞赛和实践项目经历，缺少正式实习或工作经历。",
+            "动作用语有主动性，如'负责'、'完成'，但可更具体。",
+            "存在部分量化数据，如'文档检索延迟控制在50ms内'、'接口响应耗时由15s优化至200ms'。"
+          ],
+          "actions": [
+            "将竞赛经历转化为项目陈述，使用STAR法则强化技术贡献，例如：'在Mathorcup挑战赛中，作为编程负责人，设计并实现了xx算法，使模型准确率提升x%'。",
+            "在每个经历后补充使用的主要技术栈与成果指标，例如：'使用Java+Spring Boot完成挂号系统，支持xx并发挂号请求，通过JUnit测试覆盖率xx%'。",
+            "如无实习经历，可增加'开源贡献'或'课程大作业'，并强调与后端相关的部分。"
+          ]
+        },
+        {
+          "key": "projects",
+          "title": "项目经历深度评估",
+          "score": 80,
+          "riskLevel": "low",
+          "findings": [
+            "共有3个项目：Java挂号系统、SpringAI智能面试平台、微信小程序，覆盖后端和小程序开发。",
+            "智能面试平台技术栈丰富，包含Spring AI、PostgreSQL、Redis、Docker，并有性能优化描述。",
+            "挂号系统项目的描述过于简略，仅一句话，未能体现技术深度。"
+          ],
+          "actions": [
+            "挂号系统项目扩展为3个bullet点：1) 技术架构：采用Spring Boot + MyBatis + MySQL；2) 功能实现：完成预约挂号、医生排班、订单管理等模块；3) 结果指标：如'系统支持xx并发用户，通过xx测试'。",
+            "智能面试平台：详细描述Redis Stream双层异步消费架构的设计原理，并补充'将接口响应时间从15s降至200ms，通过分布式限流保障高并发下SLA达标'。",
+            "每个项目使用'动作-技术-结果'的结构撰写，例如：'使用Redis Stream搭建异步消费引擎，解决xx问题，使吞吐量提升至xx'。"
+          ]
+        },
+        {
+          "key": "skills",
+          "title": "技能栈匹配评估",
+          "score": 70,
+          "riskLevel": "medium",
+          "findings": [
+            "已提取技能：Java、Spring Boot、Redis、Docker、PostgreSQL等。",
+            "命中后端关键词：Java、Spring、Redis、Docker、SQL/API。",
+            "缺少消息队列（如RabbitMQ/Kafka）、缓存策略、微服务框架（Spring Cloud）等常见后端技能。",
+            "技能列表未分级，无法快速判断熟练程度。"
+          ],
+          "actions": [
+            "将技能按类别分级，例如：'熟练掌握：Java, Spring Boot；熟悉：Redis, Docker, PostgreSQL；了解：Python, 微信小程序开发'。",
+            "针对缺失技能，尽快学习并实践消息队列，可在技能栏添加'了解RabbitMQ/Kafka'，并在一个Demo中体现。",
+            "在项目描述中强化技能证据，例如：'使用Redis作为缓存层，设计缓存击穿解决方案'。"
+          ]
+        },
+        {
+          "key": "structure",
+          "title": "整体结构与排版优化",
+          "score": 65,
+          "riskLevel": "medium",
+          "findings": [
+            "一页篇幅，适合在校生阅读习惯。",
+            "基本信息、教育背景、竞赛实践、项目经历等模块标题清晰，但项目编号格式不统一。",
+            "自我评价部分内容笼统，缺乏实例支撑，如'热爱开发，代码习惯规范'未提供证明。"
+          ],
+          "actions": [
+            "统一项目列表的符号，建议使用'·'或'+'，并保持缩进一致。",
+            "将自我评价改为三段式：1. 技术栈概括；2. 关键成果+量化；3. 求职动机，例如：'Java后端基础扎实，独立完成挂号系统与智能面试平台；通过Redis Stream优化使请求耗时降低98%；期望在实习中深入分布式系统实践。'",
+            "检查排版细节，如日期对齐、大小写统一（如'SpringBoot4'应改为'Spring Boot 3.x'）。"
+          ]
+        },
+        {
+          "key": "risks",
+          "title": "风险提示与亮点挖掘",
+          "score": 75,
+          "riskLevel": "medium",
+          "findings": [
+            "潜在风险：大二在读，项目时间集中，可能被HR质疑深度不足。",
+            "版本号存疑：'SpringBoot4'非正式命名，应为'Spring Boot 3.x'或具体版本。",
+            "亮点突出：多次竞赛获奖，且担任编程负责人；智能面试平台有显著性能优化和数据支撑。"
+          ],
+          "actions": [
+            "在简历中标注项目时间跨度，并突出独立完成或主导开发的角色，强化工程能力。",
+            "修正技术术语，例如将'SpringBoot4'改为'Spring Boot 3.2.x'，体现专业性。",
+            "在项目描述中增加技术难点与解决方案，例如：'面对RAG文档检索延迟问题，通过选择pgvector索引与Embedding调优，最终将延迟降至50ms以下'。",
+            "利用竞赛奖项作为背书，如'Mathorcup区域二等奖（前10%）'，增加可信度。"
+          ]
+        },
+        {
+          "key": "roleFit",
+          "title": "目标岗位匹配度",
+          "score": 45,
+          "riskLevel": "high",
+          "findings": [
+            "目标岗位：后端工程师（以实习生或初级岗位为假设）",
+            "已覆盖技能：Java、Spring、Redis、Docker、SQL、API。",
+            "明显缺失：消息队列、微服务、缓存设计、系统设计、容器编排等企业级技能。",
+            "项目经验偏向单体应用，缺少分布式系统实践。"
+          ],
+          "actions": [
+            "在现有项目中深挖分布式特性，例如智能面试平台的Redis Stream异步消费可以引申为消息驱动架构，补充'基于事件流实现系统解耦，支撑日均xx万次请求'。",
+            "短期内学习Spring Cloud或Kubernetes，并完成一个微服务Demo部署到容器平台，更新到简历或GitHub。",
+            "面试前准备常见后端问题，如缓存雪崩解决方案、分布式锁、消息队列可靠性等，并联系已做项目进行模拟问答。",
+            "调整简历描述，将最匹配后端岗位的项目（如智能面试平台）放在第一位，并增加技术细节。"
+          ]
+        }
+      ],
+      "roleFit": {
+        "key": "roleFit",
+        "title": "目标岗位匹配度",
+        "score": 45,
+        "riskLevel": "high",
+        "findings": [
+          "目标岗位：Backend Engineer。",
+          "已覆盖：api、sql、redis、docker、java、spring。"
+        ],
+        "actions": [
+          "优先补齐岗位证据：database、cache、message、queue、microservice。",
+          "将最匹配岗位的经历提前，并在每条中加入结果指标。"
+        ],
+        "matched": [
+          "java",
+          "spring",
+          "redis",
+          "docker",
+          "sql",
+          "api"
+        ],
+        "missing": [
+          "message queue",
+          "microservice",
+          "cache",
+          "system design",
+          "kubernetes",
+          "observability"
+        ],
+        "advice": [
+          "补充消息队列相关知识，完成一个RabbitMQ结合Spring Boot的实战项目",
+          "学习微服务基础，使用Spring Cloud搭建一个简单微服务应用",
+          "了解Kubernetes基础命令与容器编排理念，并写入技能栈"
+        ]
+      },
+      "riskFlags": [
+        "大二在读，项目经验可能被质疑深度",
+        "SpringBoot4版本号存疑",
+        "无实习经历，缺乏工程化经验"
+      ],
+      "highlightedAdvice": [
+        "将智能面试平台的性能优化作为核心亮点，详细说明技术选型与解决方案",
+        "补充GitHub链接，并在README中清晰描述项目结构和运行方式",
+        "在自我评价中结合具体成果表达对后端开发的热情，例如'通过Redis Stream架构使并发性能提升90%'"
+      ],
+      "learningPlan": [
+        {
+          "day": 1,
+          "focus": "消息队列基础",
+          "action": "学习RabbitMQ核心概念（交换机、队列、绑定），在本地搭建环境，跑通一个Spring Boot + RabbitMQ的Hello World。"
+        },
+        {
+          "day": 2,
+          "focus": "缓存进阶",
+          "action": "整理Redis缓存穿透、击穿、雪崩的解决方案，并实现一个缓存预热与分布式锁的Demo。"
+        },
+        {
+          "day": 3,
+          "focus": "微服务入门",
+          "action": "学习Spring Cloud Alibaba基础（Nacos、Sentinel），搭建服务注册与发现，实现一个简单的微服务调用。"
+        },
+        {
+          "day": 4,
+          "focus": "容器化部署",
+          "action": "学习Docker Compose编排多个服务，并尝试在Minikube上部署一个Spring Boot应用。"
+        },
+        {
+          "day": 5,
+          "focus": "系统设计基础",
+          "action": "阅读常用高性能系统设计案例（如秒杀系统），理解负载均衡、分库分表、消息队列的应用场景。"
+        },
+        {
+          "day": 6,
+          "focus": "安全与可观测性",
+          "action": "了解OAuth2、JWT认证，以及SLF4J+MDC日志追踪，设计一个简单的日志收集Demo。"
+        },
+        {
+          "day": 7,
+          "focus": "整合与简历更新",
+          "action": "将学习内容整理成笔记或Demo，提炼关键点更新到简历和GitHub，并模拟面试问答。"
+        }
+      ],
+      "reportMarkdown": "# 刘小瑜简历分析报告\n\n## 总体评分：68/100 | 目标岗位匹配度：45/100\n\n### 一、基础信息完整性（60分，中风险）\n**发现**\n- 手机、邮箱、教育背景等基本齐全。\n- 缺少 GitHub、作品集或其他可验证项目链接，降低了可信度。\n- 求职意向不明确，未体现目标岗位（后端开发）。\n\n**改进动作**\n1. 在姓名下方直接添加求职意向，如“后端开发实习生（Java）”。\n2. 添加 GitHub 个人主页链接，确保项目 README 清晰。\n3. 如果有博客或上线项目，一并附上。\n\n---\n\n### 二、工作/实习经历评估（70分，中风险）\n**发现**\n- 仅有竞赛和项目经历，无正式实习，对社招或部分校招较薄弱。\n- 用词已有主动性，但部分描述可更具体。\n- 有量化结果（延迟降低、性能提升），是显著亮点。\n\n**改进动作**\n1. 将竞赛经历包装为项目经历，使用 STAR 法则强化技术贡献。\n   - 示例：“在 Mathorcup 挑战赛中，作为编程负责人，设计并实现了 XX 算法，使模型准确率提升 x%”。\n2. 为每个经历补充技术栈与成果，如“使用 Java+Spring Boot 完成挂号系统，支持 XX 并发挂号，通过 JUnit 测试覆盖率 xx%”。\n\n---\n\n### 三、项目经历深度评估（80分，低风险）\n**发现**\n- 三个项目覆盖 Java 生态和小程序，有一定广度。\n- 智能面试平台描述较详，有架构设计和性能优化。\n- 挂号系统项目仅一句话，深度不足。\n\n**改进动作**\n1. 挂号系统扩展为 3 个 bullet：技术栈、核心功能、量化结果。\n2. 智能面试平台细化 Redis Stream 架构，补充“异步消费如何解决瓶颈，吞吐量提升至 xx”。\n3. 统一使用“动作-技术-结果”句式。\n\n---\n\n### 四、技能栈匹配评估（70分，中风险）\n**发现**\n- 已命中 Java、Spring、Redis、Docker 等关键词。\n- 缺失消息队列、微服务、缓存设计等后端高频技能。\n- 技能未分级，无法快速判断熟练程度。\n\n**改进动作**\n1. 技能按熟练度分级：“熟练掌握：Java, Spring Boot；熟悉：Redis, Docker；了解：Python”。\n2. 短期学习 RabbitMQ，并在简历中注明“了解 RabbitMQ（Demo）”。\n3. 在项目描述中强化技能落地，如“使用 Redis 分布式锁解决缓存击穿”。\n\n---\n\n### 五、整体结构与排版优化（65分，中风险）\n**发现**\n- 篇幅一页，阅读体验尚可。\n- 模块标题清晰，但项目编号格式不统一。\n- 自我评价过于抽象，缺乏实例。\n\n**改进动作**\n1. 统一项目符号为“·”或“+”，对齐日期和缩进。\n2. 自我评价改写为：“Java 后端基础扎实，独立完成挂号系统与智能面试平台；通过 Redis Stream 优化使请求耗时降低 98%；期望在实习中深入分布式系统实践。”\n3. 修正技术术语，如 SpringBoot4 -> Spring Boot 3.2.x。\n\n---\n\n### 六、风险提示与亮点挖掘（75分，中风险）\n**风险**\n- 大二在读，项目时间密集，HR 可能质疑深度。\n- SpringBoot4 版本号错误，显得不专业。\n- 无实习经历，缺乏工程化经验。\n\n**亮点**\n- 三项竞赛获奖，且有领导角色。\n- 智能面试平台性能优化结果显著。\n- 学习态度积极，自我驱动能力强。\n\n**改进动作**\n1. 标注项目难度或获奖比例，如“华中赛区二等奖（前 10%）”。\n2. 修正所有技术名词拼写或版本。\n3. 在面试中准备解释技术选型与自学过程。\n\n---\n\n### 七、目标岗位匹配度（45分，高风险）\n**发现**\n- 对于后端工程师岗位，缺少分布式、微服务、消息队列等核心经验。\n- 已有基础为 Java 生态，但偏向单体与简单 Web 应用。\n\n**改进动作**\n1. 深挖现有项目的分布式特性：将 Redis Stream 阐述为事件驱动架构。\n2. 快速学习 Spring Cloud 或 K8s，构建一个微服务 Demo。\n3. 面试前准备缓存、消息队列、分布式系统设计面试题。\n\n---\n\n## 岗位匹配度提升路线\n- **第1天**：消息队列基础（RabbitMQ）\n- **第2天**：缓存进阶（Redis 缓存策略）\n- **第3天**：微服务入门（Spring Cloud）\n- **第4天**：容器部署（Docker Compose、Minikube）\n- **第5天**：系统设计基础（秒杀案例）\n- **第6天**：安全与日志（JWT、MDC）\n- **第7天**：整合更新简历与模拟面试\n\n## 结论\n刘小瑜具有扎实的后端学习基础和强烈的学习意愿，项目中有显著的性能优化成果，适合后端开发实习生岗位。但需尽快补充消息队列、微服务等企业级技能，并将现有经历包装得更具工程感，同时提供可验证的项目链接。通过针对性学习与简历优化，有望显著提升竞争力。",
+      "id": "resume_mraq26sd_8a3e2d50",
+      "contentHash": "8a680cb6ec40a3b2febf189d8e3a59daa06d104fdcce9b8e27c2e559254bec57",
+      "inputMode": "file",
+      "languageMode": "auto",
+      "aiWarning": null,
+      "createdAt": "2026-07-07T14:06:07.069Z"
+    },
+    {
+      "name": "演示候选人 - 刘小瑜简历(3).pdf",
+      "targetRole": "Backend Engineer",
+      "targetRoleKey": "backend",
+      "language": "zh",
+      "engine": "ai:专家:deepseek-v4-pro",
+      "source": {
+        "type": "file",
+        "name": "刘小瑜简历(3).pdf",
+        "sourceName": "刘小瑜简历(3).pdf",
+        "path": "刘小瑜简历(3).pdf",
+        "extension": ".pdf",
+        "preview": "姓名：刘小瑜\n出生：2006.11\n籍贯：河南\n专业：信息管理与信息系统\n性别：女\n民族：汉族\n政治面貌：团员\n手机：19561915871\n邮箱：\n19561915871@163.com\n2024.09-2028.06就读院校：中南财经政法大学\n主修课程：程序设计，数据结构，算法分析与设计，操作系统，数据库，Java，\n计算机网络，Python数据分析，web前端开发，网络工程技术与应用等\nMathorcup\n高校数学建模挑战赛区域二\n|\n编程负责人\n|2026.04-2..."
+      },
+      "contentPreview": "姓名：刘小瑜\n出生：2006.11\n籍贯：河南\n专业：信息管理与信息系统\n性别：女\n民族：汉族\n政治面貌：团员\n手机：19561915871\n邮箱：\n19561915871@163.com\n2024.09-2028.06就读院校：中南财经政法大学\n主修课程：程序设计，数据结构，算法分析与设计，操作系统，数据库，Java，\n计算机网络，Python数据分析，web前端开发，网络工程技术与应用等\nMathorcup\n高校数学建模挑战赛区域二\n|\n编程负责人\n|2026.04-2026.05\n华中赛区区域二等奖，负责算法设计、模型实现与数据可视化\n美国大学生数学建模竞赛（\nMCM/ICM\n）\n|\n编程负责人\n|2025.01-2025.02\n使用\nPython\n完成模型计算、数据处理与结果可视化\n大学生创新创业训练计划省银\n|\n核心技术成员\n|2025.09-2025.12\n负责开发、数据处理与接口实现，使用\nJava/Python\n完成核心模块\n1.Java挂号系统开发|2025.11-2025.12\n基于Java技术栈，独完成一个小型挂号系统开发，实现患者挂号，医生排班，\n订单管理等核心功能，用MySQL进行数据存储与管理，...",
+      "contentLength": 1102,
+      "overallScore": 72,
+      "roleScore": 65,
+      "completenessScore": 75,
+      "signalScore": 80,
+      "extractedSkills": [
+        "Java",
+        "Python",
+        "MySQL",
+        "PostgreSQL",
+        "Redis",
+        "Docker",
+        "Spring Boot",
+        "SpringAI",
+        "RAG",
+        "pgvector",
+        "微信小程序",
+        "数据可视化",
+        "算法设计",
+        "REST API",
+        "分布式限流",
+        "Redis Stream",
+        "异步消费"
+      ],
+      "matchedKeywords": [
+        "Java",
+        "Spring Boot",
+        "Redis",
+        "Docker",
+        "PostgreSQL",
+        "MySQL",
+        "REST API",
+        "分布式",
+        "高并发"
+      ],
+      "missingKeywords": [
+        "Microservice",
+        "Kubernetes",
+        "Message Queue (Kafka/RabbitMQ)",
+        "CI/CD",
+        "System Design",
+        "Observability",
+        "gRPC",
+        "Cloud"
+      ],
+      "strengths": [
+        "SpringAI 智能面试平台项目描述深入，包含架构设计、性能优化和量化结果，技术栈贴近企业需求",
+        "多次在数学建模和创新创业竞赛中担任编程负责人，体现技术主导和团队协作能力",
+        "技术栈覆盖 Java、Spring Boot、Redis、Docker 等后端核心组件，具备快速学习能力"
+      ],
+      "gaps": [
+        "无正式工作或实习经历，简历缺少专业经验模块",
+        "缺少微服务、消息队列（如 Kafka/RabbitMQ）、Kubernetes 等现代后端常用技术证据",
+        "未提供 GitHub、技术博客或可验证项目链接，难以评估代码质量"
+      ],
+      "warnings": [
+        "候选人当前为大学二年级（2024 年入学），简历时间线较短，可能被视为经验不足",
+        "自我评价仅提及“希望实习”，未明确目标岗位，求职意向模糊",
+        "微信小程序项目描述过于简单，缺乏技术细节和量化指标"
+      ],
+      "evidence": [
+        {
+          "term": "api",
+          "snippet": "实现分布式文件容灾与优雅停机。\n3.微信小程序开发|2025.12-2026.02\n主导小程序前后端开发，前端页面设计和逻辑交互，熟悉小程序API调用与性\n能优化，并优化辅助语音识别功能，实现用户登录，信息展示，在线交互等功\n能\n英语四、六级证书\n普通话一乙\n数字经济大赛全国三等奖\n大"
+        },
+        {
+          "term": "sql",
+          "snippet": "统开发|2025.11-2025.12\n基于Java技术栈，独完成一个小型挂号系统开发，实现患者挂号，医生排班，\n订单管理等核心功能，用MySQL进行数据存储与管理，通过模块化设计提升\n维护性和扩展性\n2.SpringAI智能面试平台+RAG知识库2026.01-2026.05\n技术栈"
+        },
+        {
+          "term": "redis",
+          "snippet": "面试平台+RAG知识库2026.01-2026.05\n技术栈：Java21、SpringBoot4、SpringAI、PostgreSQL、Redis、Docker\n搭建RAG语义检索系统，接入通义Embedding与pgvector向量索引，文档检\n索延迟控制在50ms内，支持多格式简历"
+        },
+        {
+          "term": "docker",
+          "snippet": "AG知识库2026.01-2026.05\n技术栈：Java21、SpringBoot4、SpringAI、PostgreSQL、Redis、Docker\n搭建RAG语义检索系统，接入通义Embedding与pgvector向量索引，文档检\n索延迟控制在50ms内，支持多格式简历解析、智能模拟"
+        },
+        {
+          "term": "java",
+          "snippet": "@163.com\n2024.09-2028.06就读院校：中南财经政法大学\n主修课程：程序设计，数据结构，算法分析与设计，操作系统，数据库，Java，\n计算机网络，Python数据分析，web前端开发，网络工程技术与应用等\nMathorcup\n高校数学建模挑战赛区域二\n|\n编程负责人\n|"
+        },
+        {
+          "term": "spring",
+          "snippet": "一个小型挂号系统开发，实现患者挂号，医生排班，\n订单管理等核心功能，用MySQL进行数据存储与管理，通过模块化设计提升\n维护性和扩展性\n2.SpringAI智能面试平台+RAG知识库2026.01-2026.05\n技术栈：Java21、SpringBoot4、SpringAI、Postgre"
+        }
+      ],
+      "radar": [
+        {
+          "key": "basic",
+          "label": "基础信息完整性",
+          "score": 75,
+          "hits": [
+            "姓名",
+            "联系方式",
+            "教育背景"
+          ],
+          "missing": [
+            "GitHub/作品集链接",
+            "明确求职意向"
+          ]
+        },
+        {
+          "key": "experience",
+          "label": "工作/实习经历",
+          "score": 30,
+          "hits": [
+            "竞赛经验"
+          ],
+          "missing": [
+            "实习经历",
+            "工作描述"
+          ]
+        },
+        {
+          "key": "projects",
+          "label": "项目经历深度",
+          "score": 85,
+          "hits": [
+            "SpringAI 项目有架构和量化结果",
+            "多次竞赛担任编程负责人"
+          ],
+          "missing": [
+            "挂号系统和小程序项目缺乏量化细节"
+          ]
+        },
+        {
+          "key": "skills",
+          "label": "技能栈匹配",
+          "score": 78,
+          "hits": [
+            "Java",
+            "Spring Boot",
+            "Redis",
+            "Docker",
+            "数据库"
+          ],
+          "missing": [
+            "微服务",
+            "消息队列",
+            "Kubernetes",
+            "CI/CD"
+          ]
+        },
+        {
+          "key": "structure",
+          "label": "结构与排版",
+          "score": 70,
+          "hits": [
+            "模块基本清晰"
+          ],
+          "missing": [
+            "缺乏项目符号",
+            "时间线倒序"
+          ]
+        },
+        {
+          "key": "risks",
+          "label": "风险与亮点",
+          "score": 80,
+          "hits": [
+            "SpringAI 项目是明显亮点",
+            "竞赛表现突出"
+          ],
+          "missing": [
+            "无实习经验风险",
+            "项目时间线说明"
+          ]
+        },
+        {
+          "key": "roleFit",
+          "label": "目标岗位匹配",
+          "score": 65,
+          "hits": [
+            "后端基础技术栈匹配"
+          ],
+          "missing": [
+            "微服务与云原生技术"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "key": "basic",
+          "title": "基础信息完整性",
+          "score": 75,
+          "riskLevel": "medium",
+          "findings": [
+            "已包含姓名、电话、邮箱、教育背景等必要信息，但缺少 GitHub、个人技术博客或项目演示链接，无法直观展示代码能力。",
+            "求职意向未明确表达，简历中无目标岗位描述，仅在自我评价中出现“希望在实习中学习”，面试官无法快速判断匹配度。"
+          ],
+          "actions": [
+            "[object Object]",
+            "[object Object]"
+          ]
+        },
+        {
+          "key": "experience",
+          "title": "工作/实习经历评估",
+          "score": 30,
+          "riskLevel": "high",
+          "findings": [
+            "简历完全缺失工作或实习经历模块，对于 Backend Engineer 岗位，实习经验是重要加分项。",
+            "竞赛与实践项目虽然能体现能力，但无法替代职场经验，面试官可能质疑团队协作、业务交付和工程化规范的了解程度。"
+          ],
+          "actions": [
+            "[object Object]",
+            "[object Object]"
+          ]
+        },
+        {
+          "key": "projects",
+          "title": "项目经历深度评估",
+          "score": 85,
+          "riskLevel": "low",
+          "findings": [
+            "SpringAI 智能面试平台项目描述详细，包含了技术栈、架构（Redis Stream 异步消费、分布式限流）、性能优化数据（延迟 50ms，响应从 15s 优化到 200ms），非常符合后端工程师的评估标准。",
+            "挂号系统和小程序项目描述过于简单，缺乏技术挑战、设计思路和量化指标，难以体现你的技术深度。"
+          ],
+          "actions": [
+            "[object Object]",
+            "[object Object]"
+          ]
+        },
+        {
+          "key": "skills",
+          "title": "技能栈匹配评估",
+          "score": 78,
+          "riskLevel": "medium",
+          "findings": [
+            "已命中 Backend Engineer 常见技能：Java、Spring Boot、Redis、Docker、PostgreSQL/MySQL，表明基本栈符合要求。",
+            "技能列表缺少分类和熟练度标识，且未突出分布式、高并发等关键词，不利于 ATS 系统检索。"
+          ],
+          "actions": [
+            "[object Object]",
+            "[object Object]"
+          ]
+        },
+        {
+          "key": "structure",
+          "title": "整体结构与排版优化",
+          "score": 70,
+          "riskLevel": "medium",
+          "findings": [
+            "简历内容按模块列出，但缺少项目符号和加粗关键词，视觉扫描效率低；时间线未统一倒序排列。",
+            "部分描述为长句段落，不符合招聘官快速抓取关键点的习惯，建议每句用项目符号独立成行。"
+          ],
+          "actions": [
+            "[object Object]",
+            "[object Object]"
+          ]
+        },
+        {
+          "key": "risks",
+          "title": "风险提示与亮点挖掘",
+          "score": 80,
+          "riskLevel": "medium",
+          "findings": [
+            "亮点：SpringAI 项目展示了分布式架构理解、性能优化能力，且有量化结果支撑，可重点包装为简历核心叙事。",
+            "风险：作为一名大二学生，整体经验偏少；Mathorcup 竞赛与 SpringAI 项目时间重叠（2026.04-2026.05），面试可能被问及如何平衡，需提前准备解释。"
+          ],
+          "actions": [
+            "[object Object]",
+            "[object Object]"
+          ]
+        },
+        {
+          "key": "roleFit",
+          "title": "目标岗位匹配度",
+          "score": 65,
+          "riskLevel": "medium",
+          "findings": [
+            "目标岗位 Backend Engineer 要求熟练使用某门后端语言（Java 满足）、数据库和缓存（满足）、API 开发（满足）、容器化（满足），基础匹配度较高。",
+            "缺失微服务实战经验、Kubernetes 编排、CI/CD 流程、系统设计能力，这些是多数公司中级工程师或实习生的加分项。"
+          ],
+          "actions": [
+            "[object Object]",
+            "[object Object]"
+          ]
+        }
+      ],
+      "roleFit": {
+        "key": "roleFit",
+        "title": "目标岗位匹配度",
+        "score": 65,
+        "riskLevel": "high",
+        "findings": [
+          "目标岗位：Backend Engineer。",
+          "已覆盖：api、sql、redis、docker、java、spring。"
+        ],
+        "actions": [
+          "优先补齐岗位证据：database、cache、message、queue、microservice。",
+          "将最匹配岗位的经历提前，并在每条中加入结果指标。"
+        ],
+        "matched": [
+          "Java",
+          "Spring Boot",
+          "Redis",
+          "Docker",
+          "PostgreSQL",
+          "MySQL",
+          "REST API"
+        ],
+        "missing": [
+          "Microservice",
+          "Kubernetes",
+          "Message Queue (Kafka/RabbitMQ)",
+          "CI/CD",
+          "System Design"
+        ],
+        "advice": [
+          "在简历和面试中突出 SpringAI 项目的分布式设计、异步消费和性能优化，弥补微服务经验的不足",
+          "自学并展示一个 Spring Cloud 或 Kafka 的 Demo，或参加开源项目来充实相关技能"
+        ]
+      },
+      "riskFlags": [
+        "大二在读，无实习经历",
+        "求职意向未明确",
+        "项目时间线可能存在重叠，需说明"
+      ],
+      "highlightedAdvice": [
+        "将 SpringAI 项目作为核心亮点，使用 STAR 法则补充挑战、行动和结果，强化分布式架构和高并发优化描述",
+        "在简历顶部添加明确的求职意向，如“后端开发实习生（Java）”，并附上 GitHub 或个人作品集链接"
+      ],
+      "learningPlan": [
+        {
+          "day": 1,
+          "focus": "微服务概念与 Spring Cloud 入门",
+          "action": "学习 Spring Cloud 核心组件：Eureka/Nacos 注册中心、OpenFeign 远程调用，动手将挂号系统拆分为两个微服务。"
+        },
+        {
+          "day": 2,
+          "focus": "消息队列实战",
+          "action": "安装 RabbitMQ 或 Kafka，实现一个订单异步处理的 Demo，理解削峰填谷和最终一致性。"
+        }
+      ],
+      "reportMarkdown": "## 刘小瑜简历评估报告：目标后端工程师（2026 暑期实习方向）\n\n### 一、整体评估\n总分：72/100，岗位匹配度：65/100。  \n**优势**：技术兴趣浓厚，项目有深度（尤其是 SpringAI 智能面试平台），具备扎实的 Java 后端基础，多个竞赛担任编程负责人体现动手与协作能力。  \n**待提升**：缺少正式实习经历，微服务和云原生技术栈薄弱，简历细节需进一步专业化。\n\n---\n\n### 二、模块详细分析\n\n#### 1. 基础信息完整性（75 分/中等风险）\n- **已具备**：姓名、电话、邮箱、教育背景。\n- **缺失**：GitHub/作品集链接、明确求职意向。\n- **建议**：\n  - 在联系方式下方添加 GitHub 和在线作品集（如个人技术博客）链接。\n  - 在姓名下方显眼位置写出“求职意向：后端开发实习生（Java）”。\n\n#### 2. 工作/实习经历（30 分/高风险）\n- 完全没有实习经历，这是主要短板。\n- **建议**：\n  - 若无实习，将竞赛和项目包装成 Project Experience，使用强动词描述角色和量化成果。\n  - 考虑参与开源贡献或短期远程实习（如远程实习平台）填补空白。\n\n#### 3. 项目经历深度（85 分/低风险）\n- 亮点：SpringAI 项目有架构设计、性能优化和量化数据，是强有力信号。\n- 不足：挂号系统和小程序描述简单。\n- **建议**：\n  - 为挂号系统补充 Redis 缓存、幂等性设计等细节，并加入 QPS 等数据。\n  - 为小程序项目增加后端描述（如 API 设计、WebSocket 优化）。\n\n#### 4. 技能栈匹配（78 分/中等风险）\n- 匹配关键词：Java、Spring Boot、Redis、Docker、数据库。\n- 缺失关键词：微服务、Kubernetes、消息队列（专业 MQ）、CI/CD。\n- **建议**：\n  - 技能分门别类并标注熟练度。\n  - 在项目中强化分布式、消息队列用词（如“Redis Stream 轻量级消息队列”）。\n  - 补充正在扩展的技能列表，表明学习方向。\n\n#### 5. 结构与排版（70 分/中等风险）\n- 模块基本清晰，但缺乏项目符号和关键词加粗，时间线未统一倒序。\n- **建议**：\n  - 采用标准倒叙时间轴模板，每个项目用 bullet point 呈现。\n  - 每条 bullet point 只描述一个动作+一个结果，动词开头，数字量化。\n\n#### 6. 风险与亮点（80 分/中等风险）\n- 亮点：SpringAI 平台可作为全简历核心叙事，竞赛表现突出。\n- 风险：大二学生经验有限，部分时间线重叠（2026.04-2026.05）。\n- **建议**：\n  - 准备 2 分钟 STAR 故事讲述 SpringAI 项目。\n  - 针对时间重叠准备合理解释，展示多任务管理能力。\n\n#### 7. 目标岗位匹配度（65 分/中等风险）\n- 基础后端能力已满足，但缺乏企业级平台经验。\n- **建议**：\n  - 立即动手将挂号系统微服务化（Spring Cloud）并总结成项目经历。\n  - 学习 Kubernetes 基本操作或获取 CKAD 认证，增加 cloud native 标签。\n\n---\n\n### 三、2 日速成学习计划\n- **Day 1**：Spring Cloud 微服务基础（Nacos + OpenFeign），将挂号系统拆成两个服务。\n- **Day 2**：消息队列实战（RabbitMQ/Kafka），完成订单异步处理 Demo。\n\n### 四、亮点话术\n> “在大二期间，我独立发起并开发了一个智能面试平台，面对初始版本 15 秒的高延迟，我通过引入 Redis Stream 异步架构和分布式限流，将接口响应压缩到 200 毫秒，支撑 500 并发。这段经历让我深刻理解了高可用系统设计。”\n\n---\n\n> 建议继续扩充技术项目，并在大三初争取一份与后端相关的实习。",
+      "id": "resume_mraq0h0t_4e10f664",
+      "contentHash": "8a680cb6ec40a3b2febf189d8e3a59daa06d104fdcce9b8e27c2e559254bec57",
+      "inputMode": "file",
+      "languageMode": "auto",
+      "aiWarning": null,
+      "createdAt": "2026-07-07T14:04:47.021Z"
+    },
+    {
+      "name": "AI连通测试候选人",
+      "targetRole": "Backend Engineer",
+      "targetRoleKey": "backend",
+      "language": "zh",
+      "engine": "ai:专家:deepseek-v4-pro",
+      "source": {
+        "type": "paste",
+        "name": "粘贴文本"
+      },
+      "contentPreview": "邮箱：test@example.com。电话：13800000000。目标岗位：后端工程师。个人简介：三年后端开发经验，熟悉 Java、Spring Boot、MySQL、Redis、Docker 和 API 设计。工作经历：负责订单系统接口重构，将核心查询响应时间从 900ms 降低到 260ms，设计缓存降级策略并补充监控告警。项目经历：主导会员积分服务拆分，完成数据库表设计、接口契约、灰度发布和压测，支撑日均 30 万次请求。技能：Java、Spring、MySQL、Redis、消息队列、Docker、Linux。",
+      "contentLength": 263,
+      "overallScore": 72,
+      "roleScore": 45,
+      "completenessScore": 80,
+      "signalScore": 90,
+      "extractedSkills": [
+        "Java",
+        "Spring",
+        "MySQL",
+        "Redis",
+        "消息队列",
+        "Docker",
+        "Linux",
+        "API设计"
+      ],
+      "matchedKeywords": [
+        "api",
+        "sql",
+        "redis",
+        "docker",
+        "java",
+        "spring"
+      ],
+      "missingKeywords": [
+        "database",
+        "cache",
+        "message",
+        "queue",
+        "microservice",
+        "security",
+        "observability",
+        "kubernetes",
+        "node"
+      ],
+      "strengths": [
+        "有明确的性能优化量化结果（900ms -> 260ms），结果导向强",
+        "主导项目从设计到压测全流程，展现独立负责能力",
+        "技能栈与目标岗位高度相关"
+      ],
+      "gaps": [
+        "技能列表过于笼统，缺少具体技术名称（如 RabbitMQ、Kafka）",
+        "项目描述未体现业务价值和技术选型理由",
+        "缺少微服务、云原生等现代后端技能关键词"
+      ],
+      "warnings": [
+        "补充 GitHub、作品集或可验证项目链接，提升可信度。",
+        "按“背景-难点-方案-结果”重排项目段落，增强逻辑层级。",
+        "补充项目服务对象和业务指标，说明技术选择带来的实际收益。",
+        "补充与目标岗位相关的能力证据：database、cache、message、queue。",
+        "把长段落拆成 1-2 行项目符号，每条只表达一个结果。",
+        "控制在 1-2 页，优先保留目标岗位相关信息。",
+        "优先补齐岗位证据：database、cache、message、queue、microservice。",
+        "将最匹配岗位的经历提前，并在每条中加入结果指标。"
+      ],
+      "evidence": [
+        {
+          "term": "api",
+          "snippet": "000。目标岗位：后端工程师。个人简介：三年后端开发经验，熟悉 Java、Spring Boot、MySQL、Redis、Docker 和 API 设计。工作经历：负责订单系统接口重构，将核心查询响应时间从 900ms 降低到 260ms，设计缓存降级策略并补充监控告警。项目经历：主导"
+        },
+        {
+          "term": "sql",
+          "snippet": "ple.com。电话：13800000000。目标岗位：后端工程师。个人简介：三年后端开发经验，熟悉 Java、Spring Boot、MySQL、Redis、Docker 和 API 设计。工作经历：负责订单系统接口重构，将核心查询响应时间从 900ms 降低到 260ms，设计缓存"
+        },
+        {
+          "term": "redis",
+          "snippet": "com。电话：13800000000。目标岗位：后端工程师。个人简介：三年后端开发经验，熟悉 Java、Spring Boot、MySQL、Redis、Docker 和 API 设计。工作经历：负责订单系统接口重构，将核心查询响应时间从 900ms 降低到 260ms，设计缓存降级策略并补"
+        },
+        {
+          "term": "docker",
+          "snippet": "：13800000000。目标岗位：后端工程师。个人简介：三年后端开发经验，熟悉 Java、Spring Boot、MySQL、Redis、Docker 和 API 设计。工作经历：负责订单系统接口重构，将核心查询响应时间从 900ms 降低到 260ms，设计缓存降级策略并补充监控告警。项"
+        },
+        {
+          "term": "java",
+          "snippet": "邮箱：test@example.com。电话：13800000000。目标岗位：后端工程师。个人简介：三年后端开发经验，熟悉 Java、Spring Boot、MySQL、Redis、Docker 和 API 设计。工作经历：负责订单系统接口重构，将核心查询响应时间从 90"
+        },
+        {
+          "term": "spring",
+          "snippet": "邮箱：test@example.com。电话：13800000000。目标岗位：后端工程师。个人简介：三年后端开发经验，熟悉 Java、Spring Boot、MySQL、Redis、Docker 和 API 设计。工作经历：负责订单系统接口重构，将核心查询响应时间从 900ms 降低到"
+        }
+      ],
+      "radar": [
+        {
+          "key": "basic",
+          "label": "基础信息",
+          "score": 80,
+          "hits": [
+            "联系方式",
+            "目标岗位"
+          ],
+          "missing": [
+            "姓名",
+            "技术链接"
+          ]
+        },
+        {
+          "key": "experience",
+          "label": "工作经历",
+          "score": 90,
+          "hits": [
+            "量化结果",
+            "主动动词"
+          ],
+          "missing": [
+            "背景信息",
+            "团队规模"
+          ]
+        },
+        {
+          "key": "projects",
+          "label": "项目经历",
+          "score": 70,
+          "hits": [
+            "业务指标",
+            "全流程"
+          ],
+          "missing": [
+            "技术选型理由",
+            "更多量化"
+          ]
+        },
+        {
+          "key": "skills",
+          "label": "技能匹配",
+          "score": 75,
+          "hits": [
+            "Java",
+            "Spring",
+            "Redis",
+            "Docker"
+          ],
+          "missing": [
+            "具体MQ",
+            "K8s",
+            "安全"
+          ]
+        },
+        {
+          "key": "structure",
+          "label": "结构与排版",
+          "score": 40,
+          "hits": [
+            "模块分明"
+          ],
+          "missing": [
+            "项目符号",
+            "简洁描述"
+          ]
+        },
+        {
+          "key": "risks",
+          "label": "风险与亮点",
+          "score": 100,
+          "hits": [
+            "无硬伤",
+            "亮点明确"
+          ],
+          "missing": []
+        },
+        {
+          "key": "roleFit",
+          "label": "岗位匹配",
+          "score": 45,
+          "hits": [
+            "API",
+            "SQL",
+            "Redis"
+          ],
+          "missing": [
+            "微服务",
+            "K8s"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "key": "basic",
+          "title": "基础信息完整性",
+          "score": 80,
+          "riskLevel": "low",
+          "findings": [
+            "已识别邮箱联系方式。",
+            "已识别电话联系方式。",
+            "求职意向或目标岗位有体现。"
+          ],
+          "actions": [
+            "补充完整的姓名，使简历正式化。",
+            "补充 GitHub、技术博客或个人网站链接，增加可验证性。"
+          ]
+        },
+        {
+          "key": "experience",
+          "title": "工作/实习经历评估",
+          "score": 90,
+          "riskLevel": "low",
+          "findings": [
+            "经历模块存在，有明确的量化成果。",
+            "动作用语‘负责’、‘设计’、‘补充’表明主动性和技术深度。",
+            "性能优化数据具体可信。"
+          ],
+          "actions": [
+            "用STAR法则丰富场景，例如：‘支持日均10万订单的订单系统，通过分析慢SQL并引入二级缓存，重构核心查询接口，RT从900ms降至260ms，同时设计缓存降级策略避免缓存失效引发雪崩，故障恢复时间减少70%。’",
+            "补充团队协作信息，比如与几人团队配合，是否跨部门沟通。"
+          ]
+        },
+        {
+          "key": "projects",
+          "title": "项目经历深度评估",
+          "score": 70,
+          "riskLevel": "medium",
+          "findings": [
+            "项目经历已呈现，包含业务量级（日均30万请求）。",
+            "技术实现覆盖设计、灰度、压测全流程。",
+            "缺少技术选型理由和业务结果的具体数字。"
+          ],
+          "actions": [
+            "说明为何选择服务拆分，例如：‘为提升系统可扩展性和故障隔离，将会员积分模块拆分为独立微服务，使用 Spring Cloud + RabbitMQ 实现异步通信，数据库独立为 MySQL 实例，通过数据迁移和灰度发布平稳上线，支撑日均30万请求，系统可用性从99.9%提升至99.99%。’",
+            "补充从设计到上线的耗时、团队人数、压测结果（如TPS、错误率），以及是否降低了成本或提升了效率。"
+          ]
+        },
+        {
+          "key": "skills",
+          "title": "技能栈匹配评估",
+          "score": 75,
+          "riskLevel": "medium",
+          "findings": [
+            "识别到8项技能：Java、Spring、MySQL、Redis、消息队列、Docker、Linux、API设计。",
+            "命中目标岗位关键词：api、sql、redis、docker、java、spring。",
+            "技能表述较概括，缺少具体框架和工具名称。"
+          ],
+          "actions": [
+            "细化技能分类：编程语言（Java）、框架（Spring Boot/Spring Cloud）、数据库（MySQL）、缓存（Redis）、消息队列（RabbitMQ/Kafka）、容器化（Docker）、操作系统（Linux）、API设计（RESTful/gRPC）。",
+            "补充与目标岗位强相关的能力关键词：database（写清楚数据库技能）、cache（标注Redis缓存）、message queue（指定技术）、microservice（微服务经验）等。"
+          ]
+        },
+        {
+          "key": "structure",
+          "title": "整体结构与排版优化",
+          "score": 40,
+          "riskLevel": "high",
+          "findings": [
+            "篇幅较短，仅列出要点而未展开。",
+            "采用段落式叙述，缺少项目符号，扫描效率偏低。",
+            "有基本模块标题，但缺乏清晰的层级。"
+          ],
+          "actions": [
+            "改用项目符号（bullet points），每条1-2行，突出关键成果。",
+            "增加‘专业技能’栏，并按类别分点列出，如：‘后端开发：Java, Spring Boot, RESTful API设计’、‘数据存储：MySQL, Redis, RabbitMQ’等。",
+            "将工作经历和项目经历严格分开，用‘工作经历’和‘项目经历’小标题。"
+          ]
+        },
+        {
+          "key": "risks",
+          "title": "风险提示与亮点挖掘",
+          "score": 100,
+          "riskLevel": "low",
+          "findings": [
+            "未发现明显硬伤，如长时间空白、频繁跳槽等。",
+            "可强化亮点2个：性能优化结果、主导服务拆分。"
+          ],
+          "actions": []
+        },
+        {
+          "key": "roleFit",
+          "title": "目标岗位匹配度",
+          "score": 45,
+          "riskLevel": "high",
+          "findings": [
+            "目标岗位：Backend Engineer。",
+            "已覆盖：api、sql、redis、docker、java、spring。",
+            "缺失：database、cache、message、queue、microservice等关键技术关键词。"
+          ],
+          "actions": [
+            "优先补齐岗位证据：database、cache、message、queue、microservice，在简历中显式出现。",
+            "将最匹配岗位的经历（订单重构、积分服务拆分）提前，并在每条中加入 STARR 模型描述。"
+          ]
+        }
+      ],
+      "roleFit": {
+        "key": "roleFit",
+        "title": "目标岗位匹配度",
+        "score": 45,
+        "riskLevel": "high",
+        "findings": [
+          "目标岗位：Backend Engineer。",
+          "已覆盖：api、sql、redis、docker、java、spring。"
+        ],
+        "actions": [
+          "优先补齐岗位证据：database、cache、message、queue、microservice。",
+          "将最匹配岗位的经历提前，并在每条中加入结果指标。"
+        ],
+        "matched": [
+          "api",
+          "sql",
+          "redis",
+          "docker",
+          "java",
+          "spring"
+        ],
+        "missing": [
+          "database",
+          "cache",
+          "message",
+          "queue",
+          "microservice",
+          "security",
+          "observability",
+          "kubernetes",
+          "node"
+        ],
+        "advice": [
+          "在技能中明确写出具体数据库名（如 MySQL 数据库），使用关键词 database",
+          "将‘消息队列’改写为具体技术（如 RabbitMQ 消息队列）以命中 message、queue",
+          "在项目经历中加入 microservice 相关术语，如‘微服务拆分’",
+          "学习并添加安全、可观察性、Kubernetes 等高级技能"
+        ]
+      },
+      "riskFlags": [],
+      "highlightedAdvice": [
+        "面试时重点准备‘订单系统接口重构’的完整故事：背景、难点、方案、结果、反思",
+        "强化会员积分服务拆分的业务影响，补充业务指标如错误率、开发效率等"
+      ],
+      "learningPlan": [
+        {
+          "day": 1,
+          "focus": "微服务与分布式",
+          "action": "学习 Spring Cloud 核心组件，理解服务发现、配置中心、负载均衡，并将积分项目描述改写为微服务风格。"
+        },
+        {
+          "day": 2,
+          "focus": "消息队列深入",
+          "action": "选择一个消息队列如 RabbitMQ，实践消息可靠性、顺序性，并修改简历为‘RabbitMQ 消息队列’。"
+        },
+        {
+          "day": 3,
+          "focus": "数据库优化",
+          "action": "重点学习 MySQL 索引、慢查询优化、主从复制，并在简历中体现‘数据库设计与优化’能力。"
+        },
+        {
+          "day": 4,
+          "focus": "容器编排",
+          "action": "动手部署 Kubernetes 集群，了解 Pod、Service、Deployment，并在技能中添加 K8s。"
+        },
+        {
+          "day": 5,
+          "focus": "可观察性",
+          "action": "学习 Prometheus + Grafana 监控体系，为订单系统补充监控细节，如 metrics 采集和告警规则。"
+        },
+        {
+          "day": 6,
+          "focus": "安全基础",
+          "action": "了解 OWASP Top 10，学习 API 鉴权（JWT、OAuth2），在 API 设计中加入安全考虑。"
+        },
+        {
+          "day": 7,
+          "focus": "简历重塑与模拟",
+          "action": "重写简历，应用所有建议，并准备模拟面试，用 STARR 讲故事。"
+        }
+      ],
+      "reportMarkdown": "# AI连通测试候选人 - 简历分析报告\n\n---\n## 综合评分\n- **整体评分**: 72/100\n- **角色匹配度**: 45/100\n- **基础完整性**: 80/100\n- **信号强度**: 90/100\n\n---\n## 优势\n1. 量化结果明显：订单系统查询响应时间从900ms降至260ms，性能优化有具体数字。\n2. 独立主导项目：会员积分服务拆分全流程管理，展现了架构能力和执行力。\n3. 技能栈扎实：Java、Spring、MySQL、Redis、Docker 等后端核心技术均有体现。\n\n---\n## 缺失与风险\n1. **技能描述笼统**：使用“消息队列”而非具体技术名称，无法直接命中ATS关键词。\n2. **缺少现代后端技能**：微服务、容器编排（K8s）、安全、可观察性等未提及。\n3. **经历描述缺乏STAR元素**：缺少背景、团队规模、技术选型原因等上下文。\n\n---\n## 各模块诊断\n### 1. 基础信息完整性 (80分，低风险)\n- ✅ 已包含邮箱、电话、目标岗位。\n- ❌ 缺少真实姓名、GitHub或技术博客链接。\n- ✏️ 建议：补充姓名和可验证的作品链接。\n\n### 2. 工作/实习经历评估 (90分，低风险)\n- ✅ 有明确的性能优化数据和主动行为。\n- ❌ 缺少业务场景和团队背景。\n- ✏️ 建议：用STAR法则重写，例如：“为支撑公司日均10万订单的核心系统，独立负责订单查询接口重构，通过引入Redis二级缓存和布隆过滤器，将平均RT从900ms降至260ms，同时设计缓存降级策略保障高可用，并建立Prometheus监控告警，故障发现时间缩短80%。”\n\n### 3. 项目经历深度评估 (70分，中风险)\n- ✅ 有日均30万请求的量级和全流程描述。\n- ❌ 未说明技术选型理由，业务结果不够（只说了支撑请求，未提可用性或成本变化）。\n- ✏️ 建议：“主导会员积分模块微服务拆分，解决单体耦合导致的扩展性瓶颈。选用Spring Cloud Alibaba + Nacos + RocketMQ，独立设计数据库分库方案，通过灰度发布平滑迁移，上线后系统可用性从99.9%提升至99.99%，日均处理30万请求，错误率低于0.01%。”\n\n### 4. 技能栈匹配评估 (75分，中风险)\n- ✅ 命中Java、Spring、Redis等核心后端关键词。\n- ❌ 未使用“database”、“cache”、“message queue”等ATS高频词。\n- ✏️ 建议：技能栏改为：\n  - 后端：Java, Spring Boot, Spring Cloud, RESTful API\n  - 数据库：MySQL, Redis, MyBatis\n  - 消息中间件：RabbitMQ / RocketMQ\n  - 运维：Docker, Linux, Jenkin\n  - 其他：微服务架构, 缓存设计, 系统监控\n\n### 5. 整体结构与排版优化 (40分，高风险)\n- ❌ 段落式长文本，不利于HR快速扫描。\n- ❌ 缺少项目符号和清晰分类。\n- ✏️ 建议：采用如下模板：\n  - **专业技能**（分类点列）\n  - **工作经历**\n    - 公司名 | 职位 | 时间\n    - 用·起头的Bullet Points\n  - **项目经历**\n    - 项目名 | 角色 | 时间\n    - 用·起头的Bullet Points\n\n### 6. 风险提示与亮点挖掘 (100分，低风险)\n- ✅ 无重大硬伤，有可深挖的亮点。\n- ✨ 面试准备重点：\n  - 故事1：订单接口重构 — 问题发现、技术选型、性能对比、稳定性提升。\n  - 故事2：积分服务拆分 — 架构设计、数据迁移、灰度策略、压测结果。\n\n### 7. 目标岗位匹配度 (45分，高风险)\n- 已覆盖关键词：api, sql, redis, docker, java, spring\n- 缺失关键词：database, cache, message, queue, microservice, security, observability, kubernetes\n- ✏️ 调整策略：\n  - 在技能和经历中显式加入“database（数据库）”、“cache（缓存）”、“消息队列（RabbitMQ）”、“微服务”等字眼；\n  - 学习K8s、安全等并在简历中体现，至少作为了解项列出；\n  - 将最匹配的经历放在最前面，每个经历都量化结果并突出后端能力。\n\n---\n## 七日学习与改进计划\n| Day | 聚焦点 | 具体行动 |\n|-----|--------|----------|\n| 1 | 微服务与分布式 | 学习 Spring Cloud 核心组件，重构积分项目描述 |\n| 2 | 消息队列深入 | 实践 RabbitMQ，简历中明确“RabbitMQ” |\n| 3 | 数据库优化 | 深入学习 MySQL 索引优化，体现database能力 |\n| 4 | 容器编排 | 搭建 K8s 集群，技能栏增加 K8s |\n| 5 | 可观察性 | 学习 Prometheus+Grafana，优化监控描述 |\n| 6 | 安全基础 | 掌握 API 鉴权，添加安全关键词 |\n| 7 | 简历重塑与模拟 | 重写简历，准备面试话术 |\n\n---\n**总体建议**：当前简历有扎实的实战基础，但表述需更贴合ATS和现代后端JD。通过精准关键词注入、STAR化改写和结构化排版，可在短时间内将匹配度提升至70%以上。",
+      "id": "resume_mrapwvzk_8627db55",
+      "contentHash": "13244d4e28d80c74632d2ca3960ec1f38828abd724120d8f48e33ac91a8a1c81",
+      "inputMode": "paste",
+      "languageMode": "zh",
+      "aiWarning": null,
+      "createdAt": "2026-07-07T14:01:59.792Z"
+    },
     {
       "name": "演示候选人",
       "targetRole": "Full-stack Engineer",
@@ -357,359 +1833,6 @@
       "languageMode": "auto",
       "aiWarning": null,
       "createdAt": "2026-07-06T22:06:24.015Z"
-    },
-    {
-      "name": "演示候选人 - 刘小瑜简历(3).pdf",
-      "targetRole": "Full-stack Engineer",
-      "targetRoleKey": "fullstack",
-      "language": "zh",
-      "engine": "local-deep-rules",
-      "source": {
-        "type": "file",
-        "name": "刘小瑜简历(3).pdf",
-        "sourceName": "刘小瑜简历(3).pdf",
-        "path": "刘小瑜简历(3).pdf",
-        "extension": ".pdf",
-        "preview": "姓名：刘小瑜\n出生：2006.11\n籍贯：河南\n专业：信息管理与信息系统\n性别：女\n民族：汉族\n政治面貌：团员\n手机：19561915871\n邮箱：\n19561915871@163.com\n2024.09-2028.06就读院校：中南财经政法大学\n主修课程：程序设计，数据结构，算法分析与设计，操作系统，数据库，Java，\n计算机网络，Python数据分析，web前端开发，网络工程技术与应用等\nMathorcup\n高校数学建模挑战赛区域二\n|\n编程负责人\n|2026.04-2..."
-      },
-      "contentPreview": "姓名：刘小瑜\n出生：2006.11\n籍贯：河南\n专业：信息管理与信息系统\n性别：女\n民族：汉族\n政治面貌：团员\n手机：19561915871\n邮箱：\n19561915871@163.com\n2024.09-2028.06就读院校：中南财经政法大学\n主修课程：程序设计，数据结构，算法分析与设计，操作系统，数据库，Java，\n计算机网络，Python数据分析，web前端开发，网络工程技术与应用等\nMathorcup\n高校数学建模挑战赛区域二\n|\n编程负责人\n|2026.04-2026.05\n华中赛区区域二等奖，负责算法设计、模型实现与数据可视化\n美国大学生数学建模竞赛（\nMCM/ICM\n）\n|\n编程负责人\n|2025.01-2025.02\n使用\nPython\n完成模型计算、数据处理与结果可视化\n大学生创新创业训练计划省银\n|\n核心技术成员\n|2025.09-2025.12\n负责开发、数据处理与接口实现，使用\nJava/Python\n完成核心模块\n1.Java挂号系统开发|2025.11-2025.12\n基于Java技术栈，独完成一个小型挂号系统开发，实现患者挂号，医生排班，\n订单管理等核心功能，用MySQL进行数据存储与管理，...",
-      "contentLength": 1102,
-      "overallScore": 69,
-      "roleScore": 18,
-      "completenessScore": 60,
-      "signalScore": 88,
-      "extractedSkills": [
-        "Java",
-        "Spring",
-        "Python",
-        "SQL",
-        "Redis",
-        "Docker",
-        "MySQL",
-        "PostgreSQL",
-        "API"
-      ],
-      "matchedKeywords": [
-        "api",
-        "docker"
-      ],
-      "missingKeywords": [
-        "react",
-        "node",
-        "database",
-        "typescript",
-        "auth",
-        "testing",
-        "cloud",
-        "system",
-        "product"
-      ],
-      "strengths": [
-        "已有结果导向表达，可继续强化为核心亮点。",
-        "存在协作或主导信号，可强化为影响力故事。",
-        "已识别邮箱联系方式。",
-        "已识别电话联系方式。",
-        "工作或实习经历模块不明显。",
-        "动作用语有一定主动性。",
-        "已出现量化数据。",
-        "项目经历已呈现。"
-      ],
-      "gaps": [
-        "补充 GitHub、作品集或可验证项目链接，提升可信度。",
-        "补充与目标岗位相关的能力证据：react、node、database、typescript。",
-        "把长段落拆成 1-2 行项目符号，每条只表达一个结果。",
-        "时间线可能存在断层，需要补充说明。",
-        "优先补齐岗位证据：react、node、database、typescript、auth。",
-        "将最匹配岗位的经历提前，并在每条中加入结果指标。"
-      ],
-      "warnings": [
-        "补充 GitHub、作品集或可验证项目链接，提升可信度。",
-        "补充与目标岗位相关的能力证据：react、node、database、typescript。",
-        "把长段落拆成 1-2 行项目符号，每条只表达一个结果。",
-        "时间线可能存在断层，需要补充说明。",
-        "优先补齐岗位证据：react、node、database、typescript、auth。",
-        "将最匹配岗位的经历提前，并在每条中加入结果指标。"
-      ],
-      "evidence": [
-        {
-          "term": "api",
-          "snippet": "实现分布式文件容灾与优雅停机。\n3.微信小程序开发|2025.12-2026.02\n主导小程序前后端开发，前端页面设计和逻辑交互，熟悉小程序API调用与性\n能优化，并优化辅助语音识别功能，实现用户登录，信息展示，在线交互等功\n能\n英语四、六级证书\n普通话一乙\n数字经济大赛全国三等奖\n大"
-        },
-        {
-          "term": "docker",
-          "snippet": "AG知识库2026.01-2026.05\n技术栈：Java21、SpringBoot4、SpringAI、PostgreSQL、Redis、Docker\n搭建RAG语义检索系统，接入通义Embedding与pgvector向量索引，文档检\n索延迟控制在50ms内，支持多格式简历解析、智能模拟"
-        }
-      ],
-      "radar": [
-        {
-          "key": "frontend",
-          "label": "前端能力",
-          "score": 0,
-          "hits": [],
-          "missing": [
-            "react",
-            "component",
-            "state",
-            "css",
-            "typescript"
-          ]
-        },
-        {
-          "key": "backend",
-          "label": "后端能力",
-          "score": 20,
-          "hits": [
-            "api"
-          ],
-          "missing": [
-            "node",
-            "database",
-            "auth",
-            "queue"
-          ]
-        },
-        {
-          "key": "product",
-          "label": "产品意识",
-          "score": 0,
-          "hits": [],
-          "missing": [
-            "metric",
-            "user",
-            "experiment",
-            "iteration",
-            "roadmap"
-          ]
-        },
-        {
-          "key": "ops",
-          "label": "运维交付",
-          "score": 20,
-          "hits": [
-            "docker"
-          ],
-          "missing": [
-            "cloud",
-            "monitor",
-            "ci",
-            "deploy"
-          ]
-        }
-      ],
-      "sections": [
-        {
-          "key": "basic",
-          "title": "基础信息完整性",
-          "score": 60,
-          "riskLevel": "medium",
-          "findings": [
-            "已识别邮箱联系方式。",
-            "已识别电话联系方式。",
-            "求职意向不够明确。"
-          ],
-          "actions": [
-            "补充 GitHub、作品集或可验证项目链接，提升可信度。"
-          ]
-        },
-        {
-          "key": "experience",
-          "title": "工作/实习经历评估",
-          "score": 80,
-          "riskLevel": "low",
-          "findings": [
-            "工作或实习经历模块不明显。",
-            "动作用语有一定主动性。",
-            "已出现量化数据。"
-          ],
-          "actions": []
-        },
-        {
-          "key": "projects",
-          "title": "项目经历深度评估",
-          "score": 100,
-          "riskLevel": "low",
-          "findings": [
-            "项目经历已呈现。",
-            "技术实现信息有体现。",
-            "项目与业务价值存在连接。"
-          ],
-          "actions": []
-        },
-        {
-          "key": "skills",
-          "title": "技能栈匹配评估",
-          "score": 63,
-          "riskLevel": "medium",
-          "findings": [
-            "识别到 9 项技能。",
-            "命中目标岗位关键词：api、docker。",
-            "技能熟练度有分层表达。"
-          ],
-          "actions": [
-            "补充与目标岗位相关的能力证据：react、node、database、typescript。"
-          ]
-        },
-        {
-          "key": "structure",
-          "title": "整体结构与排版优化",
-          "score": 60,
-          "riskLevel": "medium",
-          "findings": [
-            "篇幅处于可阅读范围。",
-            "存在基础模块标题。",
-            "缺少项目符号，扫描效率偏低。"
-          ],
-          "actions": [
-            "把长段落拆成 1-2 行项目符号，每条只表达一个结果。"
-          ]
-        },
-        {
-          "key": "risks",
-          "title": "风险提示与亮点挖掘",
-          "score": 84,
-          "riskLevel": "low",
-          "findings": [
-            "发现 1 个潜在风险。",
-            "可强化亮点 2 个。"
-          ],
-          "actions": [
-            "时间线可能存在断层，需要补充说明。"
-          ],
-          "riskFlags": [
-            "时间线可能存在断层，需要补充说明。"
-          ],
-          "highlights": [
-            "已有结果导向表达，可继续强化为核心亮点。",
-            "存在协作或主导信号，可强化为影响力故事。"
-          ]
-        },
-        {
-          "key": "roleFit",
-          "title": "目标岗位匹配度",
-          "score": 18,
-          "riskLevel": "high",
-          "findings": [
-            "目标岗位：Full-stack Engineer。",
-            "已覆盖：api、docker。"
-          ],
-          "actions": [
-            "优先补齐岗位证据：react、node、database、typescript、auth。",
-            "将最匹配岗位的经历提前，并在每条中加入结果指标。"
-          ],
-          "matched": [
-            "api",
-            "docker"
-          ],
-          "missing": [
-            "react",
-            "node",
-            "database",
-            "typescript",
-            "auth",
-            "testing",
-            "cloud",
-            "system",
-            "product"
-          ],
-          "advice": [
-            "react",
-            "node",
-            "database",
-            "typescript",
-            "auth"
-          ]
-        }
-      ],
-      "roleFit": {
-        "key": "roleFit",
-        "title": "目标岗位匹配度",
-        "score": 18,
-        "riskLevel": "high",
-        "findings": [
-          "目标岗位：Full-stack Engineer。",
-          "已覆盖：api、docker。"
-        ],
-        "actions": [
-          "优先补齐岗位证据：react、node、database、typescript、auth。",
-          "将最匹配岗位的经历提前，并在每条中加入结果指标。"
-        ],
-        "matched": [
-          "api",
-          "docker"
-        ],
-        "missing": [
-          "react",
-          "node",
-          "database",
-          "typescript",
-          "auth",
-          "testing",
-          "cloud",
-          "system",
-          "product"
-        ],
-        "advice": [
-          "react",
-          "node",
-          "database",
-          "typescript",
-          "auth"
-        ]
-      },
-      "riskFlags": [
-        "时间线可能存在断层，需要补充说明。"
-      ],
-      "highlightedAdvice": [
-        "基础信息完整性: 补充 GitHub、作品集或可验证项目链接，提升可信度。",
-        "技能栈匹配评估: 补充与目标岗位相关的能力证据：react、node、database、typescript。",
-        "整体结构与排版优化: 把长段落拆成 1-2 行项目符号，每条只表达一个结果。",
-        "目标岗位匹配度: 优先补齐岗位证据：react、node、database、typescript、auth。",
-        "目标岗位匹配度: 将最匹配岗位的经历提前，并在每条中加入结果指标。"
-      ],
-      "learningPlan": [
-        {
-          "day": 1,
-          "focus": "目标岗位匹配度",
-          "action": "优先补齐岗位证据：react、node、database、typescript、auth。"
-        },
-        {
-          "day": 2,
-          "focus": "基础信息完整性",
-          "action": "补充 GitHub、作品集或可验证项目链接，提升可信度。"
-        },
-        {
-          "day": 3,
-          "focus": "整体结构与排版优化",
-          "action": "把长段落拆成 1-2 行项目符号，每条只表达一个结果。"
-        },
-        {
-          "day": 4,
-          "focus": "技能栈匹配评估",
-          "action": "补充与目标岗位相关的能力证据：react、node、database、typescript。"
-        },
-        {
-          "day": 5,
-          "focus": "目标岗位匹配度",
-          "action": "优先补齐岗位证据：react、node、database、typescript、auth。"
-        },
-        {
-          "day": 6,
-          "focus": "基础信息完整性",
-          "action": "补充 GitHub、作品集或可验证项目链接，提升可信度。"
-        },
-        {
-          "day": 7,
-          "focus": "整体结构与排版优化",
-          "action": "把长段落拆成 1-2 行项目符号，每条只表达一个结果。"
-        }
-      ],
-      "reportMarkdown": "# 演示候选人 - 刘小瑜简历(3).pdf - Full-stack Engineer 简历分析报告\n\n综合评分: 69/100\n分析引擎: local-deep-rules\n\n## 重点建议\n- 基础信息完整性: 补充 GitHub、作品集或可验证项目链接，提升可信度。\n- 技能栈匹配评估: 补充与目标岗位相关的能力证据：react、node、database、typescript。\n- 整体结构与排版优化: 把长段落拆成 1-2 行项目符号，每条只表达一个结果。\n- 目标岗位匹配度: 优先补齐岗位证据：react、node、database、typescript、auth。\n- 目标岗位匹配度: 将最匹配岗位的经历提前，并在每条中加入结果指标。\n\n## 模块评估\n\n### 基础信息完整性 - 60/100\n\n发现：\n- 已识别邮箱联系方式。\n- 已识别电话联系方式。\n- 求职意向不够明确。\n\n建议：\n- 补充 GitHub、作品集或可验证项目链接，提升可信度。\n\n### 工作/实习经历评估 - 80/100\n\n发现：\n- 工作或实习经历模块不明显。\n- 动作用语有一定主动性。\n- 已出现量化数据。\n\n建议：\n\n### 项目经历深度评估 - 100/100\n\n发现：\n- 项目经历已呈现。\n- 技术实现信息有体现。\n- 项目与业务价值存在连接。\n\n建议：\n\n### 技能栈匹配评估 - 63/100\n\n发现：\n- 识别到 9 项技能。\n- 命中目标岗位关键词：api、docker。\n- 技能熟练度有分层表达。\n\n建议：\n- 补充与目标岗位相关的能力证据：react、node、database、typescript。\n\n### 整体结构与排版优化 - 60/100\n\n发现：\n- 篇幅处于可阅读范围。\n- 存在基础模块标题。\n- 缺少项目符号，扫描效率偏低。\n\n建议：\n- 把长段落拆成 1-2 行项目符号，每条只表达一个结果。\n\n### 风险提示与亮点挖掘 - 84/100\n\n发现：\n- 发现 1 个潜在风险。\n- 可强化亮点 2 个。\n\n建议：\n- 时间线可能存在断层，需要补充说明。\n\n### 目标岗位匹配度 - 18/100\n\n发现：\n- 目标岗位：Full-stack Engineer。\n- 已覆盖：api、docker。\n\n建议：\n- 优先补齐岗位证据：react、node、database、typescript、auth。\n- 将最匹配岗位的经历提前，并在每条中加入结果指标。\n\n## 7 天优化计划\n- 第1天: 目标岗位匹配度 - 优先补齐岗位证据：react、node、database、typescript、auth。\n- 第2天: 基础信息完整性 - 补充 GitHub、作品集或可验证项目链接，提升可信度。\n- 第3天: 整体结构与排版优化 - 把长段落拆成 1-2 行项目符号，每条只表达一个结果。\n- 第4天: 技能栈匹配评估 - 补充与目标岗位相关的能力证据：react、node、database、typescript。\n- 第5天: 目标岗位匹配度 - 优先补齐岗位证据：react、node、database、typescript、auth。\n- 第6天: 基础信息完整性 - 补充 GitHub、作品集或可验证项目链接，提升可信度。\n- 第7天: 整体结构与排版优化 - 把长段落拆成 1-2 行项目符号，每条只表达一个结果。",
-      "id": "resume_mr9qpm69_87c08fce",
-      "contentHash": "ebc028d71eed6ea32fee3c129a84166160a32f3305f6548e33c2996366d7048e",
-      "inputMode": "file",
-      "languageMode": "auto",
-      "aiWarning": null,
-      "createdAt": "2026-07-06T21:36:33.921Z"
     },
     {
       "name": "演示候选人 - 刘小瑜简历1.pdf",
@@ -5266,6 +6389,968 @@
   ],
   "knowledgeHistory": [
     {
+      "id": "knowledge_answer_mrapmz5r_83a50998",
+      "question": "围绕「自我介绍」为算法工程师生成 3 个面试追问题。",
+      "answer": "来源：公开资料\n\n围绕算法工程师的自我介绍，面试官通常会就其中提到的技术细节、决策逻辑和项目复盘展开深度追问。以下结合知识库中强调的“背景、行动、结果、复盘”四段式结构，以及需要展示特征工程、模型评估、训练数据真实证据的要求，设计三个高价值追问题，并逐一对面试官关注点、追问预案、风险提醒和加分表达进行拆解。\n\n一、追问题：“你提到在特征工程中引入了某类衍生特征，能否具体说明你是如何判断一个衍生特征有效的？如果上线后这个特征的信息量衰减很快，你会怎么回溯和替换？”\n\n面试官关注点：面试官并不满足于候选人对特征工具或方法的罗列，而是想确认候选人是否具备完整的效果评估闭环。他关注你对特征有效性的事前筛选标准、事中监控手段以及事后衰减处理预案，以此判断你是否真正主导过特征生命周期管理，而不仅仅是执行者。\n\n追问预案：回答时不要只讲“看IV值”或“看重要性”，要回到具体项目场景。可先描述离线评估时采用的指标（如信息增益、特征稳定性指标PSI），并说明如何设置阈值。然后展示上线后搭建的监控看板，如何按天或按小时跟踪特征缺失率、分布偏移。针对衰减处理，给出可操作的流程：发现衰减后，首先排查数据源是否故障，其次分析业务场景是否迁移，最后给出快速替换方案，比如用最近7天滚动统计生成同义特征，并触发模型小版本迭代。\n\n风险提醒：最大的风险是使用理论正确但无法落地的术语堆砌，比如只说“用SHAP值分析”，却没有说清SHAP值如何指导你删掉一个特征。另一个常见问题是将离线分析等同于在线保证，忽略了线上特征拼接延迟、数据漂移等工程问题。如果回答停留在学术层面，面试官会立刻认为你缺乏工程落地经验。\n\n加分表达：如果能主动说出一个失败案例会非常加分。例如：“我曾在推荐模型中引入用户过去半小时的点击序列长度特征，离线AUC提升明显，但上线两周后衰减严重，因为该特征受营销活动影响巨大。后来我换成了指数衰减加权的行为序列特征，并加入了活动标识作为交叉特征，才稳定住指标。”这段表达既有结果数据，又有对失败原因的认知深度，完美贴合知识库中“补充失败方案和后续优化”的要求。\n\n二、追问题：“你说模型评估时不仅看AUC，也做了在线A/B实验，请详细说明实验设计中的分层策略和‘辛普森悖论’你们是怎么排除的？如果实验组和对照组在某个核心人群上效果完全相反，你会怎么决策？”\n\n面试官关注点：这里考察的是候选人的实验设计严密性以及对评估数据解读的严谨度。算法工程师很容易陷入“全量指标提升就上线”的粗放判断，而面试官需要通过你的回答确认你是否具备分人群、分场景的深度复盘能力，以及面对数据矛盾时的科学决策逻辑，这直接关联到知识库中“结果有证据”“能否回答追问”的复盘要求。\n\n追问预案：先说明实验分流使用的ID类型，是用户粒度还是请求粒度，如何保证同一用户始终在同一组（如hash分流），以此避免样本污染。接着讲分层：你是按新老用户分层，还是按活跃度分层，或者按业务线分层，以及各层的分流比例是否相同。再解释如何检查辛普森悖论：在不同子人群上分别计算核心指标，观察趋势是否与总体一致。如果出现某重要人群负向但全量正向的情况，应提出上线风险，可与业务方共同评估该人群的商业价值，选择暂缓全量发布，或为该人群训练专属模型。\n\n风险提醒：典型风险是假设实验平台足够完美，忽略了实际操作中的常见问题，比如实验期间有运营活动干扰、用户交叉分享模式造成组间交互等。如果候选人一味强调“指标显著就上线”，会显得思考深度不够。另外，很多人会忽视实验时长是否跨足了足够的业务周期（如周末与工作日），实验结论的有效性会因此受损。\n\n加分表达：可以补充一个团队协作的细节，比如：“当时我们发现在女性用户群体中实验组转化率不升反降，经过与运营团队联合拆解，发现是新模型对女性用户的历史偏好更新不够及时，因为该人群的消费决策周期更长，我们因此调整了样本时间窗，并增加了近期行为序列特征，重新上线后这个问题才解决。”这恰好回应了知识库中“团队协作”和“技术取舍”的追问补充点。\n\n三、追问题：“你在复盘里提到训练数据存在严重长尾分布，采样策略调整后精度提升，但过程中有没有考虑过样本偏差可能引入的‘幸存者偏差’？如果让你重新做一次，在采样和损失函数设计上你会做什么取舍？”\n\n面试官关注点：这是一个高级追问，用来测试候选人是否具备系统性反思能力。面试官想知道你能否跳出当前方案，从更上游的数据生成机制去审视模型问题，而不是简单地调参。你能否意识到采样策略只是缓解症状，而真正需要的是数据采集策略或建模目标的重定义，这决定了你能否成长为高级算法工程师。\n\n追问预案：首先明确叙述训练数据生成过程中的偏差来源，比如推荐场景下训练数据均来自老模型曝光，存在位置偏差和自选择偏差，采样只能平衡正负，却无法纠正未曝光样本的缺失。然后讨论你如何在现有约束下借助Counterfactual评估（如逆倾向加权）来近似全量损失，或者如何通过随机小流量撒点收集探索数据。接着讲损失函数的取舍：可以提及Focal Loss、GHM Loss对难易样本的动态加权，或者通过多任务学习用辅助任务来增强尾部样本的表示学习。最后给出复盘结论：“如果重来，我会优先争取一定比例的随机流量曝光，从源头补充数据，再辅以损失函数调整，而不是单纯依赖采样。”\n\n风险提醒：这里容易踩的坑是仅从技术细节出发，忽略了业务目标对齐。如果为了改善长尾，大幅度牺牲头部样本的体验，导致主流量指标下跌，这在业务上通常是不可接受的。因此必须强调自己如何在离线实验时设定了业务指标下限作为约束，才不会显得方案激进不落地。\n\n加分表达：能够用简明语言讲清楚“幸存者偏差如何影响模型预估无偏性”是强加分点，这表明你不仅会调参，更理解建模背后的统计假设。例如：“我们做的是流失用户预测，如果只用已经注册的用户行为训练，模型就永远看不到那些从注册页就流失的潜在用户特征，因此我推动了把曝光未点击样本也纳入负样本，并且加入设备信息等上下文特征，才让召回率从45%提升到64%。”这段生动证明了知识库强调的“真实证据”和“结果有数据反馈”。",
+      "aiModel": "pro",
+      "aiModelLabel": "专家",
+      "engine": "ai:专家:deepseek-v4-pro",
+      "aiEnabled": true,
+      "confidence": "高",
+      "scope": "all",
+      "category": "all",
+      "categoryLabel": "全部资料",
+      "role": "algorithm",
+      "roleLabel": "算法工程师",
+      "citations": [
+        {
+          "docId": "public_interview_algorithm_1",
+          "title": "算法工程师自我介绍题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "algorithm",
+          "roleLabel": "算法工程师",
+          "sourceType": "public",
+          "tags": [
+            "算法工程师",
+            "自我介绍",
+            "特征工程",
+            "模型评估",
+            "训练数据"
+          ],
+          "chunkId": "public_interview_algorithm_1_chunk_1",
+          "score": 324,
+          "snippet": "自我介绍时，算法工程师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 特征工程、模型评估、训练数据 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        },
+        {
+          "docId": "public_interview_algorithm_4",
+          "title": "算法工程师行为面试题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "algorithm",
+          "roleLabel": "算法工程师",
+          "sourceType": "public",
+          "tags": [
+            "算法工程师",
+            "行为面试",
+            "特征工程",
+            "模型评估",
+            "训练数据"
+          ],
+          "chunkId": "public_interview_algorithm_4_chunk_1",
+          "score": 267,
+          "snippet": "行为面试时，算法工程师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 特征工程、模型评估、训练数据 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        },
+        {
+          "docId": "public_note_algorithm_1",
+          "title": "算法工程师复习计划通用笔记",
+          "category": "note",
+          "categoryLabel": "通用笔记",
+          "roleKey": "algorithm",
+          "roleLabel": "算法工程师",
+          "sourceType": "public",
+          "tags": [
+            "算法工程师",
+            "复习计划",
+            "特征工程",
+            "模型评估",
+            "训练数据"
+          ],
+          "chunkId": "public_note_algorithm_1_chunk_1",
+          "score": 267,
+          "snippet": "复习计划适合做成可复用清单。\n算法工程师准备时可以把知识点、项目案例、简历证据和面试题放到同一个资料库中。\n每天复盘一个问题：我说清楚背景了吗，我的动作够具体吗，结果有证据吗，能否回答追问。\n最终目标不是背答案，而是让资料库帮助你快速找到证据、组织表达、发现短板。"
+        },
+        {
+          "docId": "public_note_algorithm_2",
+          "title": "算法工程师面试节奏通用笔记",
+          "category": "note",
+          "categoryLabel": "通用笔记",
+          "roleKey": "algorithm",
+          "roleLabel": "算法工程师",
+          "sourceType": "public",
+          "tags": [
+            "算法工程师",
+            "面试节奏",
+            "特征工程",
+            "模型评估",
+            "训练数据"
+          ],
+          "chunkId": "public_note_algorithm_2_chunk_1",
+          "score": 267,
+          "snippet": "面试节奏适合做成可复用清单。\n算法工程师准备时可以把知识点、项目案例、简历证据和面试题放到同一个资料库中。\n每天复盘一个问题：我说清楚背景了吗，我的动作够具体吗，结果有证据吗，能否回答追问。\n最终目标不是背答案，而是让资料库帮助你快速找到证据、组织表达、发现短板。"
+        },
+        {
+          "docId": "public_note_algorithm_3",
+          "title": "算法工程师表达结构通用笔记",
+          "category": "note",
+          "categoryLabel": "通用笔记",
+          "roleKey": "algorithm",
+          "roleLabel": "算法工程师",
+          "sourceType": "public",
+          "tags": [
+            "算法工程师",
+            "表达结构",
+            "特征工程",
+            "模型评估",
+            "训练数据"
+          ],
+          "chunkId": "public_note_algorithm_3_chunk_1",
+          "score": 267,
+          "snippet": "表达结构适合做成可复用清单。\n算法工程师准备时可以把知识点、项目案例、简历证据和面试题放到同一个资料库中。\n每天复盘一个问题：我说清楚背景了吗，我的动作够具体吗，结果有证据吗，能否回答追问。\n最终目标不是背答案，而是让资料库帮助你快速找到证据、组织表达、发现短板。"
+        },
+        {
+          "docId": "public_note_algorithm_4",
+          "title": "算法工程师压力面应对通用笔记",
+          "category": "note",
+          "categoryLabel": "通用笔记",
+          "roleKey": "algorithm",
+          "roleLabel": "算法工程师",
+          "sourceType": "public",
+          "tags": [
+            "算法工程师",
+            "压力面应对",
+            "特征工程",
+            "模型评估",
+            "训练数据"
+          ],
+          "chunkId": "public_note_algorithm_4_chunk_1",
+          "score": 267,
+          "snippet": "压力面应对适合做成可复用清单。\n算法工程师准备时可以把知识点、项目案例、简历证据和面试题放到同一个资料库中。\n每天复盘一个问题：我说清楚背景了吗，我的动作够具体吗，结果有证据吗，能否回答追问。\n最终目标不是背答案，而是让资料库帮助你快速找到证据、组织表达、发现短板。"
+        }
+      ],
+      "suggestedFollowUps": [
+        "我应该优先准备哪些算法工程师面试问题？",
+        "请根据资料帮我生成一段算法工程师2 分钟自我介绍。",
+        "这些资料里有哪些适合算法工程师写进简历的亮点？",
+        "帮我整理一份算法工程师今天的面试复习清单。",
+        "把这个问题整理成 2 分钟面试回答。",
+        "基于引用材料生成 5 个追问题。"
+      ],
+      "createdAt": "2026-07-07T13:54:17.344Z"
+    },
+    {
+      "id": "knowledge_answer_mrapioe2_0273f1b8",
+      "question": "请根据资料帮我生成一段 2 分钟自我介绍。",
+      "answer": "来源：公开资料\n\n您好，这是一段按照资深面试教练建议设计的 2 分钟自我介绍草稿。由于没有您的真实经历，草稿中使用了通用项目场景作为骨架，请将其中的“括号内容”替换成您主导的真实案例。整体严格遵循背景、行动、结果、复盘四段结构，并预先埋好面试官可能追问的方向。\n\n（开场第一句）\n面试官你好，我叫（姓名），有（X）年（全栈/数据分析/后端/前端/产品/算法）经验，今天想围绕一个最能代表我个人能力的项目来介绍自己。\n\n（背景段，约 30 秒）\n上一份工作在（某公司/某业务线），当时我们面临（核心业务问题，例如：用户下单但支付成功率连续两个月从 92% 下滑到 87%，客服投诉量翻倍，直接影响月 GMV 约 300 万）。我作为这个需求的（角色，例如：全栈工程师，负责从支付链路排查到最终落地上线），要牵头在 3 周内定位根因并给出解决方案，同时需要协同后端、客户端、产品和数据团队。这个场景非常考验我的全栈视角和接口契约意识——支付链路过长，涉及 5 个微服务，任何一个上游参数的丢失都可能导致失败。\n\n（行动段，约 50 秒）\n我首先梳理了前端、网关、订单、支付、账务的完整时序，画出全链路泳道图，然后向数据团队申请了从客户端打点丢失开始的埋点修复，补齐了关键节点。在技术选型上，我提出在前端支付页增加一次幂等校验，同时在后端订单和支付之间增加一条补偿通道，用 Redis 做幂等键缓存，超时 30 秒自动触发查询。前端方面我封装了一个带重试和状态轮询的支付组件，统一了多端支付逻辑；后端我修改了 2 个核心接口，强制约定回调参数里必须回传业务单号，并且在接口文档上用 OpenAPI 明确了错误码枚举。产品经理担心加补偿通道会让用户感知到延迟，我联合产品做了一次灰度放量，将补偿间隔从 5 秒逐步试到 8 秒，最终在不显著增加客诉的情况下确定了参数。\n\n（结果段，约 25 秒）\n上线并全量两周后，支付成功率回升到 93.5%，相关客诉量下降 76%，当月因为支付成功挽回的 GMV 大约在 180 万左右。更重要的是，这次沉淀下来的支付链路监控面板和故障自动补偿 SOP，被接入部门列为后续所有涉及资金链路需求的标准动作，还收到了后台团队负责人发来的正式感谢邮件。\n\n（复盘段，约 15 秒）\n这段经历让我深刻体会到，全栈工程师的价值不是单纯写前端或后端，而是在接口边界和产品体验之间做好翻译。我当时一个失败的尝试是企图在后端直接用同步重试，结果造成支付接口超时雪崩，灰度阶段差点引发事故，这也让我后来坚定引入异步补偿和严格超时控制。另外，后续我主动推动了跨团队支付规范的技术分享，帮助前后端同学对齐幂等理解。这也是我未来希望在新的岗位上持续复用的能力。\n\n（收尾）\n以上就是我的自我介绍，谢谢。\n\n面试官关注点与追问预案\n这版自我介绍刻意留下几处可追问的钩子：一是提到“同步重试导致雪崩”的失败方案，面试官极可能追问你如何发现雪崩、当时的监控指标是什么、回滚决策过程，你可以顺势展示复盘能力；二是提到“与产品灰度确定补偿间隔”，这要求你展示产品理解力和数据驱动决策，准备 1 到 2 个具体沟通细节；三是 Redis 幂等键的具体实现，可能被问到缓存穿透、过期时间设计，请提前准备技术取舍理由。\n\n如果岗位是数据分析师，请把重点换成：背景是一个业务指标异常，行动是用 SQL 拆解维度并设计 A/B 实验，结果用置信的指标变化说话，复盘讲指标体系如何沉淀。如果是后端工程师，请聚焦 API 设计、数据库事务和缓存策略，把支付补偿改成你主导的接口重构或数据一致性方案。前端工程师则突出组件化设计、状态管理选型和性能优化指标，如首屏加载时间下降多少。产品经理的用户研究、需求优先级和协同策略则要成为骨架。\n\n风险提醒\n不要念概念。每一段必须有具体业务问题和可量化的变化，哪怕只是一个相对数（比如投诉下降 76%）。如果没有做过支付，可以换成任何你主导过的“动到跨角色协作和核心指标”的项目。如果某个数据你暂时回忆不准，宁可说“挽回超百万元级别 GMV”也不要编造精确到个位的假数，面试官会追着数字问公式。\n\n加分表达\n在行动段加入一句“这个方案后来被写进团队技术百科”或“被 3 个后续项目复用”能极大提升可信度。另外，强调“在资源限制下做的取舍”永远比“完美方案”更受资深面试官认可。\n\n请根据您的真实经历填入相应细节，练习时用手机录音，严格控制在 1 分 50 秒至 2 分 10 秒之间。",
+      "aiModel": "pro",
+      "aiModelLabel": "专家",
+      "engine": "ai:专家:deepseek-v4-pro",
+      "aiEnabled": true,
+      "confidence": "高",
+      "scope": "all",
+      "category": "all",
+      "categoryLabel": "全部资料",
+      "role": "all",
+      "roleLabel": "全部岗位",
+      "citations": [
+        {
+          "docId": "public_interview_data_1",
+          "title": "数据分析师自我介绍题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "data",
+          "roleLabel": "数据分析师",
+          "sourceType": "public",
+          "tags": [
+            "数据分析师",
+            "自我介绍",
+            "SQL",
+            "指标体系",
+            "实验分析"
+          ],
+          "chunkId": "public_interview_data_1_chunk_1",
+          "score": 146,
+          "snippet": "自我介绍时，数据分析师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 SQL、指标体系、实验分析 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        },
+        {
+          "docId": "public_interview_backend_1",
+          "title": "后端工程师自我介绍题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "backend",
+          "roleLabel": "后端工程师",
+          "sourceType": "public",
+          "tags": [
+            "后端工程师",
+            "自我介绍",
+            "API 设计",
+            "数据库",
+            "缓存"
+          ],
+          "chunkId": "public_interview_backend_1_chunk_1",
+          "score": 133,
+          "snippet": "自我介绍时，后端工程师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 API 设计、数据库、缓存 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        },
+        {
+          "docId": "public_interview_frontend_1",
+          "title": "前端工程师自我介绍题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "frontend",
+          "roleLabel": "前端工程师",
+          "sourceType": "public",
+          "tags": [
+            "前端工程师",
+            "自我介绍",
+            "组件化",
+            "状态管理",
+            "性能优化"
+          ],
+          "chunkId": "public_interview_frontend_1_chunk_1",
+          "score": 133,
+          "snippet": "自我介绍时，前端工程师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 组件化、状态管理、性能优化 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        },
+        {
+          "docId": "public_interview_fullstack_1",
+          "title": "全栈工程师自我介绍题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "fullstack",
+          "roleLabel": "全栈工程师",
+          "sourceType": "public",
+          "tags": [
+            "全栈工程师",
+            "自我介绍",
+            "前后端协作",
+            "接口契约",
+            "产品理解"
+          ],
+          "chunkId": "public_interview_fullstack_1_chunk_1",
+          "score": 133,
+          "snippet": "自我介绍时，全栈工程师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 前后端协作、接口契约、产品理解 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        },
+        {
+          "docId": "public_interview_product_1",
+          "title": "产品经理自我介绍题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "product",
+          "roleLabel": "产品经理",
+          "sourceType": "public",
+          "tags": [
+            "产品经理",
+            "自我介绍",
+            "用户研究",
+            "需求拆解",
+            "优先级"
+          ],
+          "chunkId": "public_interview_product_1_chunk_1",
+          "score": 133,
+          "snippet": "自我介绍时，产品经理需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 用户研究、需求拆解、优先级 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        },
+        {
+          "docId": "public_interview_algorithm_1",
+          "title": "算法工程师自我介绍题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "algorithm",
+          "roleLabel": "算法工程师",
+          "sourceType": "public",
+          "tags": [
+            "算法工程师",
+            "自我介绍",
+            "特征工程",
+            "模型评估",
+            "训练数据"
+          ],
+          "chunkId": "public_interview_algorithm_1_chunk_1",
+          "score": 133,
+          "snippet": "自我介绍时，算法工程师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 特征工程、模型评估、训练数据 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        }
+      ],
+      "suggestedFollowUps": [
+        "请根据资料帮我生成一段 2 分钟自我介绍。",
+        "我应该优先准备哪些面试问题？",
+        "这些资料里有哪些可以写进简历的亮点？",
+        "帮我整理一份今天的面试复习清单。",
+        "把这个问题整理成 2 分钟面试回答。",
+        "基于引用材料生成 5 个追问题。"
+      ],
+      "createdAt": "2026-07-07T13:50:56.762Z"
+    },
+    {
+      "id": "knowledge_answer_mrapiaim_b13bcc64",
+      "question": "请根据资料帮我生成一段 2 分钟自我介绍。",
+      "answer": "来源：公开资料\n\n很抱歉，根据您提供的资料碎片，我无法直接为您生成一份完整、个性化的两分钟自我介绍。因为知识库中只包含了自我介绍的结构方法论，没有您具体的项目经历、工作成果和个人背景。如果强行编造，会严重影响面试的真实性和您的可信度。下面，我将以面试教练和招聘顾问的视角，为您拆解如何利用这些方法论搭建专属于您的自我介绍，并给出面试官的关注点、追问预案和风险提醒。\n\n首先，无论您应聘的是数据分析师、后端、前端、全栈、产品还是算法岗位，一个高效的两分钟自我介绍都应该严格遵循背景、行动、结果、复盘的四段式结构。您的目标不是罗列技能名词，而是用真实证据证明自己能够解决业务问题。\n\n1. 背景部分，要在三到四句话内讲清一个您主导解决的具体业务困境。\n例如，您可以描述当时产品面临用户留存持续下跌、某个核心API响应时间过长、或某个功能上线后使用率远低于预期的问题。重点要交代问题的重要性和紧迫性，并明确您个人的负责边界，这能让面试官立刻判断您的职级和影响力。\n\n2. 行动部分，是展示技术深度的核心。根据不同岗位，您需要提炼出三个左右的关键动作，并且要用专业术语精确描述。\n数据分析师应重点展示如何利用SQL清洗千万级日志、建立什么样的业务指标体系、并通过什么样的实验设计来验证假设。\n后端工程师则要聚焦API的契约设计、数据库选型与索引优化、以及如何利用缓存策略将热点数据查询延迟从多少毫秒降下来。\n前端工程师要说明进行了怎样的组件化拆分，使用了哪种状态管理方案来解决跨组件通信的复杂度，以及通过何种性能优化手段将首屏加载时间或重渲染频率控制到多少。\n全栈工程师需要体现您如何定义前后端的数据接口契约，如何通过理解产品逻辑来简化技术方案，避免过度设计。\n产品经理应展示您是如何进行用户访谈和需求拆解的，随后如何说服各方并排定功能优先级，舍弃了哪些看似重要但ROI不高的需求。\n算法工程师则要围绕特征工程、模型评估和训练数据展开，例如您如何从原始日志中构建出关键特征，采用何种离线与在线评估指标来判断模型效果，以及如何清洗和标注训练数据。\n请务必记住，所有动作都应是真实发生并经得起深挖的，虚假的经历在追问下会迅速暴露。\n\n3. 结果部分，必须用可量化的数据或明确的用户反馈来收尾。\n可以说“将核心流程的转化率从45%提升到58%”，“P99接口耗时从2秒降至300毫秒”，“首屏可交互时间缩短了40%”，“用户投诉量下降了六成”等等。如果没有直接的数据，可以援引用户净推荐值的变化，或者来自业务负责人的正面邮件评价。数据本身就能体现您工作的价值。\n\n4. 复盘部分，用一到两句话即可，用来展示您的成长性和系统思考。\n您可以指出，如果现在重新做这个项目，会在哪些技术选型上做出不同的取舍，或者会先做更小流量的分流实验来降低风险。这会让面试官觉得您不但能埋头做事，还能抬头看路，具备高级工程师或成熟产品经理的潜质。\n\n面试官的关注点与追问预案\n面试官听完后，通常会追问技术细节、失败方案和团队协作。\n技术取舍：他们关心您为什么选择这个方案而不是另一个。您必须准备好解释当时的约束条件，比如团队技术栈、上线时间压力等。\n失败方案：几乎必问。您要事先准备好一个“曾经尝试但被推翻”的思路，说明失败的原因（如数据稀疏、性能不达标）和您的思考过程，这远比只说成功经验更有说服力。\n指标变化：会追问您当时是如何设计指标，如何区分相关性和因果性的。请准备好描述您如何排除其他干扰因素，证明结果确实由您的行动带来。\n团队协作：会问您在项目中推动了哪些人，遇到过什么阻力。您需要明确说出和哪些角色（如后端、运营、设计）配合过，以及如何解决分歧。\n\n风险提醒\n最大的风险就是使用模糊化或夸大的经历。一旦面试官让您现场还原一段SQL逻辑、手写一个状态管理模块的伪代码、或画出当时实验的分流架构，任何不真实的地方都会导致面试直接终止。因此，请务必只挑选您亲自主导、对细节完全掌握的项目。\n另一个风险点是时间把控。这份自我介绍最好能精确控制在110到130秒之间，您需要根据语速反复练习和修剪，确保每个部分的权重合理，背景和复盘部分不拖沓，行动和结果部分信息密度最高。\n\n加分表达\n在各个环节，您都可以通过一些措辞来体现软技能。例如使用“我主动发起了”“我通过数据说服了业务方”“我主导了技术方案的评审”等句式来展现领导和沟通能力。在复盘时使用“我复盘发现”或“如果再迭代一次，我会”来表现复盘习惯。这些表达能让您在同级别的候选人中脱颖而出。\n\n最后，您需要补充的材料非常明确：请挑选一个最能体现您目标岗位核心能力的项目，按照背景、行动、结果的要求梳理出事实画面，并将关键动作与目标岗位要求（如SQL、API设计、组件化、需求拆解、特征工程等）进行映射。有了这些素材，我可以立即为您合成一份量身定制的、有血有肉的两分钟自我介绍，并针对这个项目为您设计出全套的追问应对预案。",
+      "aiModel": "pro",
+      "aiModelLabel": "专家",
+      "engine": "ai:专家:deepseek-v4-pro",
+      "aiEnabled": true,
+      "confidence": "高",
+      "scope": "all",
+      "category": "all",
+      "categoryLabel": "全部资料",
+      "role": "all",
+      "roleLabel": "全部岗位",
+      "citations": [
+        {
+          "docId": "public_interview_data_1",
+          "title": "数据分析师自我介绍题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "data",
+          "roleLabel": "数据分析师",
+          "sourceType": "public",
+          "tags": [
+            "数据分析师",
+            "自我介绍",
+            "SQL",
+            "指标体系",
+            "实验分析"
+          ],
+          "chunkId": "public_interview_data_1_chunk_1",
+          "score": 146,
+          "snippet": "自我介绍时，数据分析师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 SQL、指标体系、实验分析 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        },
+        {
+          "docId": "public_interview_backend_1",
+          "title": "后端工程师自我介绍题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "backend",
+          "roleLabel": "后端工程师",
+          "sourceType": "public",
+          "tags": [
+            "后端工程师",
+            "自我介绍",
+            "API 设计",
+            "数据库",
+            "缓存"
+          ],
+          "chunkId": "public_interview_backend_1_chunk_1",
+          "score": 133,
+          "snippet": "自我介绍时，后端工程师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 API 设计、数据库、缓存 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        },
+        {
+          "docId": "public_interview_frontend_1",
+          "title": "前端工程师自我介绍题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "frontend",
+          "roleLabel": "前端工程师",
+          "sourceType": "public",
+          "tags": [
+            "前端工程师",
+            "自我介绍",
+            "组件化",
+            "状态管理",
+            "性能优化"
+          ],
+          "chunkId": "public_interview_frontend_1_chunk_1",
+          "score": 133,
+          "snippet": "自我介绍时，前端工程师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 组件化、状态管理、性能优化 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        },
+        {
+          "docId": "public_interview_fullstack_1",
+          "title": "全栈工程师自我介绍题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "fullstack",
+          "roleLabel": "全栈工程师",
+          "sourceType": "public",
+          "tags": [
+            "全栈工程师",
+            "自我介绍",
+            "前后端协作",
+            "接口契约",
+            "产品理解"
+          ],
+          "chunkId": "public_interview_fullstack_1_chunk_1",
+          "score": 133,
+          "snippet": "自我介绍时，全栈工程师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 前后端协作、接口契约、产品理解 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        },
+        {
+          "docId": "public_interview_product_1",
+          "title": "产品经理自我介绍题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "product",
+          "roleLabel": "产品经理",
+          "sourceType": "public",
+          "tags": [
+            "产品经理",
+            "自我介绍",
+            "用户研究",
+            "需求拆解",
+            "优先级"
+          ],
+          "chunkId": "public_interview_product_1_chunk_1",
+          "score": 133,
+          "snippet": "自我介绍时，产品经理需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 用户研究、需求拆解、优先级 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        },
+        {
+          "docId": "public_interview_algorithm_1",
+          "title": "算法工程师自我介绍题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "algorithm",
+          "roleLabel": "算法工程师",
+          "sourceType": "public",
+          "tags": [
+            "算法工程师",
+            "自我介绍",
+            "特征工程",
+            "模型评估",
+            "训练数据"
+          ],
+          "chunkId": "public_interview_algorithm_1_chunk_1",
+          "score": 133,
+          "snippet": "自我介绍时，算法工程师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 特征工程、模型评估、训练数据 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        }
+      ],
+      "suggestedFollowUps": [
+        "请根据资料帮我生成一段 2 分钟自我介绍。",
+        "我应该优先准备哪些面试问题？",
+        "这些资料里有哪些可以写进简历的亮点？",
+        "帮我整理一份今天的面试复习清单。",
+        "把这个问题整理成 2 分钟面试回答。",
+        "基于引用材料生成 5 个追问题。"
+      ],
+      "createdAt": "2026-07-07T13:50:38.782Z"
+    },
+    {
+      "id": "knowledge_answer_mrapeysk_5f929a3e",
+      "question": "请用一句话说明专家模式适合什么面试准备场景。",
+      "answer": "来源：公开资料\n\n专家模式适合需要将公司业务、用户、核心指标与个人岗位贡献深度关联，从而在简历陈述或面试对答中系统展现商业洞察力与策略思维的准备场景。",
+      "aiModel": "pro",
+      "aiModelLabel": "专家",
+      "engine": "ai:专家:deepseek-v4-pro",
+      "aiEnabled": true,
+      "confidence": "高",
+      "scope": "all",
+      "category": "all",
+      "categoryLabel": "全部资料",
+      "role": "all",
+      "roleLabel": "全部岗位",
+      "citations": [
+        {
+          "docId": "public_company_testing_3",
+          "title": "测试开发工程师面试中的商业模式资料",
+          "category": "company",
+          "categoryLabel": "公司与业务资料",
+          "roleKey": "testing",
+          "roleLabel": "测试开发工程师",
+          "sourceType": "public",
+          "tags": [
+            "测试开发工程师",
+            "商业模式",
+            "自动化测试",
+            "质量体系",
+            "接口测试"
+          ],
+          "chunkId": "public_company_testing_3_chunk_1",
+          "score": 240,
+          "snippet": "准备公司资料时，不只是背公司介绍，而是把业务、用户、指标和岗位贡献联系起来。\n测试开发工程师可以重点思考：目标用户是谁，核心流程是什么，哪些指标最能代表成功，当前系统或产品可能有什么风险。\n回答时可以用“我理解贵业务的关键指标是 X，因此这个岗位能通过 Y 能力影响 Z 结果”的结构。\n如果信息不足，可以提出合理假设，并说明入职后会如何验证。"
+        },
+        {
+          "docId": "public_company_backend_3",
+          "title": "后端工程师面试中的商业模式资料",
+          "category": "company",
+          "categoryLabel": "公司与业务资料",
+          "roleKey": "backend",
+          "roleLabel": "后端工程师",
+          "sourceType": "public",
+          "tags": [
+            "后端工程师",
+            "商业模式",
+            "API 设计",
+            "数据库",
+            "缓存"
+          ],
+          "chunkId": "public_company_backend_3_chunk_1",
+          "score": 226,
+          "snippet": "准备公司资料时，不只是背公司介绍，而是把业务、用户、指标和岗位贡献联系起来。\n后端工程师可以重点思考：目标用户是谁，核心流程是什么，哪些指标最能代表成功，当前系统或产品可能有什么风险。\n回答时可以用“我理解贵业务的关键指标是 X，因此这个岗位能通过 Y 能力影响 Z 结果”的结构。\n如果信息不足，可以提出合理假设，并说明入职后会如何验证。"
+        },
+        {
+          "docId": "public_company_frontend_3",
+          "title": "前端工程师面试中的商业模式资料",
+          "category": "company",
+          "categoryLabel": "公司与业务资料",
+          "roleKey": "frontend",
+          "roleLabel": "前端工程师",
+          "sourceType": "public",
+          "tags": [
+            "前端工程师",
+            "商业模式",
+            "组件化",
+            "状态管理",
+            "性能优化"
+          ],
+          "chunkId": "public_company_frontend_3_chunk_1",
+          "score": 226,
+          "snippet": "准备公司资料时，不只是背公司介绍，而是把业务、用户、指标和岗位贡献联系起来。\n前端工程师可以重点思考：目标用户是谁，核心流程是什么，哪些指标最能代表成功，当前系统或产品可能有什么风险。\n回答时可以用“我理解贵业务的关键指标是 X，因此这个岗位能通过 Y 能力影响 Z 结果”的结构。\n如果信息不足，可以提出合理假设，并说明入职后会如何验证。"
+        },
+        {
+          "docId": "public_company_fullstack_3",
+          "title": "全栈工程师面试中的商业模式资料",
+          "category": "company",
+          "categoryLabel": "公司与业务资料",
+          "roleKey": "fullstack",
+          "roleLabel": "全栈工程师",
+          "sourceType": "public",
+          "tags": [
+            "全栈工程师",
+            "商业模式",
+            "前后端协作",
+            "接口契约",
+            "产品理解"
+          ],
+          "chunkId": "public_company_fullstack_3_chunk_1",
+          "score": 226,
+          "snippet": "准备公司资料时，不只是背公司介绍，而是把业务、用户、指标和岗位贡献联系起来。\n全栈工程师可以重点思考：目标用户是谁，核心流程是什么，哪些指标最能代表成功，当前系统或产品可能有什么风险。\n回答时可以用“我理解贵业务的关键指标是 X，因此这个岗位能通过 Y 能力影响 Z 结果”的结构。\n如果信息不足，可以提出合理假设，并说明入职后会如何验证。"
+        },
+        {
+          "docId": "public_company_data_3",
+          "title": "数据分析师面试中的商业模式资料",
+          "category": "company",
+          "categoryLabel": "公司与业务资料",
+          "roleKey": "data",
+          "roleLabel": "数据分析师",
+          "sourceType": "public",
+          "tags": [
+            "数据分析师",
+            "商业模式",
+            "SQL",
+            "指标体系",
+            "实验分析"
+          ],
+          "chunkId": "public_company_data_3_chunk_1",
+          "score": 226,
+          "snippet": "准备公司资料时，不只是背公司介绍，而是把业务、用户、指标和岗位贡献联系起来。\n数据分析师可以重点思考：目标用户是谁，核心流程是什么，哪些指标最能代表成功，当前系统或产品可能有什么风险。\n回答时可以用“我理解贵业务的关键指标是 X，因此这个岗位能通过 Y 能力影响 Z 结果”的结构。\n如果信息不足，可以提出合理假设，并说明入职后会如何验证。"
+        },
+        {
+          "docId": "public_company_product_3",
+          "title": "产品经理面试中的商业模式资料",
+          "category": "company",
+          "categoryLabel": "公司与业务资料",
+          "roleKey": "product",
+          "roleLabel": "产品经理",
+          "sourceType": "public",
+          "tags": [
+            "产品经理",
+            "商业模式",
+            "用户研究",
+            "需求拆解",
+            "优先级"
+          ],
+          "chunkId": "public_company_product_3_chunk_1",
+          "score": 226,
+          "snippet": "准备公司资料时，不只是背公司介绍，而是把业务、用户、指标和岗位贡献联系起来。\n产品经理可以重点思考：目标用户是谁，核心流程是什么，哪些指标最能代表成功，当前系统或产品可能有什么风险。\n回答时可以用“我理解贵业务的关键指标是 X，因此这个岗位能通过 Y 能力影响 Z 结果”的结构。\n如果信息不足，可以提出合理假设，并说明入职后会如何验证。"
+        }
+      ],
+      "suggestedFollowUps": [
+        "请根据资料帮我生成一段 2 分钟自我介绍。",
+        "我应该优先准备哪些面试问题？",
+        "这些资料里有哪些可以写进简历的亮点？",
+        "帮我整理一份今天的面试复习清单。",
+        "把这个问题整理成 2 分钟面试回答。",
+        "基于引用材料生成 5 个追问题。"
+      ],
+      "createdAt": "2026-07-07T13:48:03.620Z"
+    },
+    {
+      "id": "knowledge_answer_mrapejva_3f0baf7f",
+      "question": "请用一句话说明知识库如何帮助面试准备。",
+      "answer": "来源：公开资料\n\n知识库帮助面试准备的核心方式，不是让你死记硬背答案，而是通过将知识点、项目案例、简历证据和面试题整合到一个统一资料库中，让你每天复盘“我说清楚背景了吗、我的动作够具体吗、结果有证据吗、能否回答追问”，从而快速找到证据、组织表达并发现短板，最终实现从“背答案”到“灵活应对”的转变。\n\n完整回答：知识库在面试准备中扮演的是“动态工具箱”和“复盘引擎”的角色。根据知识库片段，后端工程师的复习计划、面试节奏、表达结构、压力面应对、作品集准备和Offer选择都可以做成可复用清单。具体来说，你需要把分散的信息（如技术知识点、项目经历、简历上的量化成果、常见面试题）全部放入同一个资料库。每天只聚焦一个问题：你是否能把背景说清楚？你的动作是否具体？结果是否有证据支撑？你是否能应对追问？这种每日复盘迫使你不断检验自己的表达是否扎实，而不是机械背诵。最终，知识库帮助你快速定位到最有力的证据，组织出逻辑清晰的回答，同时暴露出你准备不足的薄弱环节，让你有针对性地补强。\n\n准备重点：第一，建立统一资料库，将知识点、项目案例、简历证据和面试题分类存放，确保所有材料可交叉引用。第二，每天选择一个面试问题或项目经历，用“背景-动作-结果-追问”四步法进行复盘，并记录下自己回答中的漏洞。第三，针对每个项目，提前准备至少三个可能的追问方向，并写出对应的证据和解释。第四，将压力面、表达结构、作品集等模块也做成可复用清单，确保在不同面试场景下都能快速调用。\n\n可复用话术：在面试中，当被问及项目经历时，你可以这样使用知识库：“关于这个项目，我先说一下背景，当时团队面临的问题是……我的具体动作是……最终结果体现在……如果您想了解某个细节，比如我如何解决某个技术难点，我可以展开说明。” 在复盘时，你可以对自己说：“今天复盘的问题是‘我说清楚背景了吗’，我发现上次回答时背景讲得太笼统，下次需要补充用户量级和业务目标。”",
+      "aiModel": "flash",
+      "aiModelLabel": "快速",
+      "engine": "ai:快速:deepseek-v4-flash",
+      "aiEnabled": true,
+      "confidence": "高",
+      "scope": "all",
+      "category": "all",
+      "categoryLabel": "全部资料",
+      "role": "all",
+      "roleLabel": "全部岗位",
+      "citations": [
+        {
+          "docId": "public_note_backend_1",
+          "title": "后端工程师复习计划通用笔记",
+          "category": "note",
+          "categoryLabel": "通用笔记",
+          "roleKey": "backend",
+          "roleLabel": "后端工程师",
+          "sourceType": "public",
+          "tags": [
+            "后端工程师",
+            "复习计划",
+            "API 设计",
+            "数据库",
+            "缓存"
+          ],
+          "chunkId": "public_note_backend_1_chunk_1",
+          "score": 212,
+          "snippet": "复习计划适合做成可复用清单。\n后端工程师准备时可以把知识点、项目案例、简历证据和面试题放到同一个资料库中。\n每天复盘一个问题：我说清楚背景了吗，我的动作够具体吗，结果有证据吗，能否回答追问。\n最终目标不是背答案，而是让资料库帮助你快速找到证据、组织表达、发现短板。"
+        },
+        {
+          "docId": "public_note_backend_2",
+          "title": "后端工程师面试节奏通用笔记",
+          "category": "note",
+          "categoryLabel": "通用笔记",
+          "roleKey": "backend",
+          "roleLabel": "后端工程师",
+          "sourceType": "public",
+          "tags": [
+            "后端工程师",
+            "面试节奏",
+            "API 设计",
+            "数据库",
+            "缓存"
+          ],
+          "chunkId": "public_note_backend_2_chunk_1",
+          "score": 212,
+          "snippet": "面试节奏适合做成可复用清单。\n后端工程师准备时可以把知识点、项目案例、简历证据和面试题放到同一个资料库中。\n每天复盘一个问题：我说清楚背景了吗，我的动作够具体吗，结果有证据吗，能否回答追问。\n最终目标不是背答案，而是让资料库帮助你快速找到证据、组织表达、发现短板。"
+        },
+        {
+          "docId": "public_note_backend_3",
+          "title": "后端工程师表达结构通用笔记",
+          "category": "note",
+          "categoryLabel": "通用笔记",
+          "roleKey": "backend",
+          "roleLabel": "后端工程师",
+          "sourceType": "public",
+          "tags": [
+            "后端工程师",
+            "表达结构",
+            "API 设计",
+            "数据库",
+            "缓存"
+          ],
+          "chunkId": "public_note_backend_3_chunk_1",
+          "score": 212,
+          "snippet": "表达结构适合做成可复用清单。\n后端工程师准备时可以把知识点、项目案例、简历证据和面试题放到同一个资料库中。\n每天复盘一个问题：我说清楚背景了吗，我的动作够具体吗，结果有证据吗，能否回答追问。\n最终目标不是背答案，而是让资料库帮助你快速找到证据、组织表达、发现短板。"
+        },
+        {
+          "docId": "public_note_backend_4",
+          "title": "后端工程师压力面应对通用笔记",
+          "category": "note",
+          "categoryLabel": "通用笔记",
+          "roleKey": "backend",
+          "roleLabel": "后端工程师",
+          "sourceType": "public",
+          "tags": [
+            "后端工程师",
+            "压力面应对",
+            "API 设计",
+            "数据库",
+            "缓存"
+          ],
+          "chunkId": "public_note_backend_4_chunk_1",
+          "score": 212,
+          "snippet": "压力面应对适合做成可复用清单。\n后端工程师准备时可以把知识点、项目案例、简历证据和面试题放到同一个资料库中。\n每天复盘一个问题：我说清楚背景了吗，我的动作够具体吗，结果有证据吗，能否回答追问。\n最终目标不是背答案，而是让资料库帮助你快速找到证据、组织表达、发现短板。"
+        },
+        {
+          "docId": "public_note_backend_5",
+          "title": "后端工程师作品集准备通用笔记",
+          "category": "note",
+          "categoryLabel": "通用笔记",
+          "roleKey": "backend",
+          "roleLabel": "后端工程师",
+          "sourceType": "public",
+          "tags": [
+            "后端工程师",
+            "作品集准备",
+            "API 设计",
+            "数据库",
+            "缓存"
+          ],
+          "chunkId": "public_note_backend_5_chunk_1",
+          "score": 212,
+          "snippet": "作品集准备适合做成可复用清单。\n后端工程师准备时可以把知识点、项目案例、简历证据和面试题放到同一个资料库中。\n每天复盘一个问题：我说清楚背景了吗，我的动作够具体吗，结果有证据吗，能否回答追问。\n最终目标不是背答案，而是让资料库帮助你快速找到证据、组织表达、发现短板。"
+        },
+        {
+          "docId": "public_note_backend_6",
+          "title": "后端工程师Offer 选择通用笔记",
+          "category": "note",
+          "categoryLabel": "通用笔记",
+          "roleKey": "backend",
+          "roleLabel": "后端工程师",
+          "sourceType": "public",
+          "tags": [
+            "后端工程师",
+            "Offer 选择",
+            "API 设计",
+            "数据库",
+            "缓存"
+          ],
+          "chunkId": "public_note_backend_6_chunk_1",
+          "score": 212,
+          "snippet": "Offer 选择适合做成可复用清单。\n后端工程师准备时可以把知识点、项目案例、简历证据和面试题放到同一个资料库中。\n每天复盘一个问题：我说清楚背景了吗，我的动作够具体吗，结果有证据吗，能否回答追问。\n最终目标不是背答案，而是让资料库帮助你快速找到证据、组织表达、发现短板。"
+        }
+      ],
+      "suggestedFollowUps": [
+        "请根据资料帮我生成一段 2 分钟自我介绍。",
+        "我应该优先准备哪些面试问题？",
+        "这些资料里有哪些可以写进简历的亮点？",
+        "帮我整理一份今天的面试复习清单。",
+        "把这个问题整理成 2 分钟面试回答。",
+        "基于引用材料生成 5 个追问题。"
+      ],
+      "createdAt": "2026-07-07T13:47:44.279Z"
+    },
+    {
+      "id": "knowledge_answer_mrap8znq_c69323d1",
+      "question": "???????????????????",
+      "answer": "来源：公开资料、我的资料\n这是针对「???????????????????」的快速完整答案，资料类型为全部资料。\n\n一、直接结论\n这类问题不能只背概念，应该用知识库里的证据说明业务背景、个人动作、结果指标和复盘优化。当前检索可信度为低，可以先围绕已有材料组织回答。\n\n二、可以这样回答\n我会先说明这个问题背后的业务或项目场景，再讲我具体承担了什么职责。接着把关键动作拆开，例如如何分析问题、如何设计方案、如何验证效果、如何处理风险。最后用结果收尾，比如效率提升、质量改善、稳定性提升、成本降低、用户反馈变好，或者交付周期缩短。\n\n三、知识库里可用的证据\n1. 后端工程师初级岗位画像通常关注候选人是否能把能力落到业务结果。\n基础要求包括 API 设计、数据库、缓存、消息队列，高阶要求包括方案设计、风险判断、跨角色协作和复盘能力。\n简历中应把岗位关键词放到项目经历和技能证据里，而不是只放在技能列表。\n面试准备时建议准备 2 个主项目、1 个失败复盘、1 个协作冲突案例和 1 个量化成果案例。\n2. 模型接口超时时，系统应该设置超时时间、重试上限、队列缓冲、备用评分规则、可观测性和监控告警。面试回答可以按背景、行动、结果、复盘组织。\n3. 模型接口超时时，系统应设置超时时间、重试上限、队列缓冲、备用评分规则和监控告警。面试回答可以按背景、动作、结果组织。\n4. AI providers need timeout, retry limits, fallback queues, observability, and circuit breakers.\n5. 自我介绍时，后端工程师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 API 设计、数据库、缓存 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。\n\n四、可复用话术\n这个问题我会从业务目标、个人动作、结果验证和后续复盘四个层面回答。我的重点不是只说明我做过什么，而是说明这个动作解决了什么问题，并带来了什么可验证结果。",
+      "aiModel": "flash",
+      "aiModelLabel": "快速",
+      "engine": "local-complete-fallback",
+      "aiEnabled": false,
+      "confidence": "低",
+      "scope": "all",
+      "category": "all",
+      "categoryLabel": "全部资料",
+      "role": "all",
+      "roleLabel": "全部岗位",
+      "citations": [
+        {
+          "docId": "doc_mr9hsz2z_9e4dcc4e",
+          "title": "后端工程师初级岗位画像",
+          "category": "jd",
+          "categoryLabel": "岗位 JD",
+          "roleKey": null,
+          "roleLabel": null,
+          "sourceType": "public-import",
+          "tags": [
+            "后端工程师",
+            "初级岗位画像",
+            "API 设计",
+            "数据库",
+            "缓存"
+          ],
+          "chunkId": "chunk1_mr9hsz2z_cca7929f",
+          "score": 0,
+          "snippet": "后端工程师初级岗位画像通常关注候选人是否能把能力落到业务结果。\n基础要求包括 API 设计、数据库、缓存、消息队列，高阶要求包括方案设计、风险判断、跨角色协作和复盘能力。\n简历中应把岗位关键词放到项目经历和技能证据里，而不是只放在技能列表。\n面试准备时建议准备 2 个主项目、1 个失败复盘、1 个协作冲突案例和 1 个量化成果案例。"
+        },
+        {
+          "docId": "doc_mr9h2u7n_735047e5",
+          "title": "中文降级策略笔记",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": null,
+          "roleLabel": null,
+          "sourceType": "private",
+          "tags": [
+            "模型",
+            "超时",
+            "降级"
+          ],
+          "chunkId": "chunk1_mr9h2u7o_20fda132",
+          "score": 0,
+          "snippet": "模型接口超时时，系统应该设置超时时间、重试上限、队列缓冲、备用评分规则、可观测性和监控告警。面试回答可以按背景、行动、结果、复盘组织。"
+        },
+        {
+          "docId": "doc_mr9h0r70_bc6c5fcc",
+          "title": "模型降级笔记",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": null,
+          "roleLabel": null,
+          "sourceType": "private",
+          "tags": [
+            "AI",
+            "稳定性"
+          ],
+          "chunkId": "chunk1_mr9h0r70_70ff1ad1",
+          "score": 0,
+          "snippet": "模型接口超时时，系统应设置超时时间、重试上限、队列缓冲、备用评分规则和监控告警。面试回答可以按背景、动作、结果组织。"
+        },
+        {
+          "docId": "doc_mr9fbmdl_d2b39d12",
+          "title": "Reliability note",
+          "category": "note",
+          "categoryLabel": "通用笔记",
+          "roleKey": null,
+          "roleLabel": null,
+          "sourceType": "private",
+          "tags": [
+            "backend"
+          ],
+          "chunkId": "chunk1_mr9fbmdl_7f3fd437",
+          "score": 0,
+          "snippet": "AI providers need timeout, retry limits, fallback queues, observability, and circuit breakers."
+        },
+        {
+          "docId": "public_interview_backend_1",
+          "title": "后端工程师自我介绍题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "backend",
+          "roleLabel": "后端工程师",
+          "sourceType": "public",
+          "tags": [
+            "后端工程师",
+            "自我介绍",
+            "API 设计",
+            "数据库",
+            "缓存"
+          ],
+          "chunkId": "public_interview_backend_1_chunk_1",
+          "score": 0,
+          "snippet": "自我介绍时，后端工程师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 API 设计、数据库、缓存 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        },
+        {
+          "docId": "public_interview_backend_2",
+          "title": "后端工程师项目深挖题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "backend",
+          "roleLabel": "后端工程师",
+          "sourceType": "public",
+          "tags": [
+            "后端工程师",
+            "项目深挖",
+            "API 设计",
+            "数据库",
+            "缓存"
+          ],
+          "chunkId": "public_interview_backend_2_chunk_1",
+          "score": 0,
+          "snippet": "项目深挖时，后端工程师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 API 设计、数据库、缓存 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        }
+      ],
+      "suggestedFollowUps": [
+        "请根据资料帮我生成一段 2 分钟自我介绍。",
+        "我应该优先准备哪些面试问题？",
+        "这些资料里有哪些可以写进简历的亮点？",
+        "帮我整理一份今天的面试复习清单。",
+        "把这个问题整理成 2 分钟面试回答。",
+        "基于引用材料生成 5 个追问题。"
+      ],
+      "createdAt": "2026-07-07T13:43:24.806Z"
+    },
+    {
+      "id": "knowledge_answer_mrap8ni5_108f7af7",
+      "question": "??????????????????",
+      "answer": "来源：公开资料、我的资料\n这是针对「??????????????????」的快速完整答案，资料类型为全部资料。\n\n一、直接结论\n这类问题不能只背概念，应该用知识库里的证据说明业务背景、个人动作、结果指标和复盘优化。当前检索可信度为低，可以先围绕已有材料组织回答。\n\n二、可以这样回答\n我会先说明这个问题背后的业务或项目场景，再讲我具体承担了什么职责。接着把关键动作拆开，例如如何分析问题、如何设计方案、如何验证效果、如何处理风险。最后用结果收尾，比如效率提升、质量改善、稳定性提升、成本降低、用户反馈变好，或者交付周期缩短。\n\n三、知识库里可用的证据\n1. 后端工程师初级岗位画像通常关注候选人是否能把能力落到业务结果。\n基础要求包括 API 设计、数据库、缓存、消息队列，高阶要求包括方案设计、风险判断、跨角色协作和复盘能力。\n简历中应把岗位关键词放到项目经历和技能证据里，而不是只放在技能列表。\n面试准备时建议准备 2 个主项目、1 个失败复盘、1 个协作冲突案例和 1 个量化成果案例。\n2. 模型接口超时时，系统应该设置超时时间、重试上限、队列缓冲、备用评分规则、可观测性和监控告警。面试回答可以按背景、行动、结果、复盘组织。\n3. 模型接口超时时，系统应设置超时时间、重试上限、队列缓冲、备用评分规则和监控告警。面试回答可以按背景、动作、结果组织。\n4. AI providers need timeout, retry limits, fallback queues, observability, and circuit breakers.\n5. 自我介绍时，后端工程师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 API 设计、数据库、缓存 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。\n\n四、可复用话术\n这个问题我会从业务目标、个人动作、结果验证和后续复盘四个层面回答。我的重点不是只说明我做过什么，而是说明这个动作解决了什么问题，并带来了什么可验证结果。",
+      "aiModel": "flash",
+      "aiModelLabel": "快速",
+      "engine": "local-complete-fallback",
+      "aiEnabled": false,
+      "confidence": "低",
+      "scope": "all",
+      "category": "all",
+      "categoryLabel": "全部资料",
+      "role": "all",
+      "roleLabel": "全部岗位",
+      "citations": [
+        {
+          "docId": "doc_mr9hsz2z_9e4dcc4e",
+          "title": "后端工程师初级岗位画像",
+          "category": "jd",
+          "categoryLabel": "岗位 JD",
+          "roleKey": null,
+          "roleLabel": null,
+          "sourceType": "public-import",
+          "tags": [
+            "后端工程师",
+            "初级岗位画像",
+            "API 设计",
+            "数据库",
+            "缓存"
+          ],
+          "chunkId": "chunk1_mr9hsz2z_cca7929f",
+          "score": 0,
+          "snippet": "后端工程师初级岗位画像通常关注候选人是否能把能力落到业务结果。\n基础要求包括 API 设计、数据库、缓存、消息队列，高阶要求包括方案设计、风险判断、跨角色协作和复盘能力。\n简历中应把岗位关键词放到项目经历和技能证据里，而不是只放在技能列表。\n面试准备时建议准备 2 个主项目、1 个失败复盘、1 个协作冲突案例和 1 个量化成果案例。"
+        },
+        {
+          "docId": "doc_mr9h2u7n_735047e5",
+          "title": "中文降级策略笔记",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": null,
+          "roleLabel": null,
+          "sourceType": "private",
+          "tags": [
+            "模型",
+            "超时",
+            "降级"
+          ],
+          "chunkId": "chunk1_mr9h2u7o_20fda132",
+          "score": 0,
+          "snippet": "模型接口超时时，系统应该设置超时时间、重试上限、队列缓冲、备用评分规则、可观测性和监控告警。面试回答可以按背景、行动、结果、复盘组织。"
+        },
+        {
+          "docId": "doc_mr9h0r70_bc6c5fcc",
+          "title": "模型降级笔记",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": null,
+          "roleLabel": null,
+          "sourceType": "private",
+          "tags": [
+            "AI",
+            "稳定性"
+          ],
+          "chunkId": "chunk1_mr9h0r70_70ff1ad1",
+          "score": 0,
+          "snippet": "模型接口超时时，系统应设置超时时间、重试上限、队列缓冲、备用评分规则和监控告警。面试回答可以按背景、动作、结果组织。"
+        },
+        {
+          "docId": "doc_mr9fbmdl_d2b39d12",
+          "title": "Reliability note",
+          "category": "note",
+          "categoryLabel": "通用笔记",
+          "roleKey": null,
+          "roleLabel": null,
+          "sourceType": "private",
+          "tags": [
+            "backend"
+          ],
+          "chunkId": "chunk1_mr9fbmdl_7f3fd437",
+          "score": 0,
+          "snippet": "AI providers need timeout, retry limits, fallback queues, observability, and circuit breakers."
+        },
+        {
+          "docId": "public_interview_backend_1",
+          "title": "后端工程师自我介绍题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "backend",
+          "roleLabel": "后端工程师",
+          "sourceType": "public",
+          "tags": [
+            "后端工程师",
+            "自我介绍",
+            "API 设计",
+            "数据库",
+            "缓存"
+          ],
+          "chunkId": "public_interview_backend_1_chunk_1",
+          "score": 0,
+          "snippet": "自我介绍时，后端工程师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 API 设计、数据库、缓存 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        },
+        {
+          "docId": "public_interview_backend_2",
+          "title": "后端工程师项目深挖题库",
+          "category": "interview",
+          "categoryLabel": "面试题与答案",
+          "roleKey": "backend",
+          "roleLabel": "后端工程师",
+          "sourceType": "public",
+          "tags": [
+            "后端工程师",
+            "项目深挖",
+            "API 设计",
+            "数据库",
+            "缓存"
+          ],
+          "chunkId": "public_interview_backend_2_chunk_1",
+          "score": 0,
+          "snippet": "项目深挖时，后端工程师需要把回答组织成背景、行动、结果、复盘四段。\n重点展示 API 设计、数据库、缓存 的真实证据，不要只罗列概念。\n如果被追问，可以补充技术取舍、失败方案、指标变化、团队协作和后续优化。\n回答示例：先说明业务问题，再说明个人负责边界，接着给出具体动作，最后用数据或用户反馈证明结果。"
+        }
+      ],
+      "suggestedFollowUps": [
+        "请根据资料帮我生成一段 2 分钟自我介绍。",
+        "我应该优先准备哪些面试问题？",
+        "这些资料里有哪些可以写进简历的亮点？",
+        "帮我整理一份今天的面试复习清单。",
+        "把这个问题整理成 2 分钟面试回答。",
+        "基于引用材料生成 5 个追问题。"
+      ],
+      "createdAt": "2026-07-07T13:43:09.053Z"
+    },
+    {
       "id": "knowledge_answer_mr9vgyqe_5ec1b6ef",
       "question": "模型接口超时时系统应该怎么降级？",
       "answer": "来源：我的资料、公开资料\n这是针对「模型接口超时时系统应该怎么降级？」的专家完整答案，资料类型为全部资料。\n\n一、直接结论\n这类问题不能只背概念，应该用知识库里的证据说明业务背景、个人动作、结果指标和复盘优化。当前检索可信度为高，可以先围绕已有材料组织回答。\n\n二、可以这样回答\n我会先说明这个问题背后的业务或项目场景，再讲我具体承担了什么职责。接着把关键动作拆开，例如如何分析问题、如何设计方案、如何验证效果、如何处理风险。最后用结果收尾，比如效率提升、质量改善、稳定性提升、成本降低、用户反馈变好，或者交付周期缩短。\n\n三、知识库里可用的证据\n1. 模型接口超时时，系统应该设置超时时间、重试上限、队列缓冲、备用评分规则、可观测性和监控告警。面试回答可以按背景、行动、结果、复盘组织。\n2. 准备公司资料时，不只是背公司介绍，而是把业务、用户、指标和岗位贡献联系起来。\n全栈工程师可以重点思考：目标用户是谁，核心流程是什么，哪些指标最能代表成功，当前系统或产品可能有什么风险。\n回答时可以用“我理解贵业务的关键指标是 X，因此这个岗位能通过 Y 能力影响 Z 结果”的结构。\n如果信息不足，可以提出合理假设，并说明入职后会如何验证。\n3. 准备公司资料时，不只是背公司介绍，而是把业务、用户、指标和岗位贡献联系起来。\n测试开发工程师可以重点思考：目标用户是谁，核心流程是什么，哪些指标最能代表成功，当前系统或产品可能有什么风险。\n回答时可以用“我理解贵业务的关键指标是 X，因此这个岗位能通过 Y 能力影响 Z 结果”的结构。\n如果信息不足，可以提出合理假设，并说明入职后会如何验证。\n4. 项目复盘要避免写成流水账，应突出问题、个人动作和可验证结果。\n测试开发工程师的项目材料可以围绕 自动化测试、质量体系、接口测试 展开。\n推荐结构：背景是什么，难点在哪里，我负责什么，采用了什么方案，效果如何，后来还能怎么优化。\n如果没有业务数据，也可以使用效率、质量、稳定性、成本、交付周期、用户反馈等替代指标。\n5. 项目复盘要避免写成流水账，应突出问题、个人动作和可验证结果。\n测试开发工程师的项目材料可以围绕 自动化测试、质量体系、接口测试 展开。\n推荐结构：背景是什么，难点在哪里，我负责什么，采用了什么方案，效果如何，后来还能怎么优化。\n如果没有业务数据，也可以使用效率、质量、稳定性、成本、交付周期、用户反馈等替代指标。\n\n四、可复用话术\n这个问题我会从业务目标、个人动作、结果验证和后续复盘四个层面回答。我的重点不是只说明我做过什么，而是说明这个动作解决了什么问题，并带来了什么可验证结果。\n\n五、追问预案\n如果面试官继续追问，你可以从技术取舍、个人贡献、失败复盘、指标变化四个角度展开。重点是说明为什么这样做、替代方案是什么、风险如何处理，以及结果如何验证。\n\n六、风险提醒\n不要只说自己参与了某个项目，也不要只罗列技术名词。要明确你的边界、动作和结果，否则容易被认为贡献不清。",
@@ -9755,20 +11840,6 @@
   ],
   "reviewTasks": [
     {
-      "id": "review_mr9smp3r_9dd18734",
-      "sessionId": "session_mr9slpn6_b60b1079",
-      "questionId": "fullstack_product_1",
-      "title": "Improve answer: 哪些指标可以证明一个面试练习产品真的提升了求职结果？",
-      "focus": [
-        "激活",
-        "留存",
-        "转化"
-      ],
-      "dueAt": "2026-07-07T22:30:16.983Z",
-      "status": "open",
-      "createdAt": "2026-07-06T22:30:16.983Z"
-    },
-    {
       "id": "review_mr9slx2u_67589ae6",
       "sessionId": "session_mr9slpn6_b60b1079",
       "questionId": "fullstack_system_1",
@@ -9853,10 +11924,10 @@
     "knowledgeAi": {
       "period": "2026-07",
       "flash": {
-        "used": 13
+        "used": 16
       },
       "pro": {
-        "used": 18
+        "used": 22
       },
       "normal": {
         "used": 3

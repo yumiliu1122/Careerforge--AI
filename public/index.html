@@ -16,6 +16,13 @@
             <span data-i18n="brandSubtitle">面试准备工作台</span>
           </div>
         </div>
+        <section class="account-card" id="account-card">
+          <div>
+            <strong id="account-name">访客模式</strong>
+            <span id="account-note">登录后可区分个人数据</span>
+          </div>
+          <button class="ghost compact" id="account-action" type="button">登录 / 注册</button>
+        </section>
         <nav class="tabs" aria-label="主导航">
           <button class="tab is-active" data-view="dashboard" data-i18n="navDashboard">总览</button>
           <button class="tab" data-view="resume" data-i18n="navResume">简历分析</button>
@@ -33,6 +40,15 @@
             <h1 id="view-title">总览</h1>
           </div>
           <button id="refresh-btn" class="icon-button" title="刷新数据" aria-label="刷新数据">↻</button>
+        </section>
+        <section id="progress-panel" class="progress-panel" hidden>
+          <div class="progress-head">
+            <strong id="progress-title">正在处理</strong>
+            <span id="progress-percent">0%</span>
+          </div>
+          <div class="progress-track"><span id="progress-bar"></span></div>
+          <p id="progress-detail">正在准备请求...</p>
+          <ol id="progress-steps"></ol>
         </section>
 
         <section id="alert" class="alert" hidden></section>
@@ -78,11 +94,15 @@
                 </select>
               </label>
               <label>AI 模型
-                <select name="aiModel">
+                <select name="aiModel" data-model-select="resume">
                   <option value="flash">快速</option>
                   <option value="pro">专家</option>
                 </select>
               </label>
+              <div class="model-card-row" data-model-cards="resume">
+                <button type="button" class="model-card is-active" data-model-value="flash"><strong>快速</strong><span>响应更快，适合日常分析</span></button>
+                <button type="button" class="model-card" data-model-value="pro"><strong>专家</strong><span>思考更深，适合精修报告</span></button>
+              </div>
               <div data-resume-panel="paste">
                 <label><span data-i18n="resumeContent">简历内容</span><textarea name="content" rows="13">邮箱：demo@example.com
 电话：13800000000
@@ -109,7 +129,15 @@
             <section class="panel">
               <div class="panel-heading">
                 <h2 data-i18n="analysisResult">分析结果</h2>
-                <button id="download-report-btn" class="ghost" type="button" disabled data-i18n="downloadReport">下载报告</button>
+                <div class="download-group">
+                  <select id="report-format" aria-label="报告格式">
+                    <option value="word">Word</option>
+                    <option value="pdf">PDF</option>
+                    <option value="image">图片</option>
+                    <option value="markdown">Markdown</option>
+                  </select>
+                  <button id="download-report-btn" class="ghost" type="button" disabled data-i18n="downloadReport">下载报告</button>
+                </div>
               </div>
               <div id="resume-result" class="stack"></div>
             </section>
@@ -130,11 +158,15 @@
                 </select>
               </label>
               <label>AI 模型
-                <select name="aiModel">
+                <select name="aiModel" data-model-select="interview">
                   <option value="flash">快速</option>
                   <option value="pro">专家</option>
                 </select>
               </label>
+              <div class="model-card-row" data-model-cards="interview">
+                <button type="button" class="model-card is-active" data-model-value="flash"><strong>快速</strong><span>生成题目更快</span></button>
+                <button type="button" class="model-card" data-model-value="pro"><strong>专家</strong><span>反馈更深入</span></button>
+              </div>
               <label>面试形式
                 <select name="interviewMode" id="interview-mode">
                   <option value="text">文字版面试</option>

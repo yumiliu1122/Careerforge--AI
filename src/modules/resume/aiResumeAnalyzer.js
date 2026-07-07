@@ -13,6 +13,7 @@ export async function tryAnalyzeResumeWithAi({ text, name, targetRole, aiModel, 
       model: resolveAiModel(modelProfile),
       temperature: 0.2,
       responseFormat: { type: "json_object" },
+      timeoutMs: modelProfile === "pro" ? 240000 : 120000,
       messages: [
         {
           role: "system",

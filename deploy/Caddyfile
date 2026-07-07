@@ -1,0 +1,8 @@
+{$DOMAIN} {
+  encode zstd gzip
+  reverse_proxy app:4173
+}
+
+:80 {
+  respond "CareerForge AI is waiting for DOMAIN configuration." 200
+}

@@ -1,0 +1,38 @@
+app = "careerforge-ai"
+primary_region = "hkg"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+  PORT = "4173"
+  DATA_FILE = "/app/data/store.json"
+  APP_NAME = "CareerForge AI"
+  DEFAULT_PROVIDER = "local-rules"
+  AI_PROVIDER = "deepseek"
+  AI_API_BASE_URL = "https://api.deepseek.com"
+  AI_MODEL_FAST = "deepseek-v4-flash"
+  AI_MODEL_REASONER = "deepseek-v4-pro"
+  AI_DEFAULT_MODEL = "deepseek-v4-flash"
+  AI_TIMEOUT_MS = "180000"
+  AI_TIMEOUT_REASONER_MS = "240000"
+  MAX_UPLOAD_MB = "20"
+  MAX_REQUEST_MB = "35"
+
+[http_service]
+  internal_port = 4173
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
+
+[[mounts]]
+  source = "careerforge_data"
+  destination = "/app/data"
+
+[[vm]]
+  memory = "1gb"
+  cpu_kind = "shared"
+  cpus = 1

@@ -16,7 +16,9 @@ const state = {
   clipboardItems: [],
   clipboardText: "",
   scheduleClipboardItems: [],
-  scheduleClipboardText: ""
+  scheduleClipboardText: "",
+  currentUser: JSON.parse(localStorage.getItem("careerforge_user") || "null"),
+  progressTimer: null
 };
 
 const translations = {
@@ -181,6 +183,74 @@ function showAlert(message) {
   }, 5200);
 }
 
+function startProgress(title, steps = []) {
+  const panel = $("#progress-panel");
+  if (!panel) return;
+  window.clearInterval(state.progressTimer);
+  panel.hidden = false;
+  $("#progress-title").textContent = title;
+  $("#progress-percent").textContent = "8%";
+  $("#progress-bar").style.width = "8%";
+  $("#progress-detail").textContent = steps[0] || "正在提交请求...";
+  $("#progress-steps").innerHTML = steps.map((step, index) => `<li class="${index === 0 ? "is-active" : ""}">${escapeHtml(step)}</li>`).join("");
+  let percent = 8;
+  let stepIndex = 0;
+  state.progressTimer = window.setInterval(() => {
+    percent = Math.min(88, percent + (percent < 50 ? 6 : 2));
+    const nextIndex = Math.min(steps.length - 1, Math.floor((percent / 90) * steps.length));
+    if (nextIndex !== stepIndex) {
+      stepIndex = nextIndex;
+      $("#progress-detail").textContent = steps[stepIndex] || "正在等待结果...";
+      $$("#progress-steps li").forEach((item, index) => {
+        item.classList.toggle("is-done", index < stepIndex);
+        item.classList.toggle("is-active", index === stepIndex);
+      });
+    }
+    $("#progress-percent").textContent = `${percent}%`;
+    $("#progress-bar").style.width = `${percent}%`;
+  }, 900);
+}
+
+function finishProgress(message = "处理完成") {
+  const panel = $("#progress-panel");
+  if (!panel) return;
+  window.clearInterval(state.progressTimer);
+  $("#progress-percent").textContent = "100%";
+  $("#progress-bar").style.width = "100%";
+  $("#progress-detail").textContent = message;
+  $$("#progress-steps li").forEach((item) => {
+    item.classList.remove("is-active");
+    item.classList.add("is-done");
+  });
+  window.setTimeout(() => {
+    panel.hidden = true;
+  }, 900);
+}
+
+function failProgress(message) {
+  window.clearInterval(state.progressTimer);
+  const panel = $("#progress-panel");
+  if (!panel) return;
+  $("#progress-detail").textContent = message;
+  $("#progress-panel").classList.add("is-error");
+  window.setTimeout(() => {
+    panel.hidden = true;
+    panel.classList.remove("is-error");
+  }, 1800);
+}
+
+async function withProgress(title, steps, task) {
+  startProgress(title, steps);
+  try {
+    const result = await task();
+    finishProgress("已收到结果，正在刷新界面。");
+    return result;
+  } catch (error) {
+    failProgress(error.message);
+    throw error;
+  }
+}
+
 function escapeHtml(value) {
   return String(value ?? "")
     .replace(/&/g, "&amp;")
@@ -261,6 +331,7 @@ async function refreshAll() {
   state.knowledgeHistory = knowledgeHistory;
   applyTheme();
   applyI18n();
+  renderAccount();
   renderDashboard();
   renderSchedules();
   renderKnowledgeDocs();
@@ -269,6 +340,83 @@ async function refreshAll() {
   renderKnowledgeHistory();
   populateSettings();
   await renderQuestionSuggestions();
+}
+
+function renderAccount() {
+  const name = $("#account-name");
+  const note = $("#account-note");
+  const action = $("#account-action");
+  if (!name || !note || !action) return;
+  if (state.currentUser?.name) {
+    name.textContent = state.currentUser.name;
+    note.textContent = state.currentUser.email || "本地账号已登录";
+    action.textContent = "退出";
+  } else {
+    name.textContent = "访客模式";
+    note.textContent = "登录后可区分个人数据";
+    action.textContent = "登录 / 注册";
+  }
+}
+
+function openAccountDialog() {
+  if (state.currentUser?.name) {
+    state.currentUser = null;
+    localStorage.removeItem("careerforge_user");
+    renderAccount();
+    showAlert("已退出登录。");
+    return;
+  }
+  const modal = document.createElement("section");
+  modal.className = "modal-mask";
+  modal.innerHTML = `
+    <form class="modal-card" id="account-form">
+      <div class="panel-heading">
+        <h2>登录 / 注册</h2>
+        <button class="icon-button" type="button" data-close-account aria-label="关闭">×</button>
+      </div>
+      <p class="small">当前版本使用本地账号，保存到你的浏览器，用于区分个人数据和后续扩展收费/额度。</p>
+      <label>昵称<input name="name" required placeholder="例如：小瑜" /></label>
+      <label>邮箱<input name="email" type="email" placeholder="可选" /></label>
+      <button class="primary" type="submit">进入工作台</button>
+    </form>
+  `;
+  document.body.appendChild(modal);
+  const close = () => modal.remove();
+  modal.querySelector("[data-close-account]").addEventListener("click", close);
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) close();
+  });
+  modal.querySelector("#account-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = formToObject(event.currentTarget);
+    state.currentUser = { name: data.name.trim(), email: data.email.trim(), createdAt: new Date().toISOString() };
+    localStorage.setItem("careerforge_user", JSON.stringify(state.currentUser));
+    renderAccount();
+    close();
+    showAlert("已登录。本地账号用于当前浏览器的数据区分。");
+  });
+}
+
+function bindModelCards() {
+  $$("[data-model-cards]").forEach((group) => {
+    const scope = group.dataset.modelCards;
+    const select = $(`[data-model-select="${scope}"]`);
+    if (!select) return;
+    const sync = () => {
+      group.querySelectorAll("[data-model-value]").forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.modelValue === select.value);
+      });
+    };
+    group.querySelectorAll("[data-model-value]").forEach((button) => {
+      button.addEventListener("click", () => {
+        select.value = button.dataset.modelValue;
+        select.dispatchEvent(new Event("change", { bubbles: true }));
+        sync();
+      });
+    });
+    select.addEventListener("change", sync);
+    sync();
+  });
 }
 
 function renderDashboard() {
@@ -295,6 +443,7 @@ function renderDashboard() {
       await refreshAll();
     });
   });
+  bindDeleteButtons();
 }
 
 function metric(label, value) {
@@ -305,7 +454,7 @@ function renderResumeSummary(resume) {
   const keywords = resume.matchedKeywords || [];
   const languageName = currentLang() === "zh" ? (resume.language === "zh" ? "中文" : "英文") : (resume.language === "zh" ? "Chinese" : "English");
   return `<article class="item">
-    <h3>${escapeHtml(resume.name)}</h3>
+    <div class="item-head"><h3>${escapeHtml(resume.name)}</h3><button class="icon-danger" type="button" title="删除" data-delete-url="/api/resumes/${escapeHtml(resume.id)}">🗑</button></div>
     <p>${escapeHtml(displayRole(resume.targetRole))} · ${languageName} · ${resume.overallScore}/100</p>
     <div class="badge-row">${keywords.slice(0, 5).map((item) => `<span class="badge">${escapeHtml(item)}</span>`).join("")}</div>
   </article>`;
@@ -314,10 +463,10 @@ function renderResumeSummary(resume) {
 function renderReviewTask(task) {
   const done = task.status === "done";
   return `<article class="item">
-    <h3>${escapeHtml(displayTaskTitle(task.title))}</h3>
+    <div class="item-head"><h3>${escapeHtml(displayTaskTitle(task.title))}</h3><button class="icon-danger" type="button" title="删除" data-delete-url="/api/review-tasks/${escapeHtml(task.id)}">🗑</button></div>
     <p class="${done ? "status-done" : "status-open"}">${done ? tStatus("done") : tStatus("open")} · ${new Date(task.dueAt).toLocaleString()}</p>
     <div class="badge-row">${(task.focus || []).map((item) => `<span class="badge warn">${escapeHtml(item)}</span>`).join("")}</div>
-    ${done ? "" : `<button class="ghost" data-task-done="${task.id}" type="button">标记完成</button>`}
+    ${done ? "" : `<button class="ghost" data-task-done="${escapeHtml(task.id)}" type="button">标记完成</button>`}
   </article>`;
 }
 
@@ -355,6 +504,7 @@ function renderResumeResult(result) {
   state.lastResumeId = result.id;
   $("#download-report-btn").disabled = false;
   $("#resume-result").innerHTML = renderSingleResume(result);
+  bindDeleteButtons();
 }
 
 function renderResumeBatch(batch) {
@@ -372,16 +522,20 @@ function renderResumeBatch(batch) {
     ${batch.items.map(renderSingleResume).join("")}
     ${renderFailures(batch.failures)}
   `;
+  bindDeleteButtons();
 }
 
 function renderSingleResume(result) {
   const skills = result.extractedSkills || [];
   return `
     <article class="item">
+      <div class="item-head">
+        <h3>${escapeHtml(result.name)} · ${escapeHtml(result.targetRole)}</h3>
+        <button class="icon-danger" type="button" title="删除" data-delete-url="/api/resumes/${escapeHtml(result.id)}">🗑</button>
+      </div>
       <div class="score-layout">
         <div class="score-ring" style="--score:${result.overallScore || 0}"><span>${result.overallScore || 0}</span></div>
         <div>
-          <h3>${escapeHtml(result.name)} · ${escapeHtml(result.targetRole)}</h3>
           <p>${result.duplicate ? "检测到重复内容，已返回已有分析。" : "已完成深度简历分析。"} 引擎：${escapeHtml(result.engine || "local")}</p>
           <p class="small">来源：${escapeHtml(result.source?.path || result.source?.name || t("pasteText"))}</p>
           <div class="badge-row">${skills.slice(0, 10).map((item) => `<span class="badge">${escapeHtml(item)}</span>`).join("")}</div>
@@ -446,7 +600,12 @@ function renderInterviewRoom(session, latestEvaluation = null) {
   const answeredIds = new Set(session.answers.map((answer) => answer.questionId));
   const next = session.questions.find((question) => !answeredIds.has(question.id));
   if (session.status === "completed") {
-    $("#interview-room").innerHTML = renderInterviewSummary(session);
+    $("#finish-session-btn").disabled = true;
+    $("#interview-room").innerHTML = `
+      ${renderInterviewSummary(session)}
+      ${renderInterviewAnswerHistory(session)}
+    `;
+    bindInterviewAssistActions(session, null);
     return;
   }
 
@@ -463,9 +622,11 @@ function renderInterviewRoom(session, latestEvaluation = null) {
     answerForm.addEventListener("submit", async (event) => {
       event.preventDefault();
       const answer = formToObject(answerForm).answer;
-      const result = await api(`/api/interviews/${session.id}/answers`, {
-        method: "POST",
-        body: { questionId: next.id, answer, aiModel: session.aiModel || "flash" }
+      const result = await withProgress("正在评估回答", ["提交本题回答", "调用 AI 评估", "生成参考改写", "刷新下一题"], async () => {
+        return api(`/api/interviews/${session.id}/answers`, {
+          method: "POST",
+          body: { questionId: next.id, answer, aiModel: session.aiModel || "flash" }
+        });
       });
       state.activeSession = result.session;
       renderInterviewRoom(result.session, result.record.evaluation);
@@ -625,13 +786,45 @@ function buildSpecificInterviewAdvice(evaluation) {
 }
 
 function renderInterviewSummary(session) {
-  return `<article class="item">
+  const summary = session.summary || {};
+  const answered = summary.answered ?? session.answers?.length ?? 0;
+  const total = summary.total ?? session.questions?.length ?? 0;
+  const modelName = session.aiModel === "pro" ? "专家" : "快速";
+  const advice = buildInterviewPracticePlan(session);
+  return `<article class="item summary-card">
     <div class="score-layout">
-      <div class="score-ring" style="--score:${session.summary.score}"><span>${session.summary.score}</span></div>
-      <div><h3>${escapeHtml(session.role)} 面试汇总</h3><p>${session.aiModel === "pro" ? "专家" : "快速"} · 已回答 ${session.summary.answered}/${session.summary.total} 题。</p></div>
+      <div class="score-ring" style="--score:${summary.score || 0}"><span>${summary.score || 0}</span></div>
+      <div>
+        <h3>${escapeHtml(session.role)} 面试汇总</h3>
+        <p>${modelName} · 已回答 ${answered}/${total} 题 · ${session.questionLanguage === "en" ? "英文提问" : "中文提问"}</p>
+        <p class="small">汇总会结合每题回答、参考答案、缺失要点和岗位要求生成，方便直接进入复盘。</p>
+      </div>
     </div>
-    <h3>下一步</h3>${list(session.summary.nextActions)}
+    <h3>下一步</h3>${list(summary.nextActions || [])}
+    <h3>具体训练安排</h3>${list(advice)}
   </article>`;
+}
+
+function buildInterviewPracticePlan(session) {
+  const missing = session.answers
+    .flatMap((answer) => answer.evaluation?.missing || [])
+    .filter(Boolean)
+    .slice(0, 6);
+  const base = [
+    "把低分题按“背景、任务、行动、结果、复盘”重写一版，每段控制在 2-3 句话。",
+    "为每个项目补 2 个硬指标，例如响应时间、错误率、成本、转化率、交付周期或用户规模。",
+    "准备一个失败复盘案例，明确当时判断、问题暴露、补救动作和后续机制。"
+  ];
+  if (missing.length) {
+    base.unshift(`优先补齐这些缺失点：${[...new Set(missing)].join("、")}。`);
+  }
+  if (session.questionType === "coding") {
+    base.push("代码题复盘时写出复杂度、边界条件、测试用例和可优化方向，不只给最终代码。");
+  }
+  if (session.questionType === "system") {
+    base.push("系统设计题先画清核心对象、接口、数据流、失败场景和监控指标，再讲技术选型。");
+  }
+  return base;
 }
 
 function renderInterviewAnswerHistory(session) {
@@ -718,11 +911,13 @@ function renderKnowledgeHistory() {
       <div class="history-actions">
         <button class="ghost" type="button" data-copy-answer="${escapeHtml(item.id)}">复制答案</button>
         <button class="ghost" type="button" data-follow-up="${escapeHtml(item.id)}">继续追问</button>
+        <button class="icon-danger" type="button" title="删除" data-delete-url="/api/knowledge/history/${escapeHtml(item.id)}">🗑</button>
       </div>
     </article>
   `).join("");
   container.scrollTo({ left: state.knowledgeHistoryIndex * container.clientWidth, behavior: "smooth" });
   bindHistoryActions();
+  bindDeleteButtons();
   syncHistoryControls();
 }
 
@@ -775,24 +970,33 @@ function renderKnowledgeUsage() {
       <span>${escapeHtml(usage.provider?.billingNote || "")}</span>
     </article>
     ${modeItems.map((item) => `
-      <article class="quota-card ${item.key === activeMode ? "is-active" : ""}">
+      <button class="quota-card ${item.key === activeMode ? "is-active" : ""}" type="button" data-quota-mode="${escapeHtml(item.key)}">
         <strong>${escapeHtml(item.label)}</strong>
         <span>${item.unlimited ? "无限次" : `${item.used}/${item.freeQuota} 次，剩余 ${item.remaining} 次`}</span>
         <span>${item.unlimited ? "超额费用：0 元" : `超额 ${item.overage} 次 · ${item.overagePriceCny} 元/次 · 预计 ${item.estimatedChargeCny} 元`}</span>
-      </article>
+      </button>
     `).join("")}
   `;
+  $$("[data-quota-mode]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const select = $("#answer-mode");
+      if (!select) return;
+      select.value = button.dataset.quotaMode;
+      renderKnowledgeUsage();
+    });
+  });
 }
 
 function renderKnowledgeDocs() {
   $("#knowledge-docs").innerHTML = state.knowledgeDocs.length
     ? state.knowledgeDocs.slice(0, 10).map((doc) => `<article class="item">
-        <h3>${escapeHtml(doc.title)}</h3>
+        <div class="item-head"><h3>${escapeHtml(doc.title)}</h3><button class="icon-danger" type="button" title="删除" data-delete-url="/api/knowledge/docs/${escapeHtml(doc.id)}">🗑</button></div>
         <p>${doc.roleLabel ? `${escapeHtml(doc.roleLabel)} · ` : ""}${escapeHtml(doc.categoryLabel || "通用笔记")} · ${doc.chunkCount} 个片段 · ${doc.sourceType === "public-import" ? "来自公开资料库" : "我的资料"}</p>
         <div class="badge-row">${(doc.tags || []).slice(0, 6).map((tag) => `<span class="badge">${escapeHtml(tag)}</span>`).join("")}</div>
         <p class="small">${escapeHtml(doc.contentPreview || "")}</p>
       </article>`).join("")
     : `<div class="empty">还没有资料。先导入岗位 JD、面试题、项目复盘或简历素材。</div>`;
+  bindDeleteButtons();
 }
 
 function renderPublicDocs() {
@@ -845,9 +1049,56 @@ function bindSuggestionButtons() {
 }
 
 async function askKnowledgeNow() {
-  const result = await api("/api/knowledge/ask", { method: "POST", body: formToObject($("#ask-form")) });
+  const data = formToObject($("#ask-form"));
+  const isPro = data.aiModel === "pro";
+  const result = await withProgress(
+    isPro ? "专家模式生成中" : "快速模式生成中",
+    isPro ? ["检索知识库资料", "提交专家模型", "等待深度推理", "整理完整答案"] : ["检索知识库资料", "提交快速模型", "整理答案"],
+    () => api("/api/knowledge/ask", { method: "POST", body: data })
+  );
   renderKnowledgeAnswer(result);
   bindSuggestionButtons();
+}
+
+async function downloadResumeReport(format) {
+  const report = await withProgress("正在准备报告", ["读取报告内容", "转换导出格式", "开始下载"], () => api(`/api/resumes/${state.lastResumeId}/report`));
+  const baseName = `${report.id}-report`;
+  if (format === "word") {
+    downloadBlob(`${baseName}.doc`, new Blob([reportHtml(report)], { type: "application/msword;charset=utf-8" }));
+    return;
+  }
+  if (format === "pdf") {
+    const win = window.open("", "_blank");
+    win.document.write(reportHtml(report));
+    win.document.close();
+    win.focus();
+    win.print();
+    return;
+  }
+  if (format === "image") {
+    const svg = reportSvg(report);
+    downloadBlob(`${baseName}.svg`, new Blob([svg], { type: "image/svg+xml;charset=utf-8" }));
+    return;
+  }
+  downloadBlob(`${baseName}.md`, new Blob([report.markdown], { type: "text/markdown;charset=utf-8" }));
+}
+
+function downloadBlob(name, blob) {
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = name;
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
+function reportHtml(report) {
+  return `<!doctype html><html><head><meta charset="utf-8"><title>${escapeHtml(report.title)}</title><style>body{font-family:Arial,'Microsoft YaHei',sans-serif;line-height:1.7;padding:36px;color:#17202a}h1{color:#11689f}pre{white-space:pre-wrap;font-family:inherit}</style></head><body><h1>${escapeHtml(report.title)}</h1><pre>${escapeHtml(plainAnswer(report.markdown))}</pre></body></html>`;
+}
+
+function reportSvg(report) {
+  const text = plainAnswer(report.markdown).slice(0, 2400);
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600"><rect width="100%" height="100%" fill="#f3f8fc"/><foreignObject x="60" y="60" width="1080" height="1480"><div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial,'Microsoft YaHei',sans-serif;color:#17202a;line-height:1.7;font-size:28px;"><h1 style="color:#11689f">${escapeHtml(report.title)}</h1><pre style="white-space:pre-wrap;font-family:inherit">${escapeHtml(text)}</pre></div></foreignObject></svg>`;
 }
 
 function renderSchedules() {
@@ -869,11 +1120,12 @@ function renderSchedules() {
       showAlert("日程已复制。");
     });
   });
+  bindDeleteButtons();
 }
 
 function renderSchedule(schedule) {
   return `<article class="item">
-    <h3>${escapeHtml(schedule.company || "未识别公司")} · ${escapeHtml(schedule.role || "未识别岗位")}</h3>
+    <div class="item-head"><h3>${escapeHtml(schedule.company || "未识别公司")} · ${escapeHtml(schedule.role || "未识别岗位")}</h3><button class="icon-danger" type="button" title="删除" data-delete-url="/api/schedules/${escapeHtml(schedule.id)}">🗑</button></div>
     <p>${schedule.startAt ? new Date(schedule.startAt).toLocaleString() : "未识别时间"} · ${escapeHtml(schedule.interviewer || "未识别面试官")}</p>
     ${schedule.meetingUrl ? `<p><a href="${escapeHtml(schedule.meetingUrl)}" target="_blank" rel="noreferrer">${escapeHtml(schedule.meetingUrl)}</a></p>` : ""}
     ${schedule.notes ? `<p>${escapeHtml(schedule.notes)}</p>` : ""}
@@ -881,6 +1133,25 @@ function renderSchedule(schedule) {
     <div class="badge-row">${(schedule.reminders || []).map((item) => `<span class="badge">${escapeHtml(item.label)}</span>`).join("")}</div>
     <button class="ghost" type="button" data-copy-schedule="${escapeHtml(schedule.id)}">复制日程</button>
   </article>`;
+}
+
+function bindDeleteButtons() {
+  $$("[data-delete-url]").forEach((button) => {
+    if (button.dataset.boundDelete) return;
+    button.dataset.boundDelete = "1";
+    button.addEventListener("click", async () => {
+      if (!window.confirm("确认删除这条数据吗？删除后不可恢复。")) return;
+      try {
+        await withProgress("正在删除", ["提交删除请求", "更新本地数据", "刷新页面"], async () => {
+          await api(button.dataset.deleteUrl, { method: "DELETE" });
+          await refreshAll();
+        });
+        showAlert("已删除。");
+      } catch (error) {
+        showAlert(error.message);
+      }
+    });
+  });
 }
 
 function populateSettings() {
@@ -1077,9 +1348,11 @@ function bindEvents() {
   bindResumeMode();
   bindScheduleInput();
   bindLibraryTabs();
+  bindModelCards();
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => applyTheme());
   $$(".tab").forEach((tab) => tab.addEventListener("click", () => switchView(tab.dataset.view)));
   $("#refresh-btn").addEventListener("click", () => refreshAll().catch((error) => showAlert(error.message)));
+  $("#account-action")?.addEventListener("click", openAccountDialog);
 
   $("#settings-form").themeMode.addEventListener("change", (event) => {
     applyTheme(event.target.value);
@@ -1090,14 +1363,16 @@ function bindEvents() {
     try {
       const form = event.currentTarget;
       const data = formToObject(form);
-      if (data.inputMode === "upload") {
-        renderResumeBatch(await api("/api/resumes/upload", { method: "POST", body: await buildUploadPayload(form) }));
-      } else if (data.inputMode === "clipboard") {
-        renderResumeBatch(await api("/api/resumes/upload", { method: "POST", body: await buildClipboardPayload(form) }));
-      } else {
-        renderResumeResult(await api("/api/resumes/analyze", { method: "POST", body: data }));
-      }
-      await refreshAll();
+      await withProgress("正在分析简历", ["读取输入内容", "提交 AI/规则分析", "生成结构化报告", "刷新分析结果"], async () => {
+        if (data.inputMode === "upload") {
+          renderResumeBatch(await api("/api/resumes/upload", { method: "POST", body: await buildUploadPayload(form) }));
+        } else if (data.inputMode === "clipboard") {
+          renderResumeBatch(await api("/api/resumes/upload", { method: "POST", body: await buildClipboardPayload(form) }));
+        } else {
+          renderResumeResult(await api("/api/resumes/analyze", { method: "POST", body: data }));
+        }
+        await refreshAll();
+      });
     } catch (error) {
       showAlert(error.message);
     }
@@ -1105,21 +1380,20 @@ function bindEvents() {
 
   $("#download-report-btn").addEventListener("click", async () => {
     if (!state.lastResumeId) return;
-    const report = await api(`/api/resumes/${state.lastResumeId}/report`);
-    const blob = new Blob([report.markdown], { type: "text/markdown;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `${report.id}-report.md`;
-    link.click();
-    URL.revokeObjectURL(url);
+    try {
+      await downloadResumeReport($("#report-format").value);
+    } catch (error) {
+      showAlert(error.message);
+    }
   });
 
   $("#interview-form").addEventListener("submit", async (event) => {
     event.preventDefault();
     try {
-      await startInterview(event.currentTarget);
-      await refreshAll();
+      await withProgress("正在创建面试", ["读取岗位配置", "生成面试题", "准备答题区"], async () => {
+        await startInterview(event.currentTarget);
+        await refreshAll();
+      });
     } catch (error) {
       showAlert(error.message);
     }
@@ -1127,17 +1401,21 @@ function bindEvents() {
 
   $("#finish-session-btn").addEventListener("click", async () => {
     if (!state.activeSession) return;
-    state.activeSession = await api(`/api/interviews/${state.activeSession.id}/finish`, { method: "POST" });
-    renderInterviewRoom(state.activeSession);
-    await refreshAll();
+    await withProgress("正在汇总面试", ["读取本轮回答", "生成复盘建议", "刷新汇总结果"], async () => {
+      state.activeSession = await api(`/api/interviews/${state.activeSession.id}/finish`, { method: "POST" });
+      renderInterviewRoom(state.activeSession);
+      await refreshAll();
+    });
   });
 
   $("#knowledge-form").addEventListener("submit", async (event) => {
     event.preventDefault();
     try {
-      await api("/api/knowledge/docs", { method: "POST", body: formToObject(event.currentTarget) });
+      await withProgress("正在保存资料", ["清洗文本", "拆分知识片段", "写入知识库"], async () => {
+        await api("/api/knowledge/docs", { method: "POST", body: formToObject(event.currentTarget) });
+        await refreshAll();
+      });
       showAlert("资料已保存。");
-      await refreshAll();
     } catch (error) {
       showAlert(error.message);
     }
@@ -1173,8 +1451,10 @@ function bindEvents() {
   $("#schedule-form").addEventListener("submit", async (event) => {
     event.preventDefault();
     try {
-      await api("/api/schedules/parse", { method: "POST", body: await buildSchedulePayload(event.currentTarget) });
-      await refreshAll();
+      await withProgress("正在解析日程", ["读取邀请内容", "识别时间和链接", "保存提醒"], async () => {
+        await api("/api/schedules/parse", { method: "POST", body: await buildSchedulePayload(event.currentTarget) });
+        await refreshAll();
+      });
     } catch (error) {
       showAlert(error.message);
     }
